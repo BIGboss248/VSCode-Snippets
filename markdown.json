@@ -1,0 +1,62 @@
+{
+	"Mermaid block":{
+		"prefix":"!mermaid start",
+		"body":[
+			":::mermaid",
+			"\tflowchart ${1|TD,LR|}",
+			"\t\t${2:}",
+			":::"
+		]
+	},
+	"Mermaid Flow chart":{
+		"prefix":"!mermaid flowchart",
+		"body":[		
+			"$LINE_COMMENT flowchart TB, BT, RL, LR",
+			"flowchart TD",
+			"\t${1:}",
+		],
+		"description":"Generates a top down flowchart."
+	},
+	"Mermaid Create rectangle":{
+		"prefix":"!mermaid rectangle",
+		"body":[
+			"${1:id}[\"${2:text}\"]"
+		]
+	},
+	"Mermaid Create circle":{
+		"prefix":"!mermaid circle",
+		"body":[
+			"${1:id}((\"${2:text}\"))"
+		]
+	},
+	"Mermaid Create tag shape":{
+		"prefix":"!mermaid tag shape",
+		"body":[
+			"${1:id}>\"${2:text}\"]"
+		]
+	},
+	"Mermaid Create rhombus":{
+		"prefix":"!mermaid rhombus",
+		"body":[
+			"${1:id}{\"${2:text}\"}"
+		]
+	},
+	"Mermaid solid line link":{
+		"prefix":"!mermaid solid link",
+        "body":[
+            "-- ${1:text} -->"
+        ]
+	},
+	"Mermaid dotted line link":{
+		"prefix":"!mermaid dotted link",
+        "body":[
+            "-. ${1:text} .->"
+        ]
+	},
+	"Mermaid thick line link":{
+		"prefix":"!mermaid thick link",
+        "body":[
+            "== ${1:text} ==>"
+        ]
+	}
+}

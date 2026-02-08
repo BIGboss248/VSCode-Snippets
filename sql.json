@@ -1,0 +1,36 @@
+{
+    "select": {
+        "prefix": "!select",
+        "body": [
+            "SELECT ${2:table_name}.${1:column_name1,${2:table_name}.column_name2}",
+            "FROM ${2:table_name}",
+            "WHERE ${3:condition}",
+            "ORDER BY ${4:column} ${5|ASC,DSC|}",
+            "--Group BY column_name(s)\tgroups rows that have the same values into summary rows"
+        ],
+        "description": "sample select statement"
+    },
+	"select caculate function": {
+        "prefix": ["!select agregate", "!select sum", "!select count", "!select min", "!select max", "!select avg"],
+        "body": [
+            "${1|COUNT,MIN,MAX,AVG,SUM|}(${2:column_name})"
+        ],
+        "description": "aggregate function on selecting columns"
+    },
+	"where": {
+        "prefix": "!where",
+        "body": [
+            "WHERE column ${1|IN (name1,name2,name3,....),BETWEEN number1ORdate1 AND number2ORdate2,condition1 AND-OR-NOT condiion2|}"
+        ],
+        "description": "write a where clause"
+    },
+	"select inner join": {
+        "prefix": "!select inner join",
+        "body": [
+            "SELECT ${1:table1}.${3:Column1}, ${2:table2}.${5:Column1}, ${1:table1}.${4:Column2}",
+            "FROM ${1:table1}",
+            "INNER JOIN ${2:table2} ON ${1:table1}.${6:Column2}=${2:table2}.${6:Column2};"
+        ],
+        "description": "inner join two tables"
+    },
+}

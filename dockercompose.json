@@ -1,0 +1,85 @@
+{
+    "traefik redirect middleware": {
+        "prefix": "!traefik redirect middleware",
+        "body": [
+            "# HTTP to HTTPS redirect",
+            "- \"traefik.http.routers.${1:container_name}-router.middlewares=${5:https_redirect}\"",
+            "- \"traefik.http.middlewares.${5:https_redirect}.redirectscheme.scheme=https\"",
+            "#  - \"traefik.http.middlewares.${5:https_redirect}.redirectscheme.permanent=true\" # 301 redirect",
+        ],
+        "description": "Create a middleware to redirect http to https"
+    },
+    "traefik labels": {
+        "prefix": "!traefik labels",
+        "body": [
+            "# Tell traefik to route this container",
+            "- \"traefik.enable=true\"",
+            "# Define the service name and port",
+            "#! Services must be unique",
+            "- \"traefik.http.services.${1:container_name}-service.loadbalancer.server.port=${2:service port}\" #* You can remove port and use expose keyword to allow traefik to proxy requests without exposing port",
+            "# Define an http service to be routed ENTRYPOINT MUST BE IN STATIC CONFIG",
+            "- \"traefik.http.routers.${1:container_name}-router.service=${1:container_name}-service\"",
+            "- \"traefik.http.routers.${1:container_name}-router.entrypoints=web\"",
+            "- \"traefik.http.routers.${1:container_name}-router.rule=Host(`${4:Domain.com}`)\"",
+            "# Define an http service with TLS ENTRYPOINT MUST BE IN STATIC CONFIG",
+            "- \"traefik.http.routers.${1:container_name}-router-secure.tls=true\"",
+            "- \"traefik.http.routers.${1:container_name}-router-secure.entrypoints=websecure\"",
+            "- \"traefik.http.routers.${1:container_name}-router-secure.rule=Host(`${4:Domain.com}`)\"",
+            "- \"traefik.http.routers.${1:container_name}-router-secure.tls.certresolver=${6|myresolver,cloudflare_resolver|}\"",
+            "# HTTP to HTTPS redirect",
+            "#! For redirect to work cloudflare ssl must be set to full(strict)",
+            "- \"traefik.http.routers.${1:container_name}-router.middlewares=${5:https_redirect}\"",
+            "- \"traefik.http.middlewares.${5:https_redirect}.redirectscheme.scheme=https\"",
+            "- \"traefik.http.middlewares.${5:https_redirect}.redirectscheme.permanent=true\" # 301 redirect",
+            "# Define a tcp service with TLS ENTRYPOINT MUST BE IN STATIC CONFIG",
+            "- \"traefik.tcp.services.${1:container_name}-tcp-service.loadbalancer.server.port=${8:tcp_port}\"",
+            "- \"traefik.tcp.routers.${1:container_name}-tcp-router.service=${1:container_name}-tcp-service\"",
+            "- \"traefik.tcp.routers.${1:container_name}-tcp-router.entrypoints=websecure\"",
+            "- \"traefik.tcp.routers.${1:container_name}-tcp-router.rule=HostSNI(`${9:Domain_tcp.com}`)\"",
+            "- \"traefik.tcp.routers.${1:container_name}-tcp-router.tls.certresolver=${6:cloudflare_resolver}\"",
+            "# Define a UDP service with TLS ENTRYPOINT MUST BE IN STATIC CONFIG",
+            "- \"traefik.udp.services.${1:container_name}-udp-service.loadbalancer.server.port=${11:udp port}\"",
+            "- \"traefik.udp.routers.${1:container_name}-udp-router.service=${1:container_name}-udp-service\"",
+            "- \"traefik.udp.routers.${1:container_name}-udp-router.entrypoints=UDP_Entrypoint\""
+        ],
+        "description": "traefik labels for traffic routing, loadbalancing and tls certificate generation"
+    },
+    "traefik crowdsec lables": {
+        "prefix": "!traefik crowdsec lables",
+        "body": [
+            "#* Besure to use redirect scheme middleware otherwise blocked IPs can come through http or https port and access the service",
+            "#Define midleware",
+            "- \"traefik.http.routers.${name:uptime_kuma-router-secure}.middlewares=${name:crowdsec-wordpress}\"",
+            "## Middleware configuration",
+            "- \"traefik.http.middlewares.${name:crowdsec-wordpress}.plugin.crowdsec-bouncer-plugin.enabled=true\"",
+            "- \"traefik.http.middlewares.${name:crowdsec-wordpress}.plugin.crowdsec-bouncer-plugin.crowdseclapikey=${name:BOUNCER_KEY_TRAEFIK}\"",
+            ""
+        ],
+        "description": "Set traefik crowdsec middleware"
+    },
+    "traefik create basic auth middleware": {
+        "prefix": "!traefik basic auth middleware",
+        "body": [
+            "\t- \"traefik.http.routers.traefik-router.middlewares=auth\"",
+            "\t- \"traefik.http.middlewares.auth.basicauth.users=amin:$2y$10\\$\\$EVhhzkxmWh20Xc3pvDBAi.PvmX5v9Sg6746gAFOVeqGqIGLX/0/Je\""
+        ],
+        "description": "Create a basic auth middleware with username and password"
+    },
+    "Create macvlan/IPvlan network": {
+        "prefix": "!network macvlan/IPvlan create",
+        "body": [
+            "${1:my_macvlan}:",
+            "\tname: ${2:my_macvlan}",
+            "\tdriver: ${7|ipvlan,macvlan|}",
+            "\tdriver_opts:",
+            "\t\tparent: ${3:eth0}",
+            "\t\t${6|ipvlan_mode: l2, |}",
+            "\tipam:",
+            "\t\tconfig:",
+            "\t\t\t- subnet: ${4:10.1.0.0/24}",
+            "\t\t\t  gateway: ${5:10.1.0.1}",
+            "\t\t\t  ip_range: ${8:10.1.0.0/25}",
+        ],
+        "description": "Create a mac vlan network meaning each container in this network will be bridged to host network instead of being masqed"
+    },
+}

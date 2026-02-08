@@ -1,0 +1,427 @@
+/*
+
+This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
+
+🔹 1. Program Structure
+
+boilerplate/skeleton/start→ basic executable program structure
+
+Libary boilerplate / Libary skeleton / Libary start → basic Libary/package structure
+
+🔹 2. Variables & Data Types
+
+var → declare variable
+
+var-os → Read environment variable
+
+const → declare constant
+
+type → declare with type annotation (if supported)
+
+assign → variable assignment
+
+convert var type → type conversion/casting
+
+🔹 3. Input & Output
+
+print → print to console
+
+print format → print to console
+
+input → read input from user
+
+readfile → read from a file
+
+writefile → write to a file
+
+🔹 4. Control Flow
+
+if → if statement
+
+ifelse → if-else
+
+switch/match → switch/case or match expression
+
+for → for loop (counter-based)
+
+foreach → loop over collection
+
+while → while loop
+
+break → break out of loop
+
+continue → continue to next iteration
+
+🔹 5. Functions
+
+func → function definition
+
+unit-test → function test definition
+
+return → return from function
+
+lambda → anonymous function
+
+extention → Extend functions of a class
+
+🔹 6. Data-Structures
+
+array → array/list
+
+array append → append to array/list
+
+array filter → filter an array/list
+
+array map → Execute a function on each list item and return a new array/list
+
+dict/map → dictionary, hash map
+
+set → set
+
+struct / class → basic class or struct
+
+Json-read → parse/serialize JSON
+
+Json-write → generate JSON from data
+
+CSV-read → parse CSV file
+
+class → class definition
+
+inherit → class inheritance
+
+🔹 7. Error-Handling
+
+trycatch → try/catch block
+
+throw / raise → throw an error
+
+🔹 8. Concurrent and parallelism
+
+asyncfunc → async function
+
+await → await promise/future
+
+thread → threading/multithreading snippet
+
+Stream -> stream data
+
+🔹 9. Debugging & Utilities
+
+hashpassword → securely hash a password
+
+Logging_setup → Setup Logging for the app
+
+🔹 10. Database
+
+dbconnect → connect to a database
+
+dbqueryrows → query multiple rows
+
+dbqueryrow → query a single row
+
+dbexec → execute insert/update/delete
+
+dbtx → transaction with commit/rollback
+
+dbclose → close database connection safely
+
+dbping → check database health/connection
+
+🔹 11. API–Server (exposing APIs)
+
+apiserver → start an HTTP server
+
+apiroute → define a route/endpoint handler
+
+apiparsejson → parse request body JSON
+
+apiresjson → send JSON response
+
+apimiddleware → add middleware (logging, auth, CORS)
+
+🔹 12. API–Client (consuming APIs)
+
+apiclientget → make GET request to external API
+
+apiclientpost → make POST request to external API
+
+apiclientreq → generic HTTP request with headers
+
+apiclientjson → parse JSON response into struct
+*/
+{
+    "boilerplate/skeleton/start": {
+        "prefix": [
+            "!start",
+            "!boilerplate"
+        ],
+        "description": "Create a skeleton to make a great HTML page",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html lang=\"${10:en}\">",
+            "<head>",
+            "\t<meta charset=\"UTF-8\">",
+            "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+            "\t<link rel=\"icon\" href=\"/${15:favicon.ico}\" />",
+            "\t<link rel=\"stylesheet\" href=\"${20:https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css}\" />",
+            "\t<title>${30:Title}</title>",
+            "</head>",
+            "<body>",
+            "\t$50",
+            "\t<script src=\"${40:js/script.js}\" defer></script>",
+            "</body>",
+            "</html>"
+        ],
+    },
+    "create paragraph": {
+        "prefix": "!paragraph create",
+        "body": [
+            "$LINE_COMMENT all the content in this block will be shown as a paragraph",
+            "<p>",
+            "  ${1:Paragraph contents}",
+            "</p>",
+        ],
+        "description": "create a paragraph"
+    },
+    "create paragraph with white space": {
+        "prefix": "!paragraph create with white space",
+        "body": [
+            "$LINE_COMMENT This will show as 4 lines and all whitespaces will be shown",
+            "<pre>",
+            "\tMy Bonnie lies over the ocean.",
+            "  ",
+            "\tMy Bonnie lies over the sea.",
+            "  ",
+            "\tMy Bonnie lies over the ocean.",
+            "  ",
+            "\tOh, bring back my Bonnie to me.",
+            "</pre>",
+            ""
+        ],
+        "description": "create a paragraph block that will preserve white space"
+    },
+    "set page favicon": {
+        "prefix": "!favicon set",
+        "body": [
+            "$LINE_COMMENT must be in head block",
+            "<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\">"
+        ],
+        "description": "with link block you can define a relationship between a document and an external resource"
+    },
+    "create form": {
+        "prefix": "!form create",
+        "body": [
+            "<form action=\"/action_page.php\">",
+            "\t<label for=\"fname\">First name:</label><br>",
+            "\t<input type=\"text\" id=\"fname\" name=\"fname\" value=\"John\"><br>",
+            "\t<label for=\"lname\">Last name:</label><br>",
+            "\t<input type=\"text\" id=\"lname\" name=\"lname\" value=\"Doe\"><br><br>",
+            "\t<input type=\"submit\" value=\"Submit\">",
+            "</form>"
+        ],
+        "description": "create a from where a user can submit inforamtion"
+    },
+    "create canvas": {
+        "prefix": "!canvas create",
+        "body": [
+            "<body style=\"background-color:gray;\">",
+            "",
+            "<canvas id=\"myCanvas\" width=\"200\" height=\"100\" style=\"border:1px solid #d3d3d3;\">",
+            "Your browser does not support the HTML canvas tag.</canvas>",
+            "",
+            "<script>",
+            "var c = document.getElementById(\"myCanvas\");",
+            "var ctx = c.getContext(\"2d\");",
+            "ctx.moveTo(0,0);",
+            "ctx.lineTo(200,100);",
+            "ctx.stroke();",
+            "</script>"
+        ],
+        "description": "create canvas which is used to draw graphics on a web page. you can use HTML to create the canvas and java script to draw on it"
+    },
+    "HTML and CSS basics": {
+        "prefix": [
+            "!basics",
+            "!start-beginner"
+        ],
+        "body": [
+            "<!-- ======================= HTML basics ======================= -->",
+            "<!-- HTML is written in blocks almost all tags have beginning and end",
+            "but tags with no values like line break <br> don’t have end tags",
+            "HTML tags can have attributes for example meta tag has charset",
+            "attribute with a value of \"UTF-8\" -->",
+            "",
+            "<!-- ======================= CSS basics ======================= -->",
+            "<!-- With CSS, you can control the color, font, the size of text, the",
+            "spacing between elements, how elements are positioned and laid out,",
+            "what background images or background colors are to be used, different",
+            "displays for different devices and screen sizes, and much more! -->",
+            "",
+            "<!-- ======================= How CSS is used ======================= -->",
+            "<!-- CSS can be added to HTML documents in 3 ways: -->",
+            "<!-- - **Inline** - by using the `style` attribute inside HTML elements  -->",
+            "<h1 style=\"color: blue\">A Blue Heading</h1>",
+            "<p style=\"color: red\">A red paragraph.</p>",
+            "",
+            "<!-- - **Internal** - by using a `<style>` element in the `<head>` section -->",
+            "<!DOCTYPE html>",
+            "<html>",
+            "  <head>",
+            "\t<style>",
+            "\t  body {",
+            "\t\tbackground-color: powderblue;",
+            "\t  }",
+            "\t  h1 {",
+            "\t\tcolor: blue;",
+            "\t  }",
+            "\t  p {",
+            "\t\tcolor: red;",
+            "\t  }",
+            "\t</style>",
+            "  </head>",
+            "  <body>",
+            "\t<h1>This is a heading</h1>",
+            "\t<p>This is a paragraph.</p>",
+            "  </body>",
+            "</html>",
+            "",
+            "<!-- - **External** - by using a `<link>` element to link to an external CSS file  -->",
+            "",
+            "<!DOCTYPE html>",
+            "<html>",
+            "  <head>",
+            "\t<link rel=\"stylesheet\" href=\"styles.css\" />",
+            "  </head>",
+            "  <body>",
+            "\t<h1>This is a heading</h1>",
+            "\t<p>This is a paragraph.</p>",
+            "  </body>",
+            "</html>",
+            ""
+        ],
+        "description": "a simple way to refresh on how html and css works before you go to write scripts"
+    },
+    "create heading": {
+        "prefix": "!heading create",
+        "body": [
+            "<h${1:1}>This is a heading</h${1:1}>"
+        ],
+        "description": "create a heading"
+    },
+    "start template": {
+        "prefix": "!start template",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "  <head>",
+            "\t<meta charset=\"UTF-8\" />",
+            "\t<title>title</title>",
+            "\t<!-- Page favicon -->",
+            "\t<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\" />",
+            "\t<!-- page internal css -->",
+            "\t<style>",
+            "\t  body {",
+            "\t\tbackground-color: powderblue;",
+            "\t  }",
+            "\t  h1 {",
+            "\t\tcolor: blue;",
+            "\t  }",
+            "\t  p {",
+            "\t\tcolor: red;",
+            "\t  }",
+            "\t</style>",
+            "\t<!-- page external css -->",
+            "\t<link rel=\"stylesheet\" href=\"styles.css\" />",
+            "  </head>",
+            "  <body></body>",
+            "</html>",
+            ""
+        ],
+        "description": "a simple starting point template"
+    },
+    "element heading": {
+        "prefix": "!element heading",
+        "body": [
+            "<h${1:1}>${2:Heading text}</h${1:1}>"
+        ],
+        "description": "create a heading element"
+    },
+    "element link": {
+        "prefix": "!element link",
+        "body": [
+            "<a href=\"${1:https://www.example.com}\">${2:Link text}</a>"
+        ],
+        "description": "create a link element"
+    },
+    "element unordered list": {
+        "prefix": "!element unordered list",
+        "body": [
+            "<ul>",
+            "\t<li>${1:List item 1}</li>",
+            "\t<li>${2:List item 2}</li>",
+            "</ul>"
+        ],
+        "description": "create an unordered list element"
+    },
+    "element ordered list": {
+        "prefix": "!element ordered list",
+        "body": [
+            "<ol>",
+            "\t<li>${1:List item 1}</li>",
+            "\t<li>${2:List item 2}</li>",
+            "</ol>"
+        ],
+        "description": "create an ordered list element"
+    },
+    "element image": {
+        "prefix": "!element image",
+        "body": [
+            "<img src=\"${1:image.jpg}\" alt=\"${2:Image description}\" />"
+        ],
+        "description": "create an image element"
+    },
+    "element table": {
+        "prefix": "!element table",
+        "body": [
+            "<table>",
+            "\t<tr>",
+            "\t\t<th>${1:Header 1}</th>",
+            "\t\t<th>${2:Header 2}</th>",
+            "\t</tr>",
+            "\t<tr>",
+            "\t\t<td>${3:Row 1, Cell 1}</td>",
+            "\t\t<td>${4:Row 1, Cell 2}</td>",
+            "\t</tr>",
+            "</table>"
+        ],
+        "description": "create a table element"
+    },
+    "element form": {
+        "prefix": "!element form",
+        "body": [
+            "<form>",
+            "\t<label for=\"fname\">First name:</label><br>",
+            "\t<input type=\"text\" id=\"fname\" name=\"fname\" placeholder=\"John\"><br>",
+            "\t<label for=\"lname\">Last name:</label><br>",
+            "\t<input type=\"text\" id=\"lname\" name=\"lname\" placeholder=\"Doe\"><br><br>",
+            "\t<input type=\"submit\" value=\"Submit form\">",
+            "</form>"
+        ],
+        "description": "create a form element"
+    },
+    "element Line break": {
+        "prefix": "!element Line break",
+        "body": [
+            "<br>"
+        ],
+        "description": "create a line break element"
+    },
+    "element button": {
+        "prefix": "!element button",
+        "body": [
+            "<button>${1:Button text}</button>"
+        ],
+        "description": "create a button element"
+    },
+}

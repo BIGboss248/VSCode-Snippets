@@ -1,0 +1,694 @@
+{
+    "Apt and snap linux Package Management": {
+        "prefix": [
+            "linux-pkg-cheatsheet",
+            "!apt package management",
+            "!snap package management",
+            "!add package",
+            "!apt install",
+            "!snap install",
+        ],
+        "body": [
+            "# --- APT PACKAGE MANAGEMENT ---",
+            "# Install a package",
+            "sudo apt install <package>",
+            "",
+            "# Reinstall a broken package",
+            "sudo apt install -f --reinstall <package>",
+            "",
+            "# Search for APT packages",
+            "apt search <package>",
+            "",
+            "# List available package versions",
+            "apt-cache policy <package>",
+            "",
+            "# Update package lists",
+            "sudo apt update",
+            "",
+            "# Upgrade all upgradable packages",
+            "sudo apt upgrade",
+            "",
+            "# Remove a package",
+            "sudo apt remove <package>",
+            "",
+            "# Remove a package and its configuration files",
+            "sudo apt purge <package>",
+            "",
+            "# --- SNAP PACKAGE MANAGEMENT ---",
+            "# Search for Snap packages",
+            "snap find <package>",
+            "",
+            "# Install a Snap package",
+            "sudo snap install <snap_name>",
+            "",
+            "# Remove a Snap package",
+            "sudo snap remove <snap_name>",
+            "",
+            "# Update all installed Snap packages",
+            "sudo snap refresh",
+            "",
+            "# List all installed Snap packages",
+            "snap list",
+            "",
+            "# Display information about a Snap package",
+            "snap info <snap_name>"
+        ],
+        "description": "APT and Snap package management cheat sheet, add package"
+    },
+    "network info": {
+        "prefix": [
+            "!network info",
+            "!network ip",
+            "!network address",
+            "!network interfaces"
+        ],
+        "body": [
+            "# Show network interfaces and their IP addresses",
+            "ip addr show",
+            "",
+            "# Show routing table",
+            "ip route show",
+            "",
+            "# Show network statistics",
+            "netstat -i",
+            "ip -s link",
+            "",
+            "# Show network configuration",
+            "ifconfig",
+            "",
+            "# Show listening sockets",
+            "ss -l",
+        ],
+        "description": "show network information, ip address, routing table and network configuration, network statistics, listening sockets"
+    },
+    "List processes": {
+        "prefix": [
+            "!process",
+            "!ps",
+            "!list process",
+            "!top",
+            "!htop",
+        ],
+        "body": [
+            "# List all processes",
+            "ps -aux",
+            "",
+            "# List all processes with full command line",
+            "ps -ef",
+            "",
+            "# alternatively, for a more user-friendly interface",
+            "htop",
+        ],
+        "description": "list all processes"
+    },
+    "Create a service": {
+        "prefix": [
+            "!service create",
+            "!service create systemd",
+            "!systemd create service"
+        ],
+        "body": [
+            "# Create a service file",
+            "sudo touch /etc/systemd/system/service_name.service",
+            "",
+            "# Add the following content to the service file",
+            "[Unit]",
+            "Description=Service description",
+            "",
+            "[Service]",
+            "ExecStart=/path/to/your/script.sh",
+            "",
+            "[Install]",
+            "WantedBy=multi-user.target"
+        ],
+        "description": "create a systemd service"
+    },
+    "Service management": {
+        "prefix": [
+            "!service",
+            "!systemctl",
+            "!journalctl",
+        ],
+        "body": [
+            "# Start a service",
+            "sudo systemctl start service_name",
+            "",
+            "# Stop a service",
+            "sudo systemctl stop service_name",
+            "",
+            "# Restart a service",
+            "sudo systemctl restart service_name",
+            "",
+            "# Check the status of a service",
+            "sudo systemctl status service_name",
+            "",
+            "# Check the logs of a service",
+            "sudo journalctl -u service_name",
+        ],
+        "description": "start, stop, restart or check the status of a service or check service logs"
+    },
+    "group add, group remove, group modify": {
+        "prefix": [
+            "!group add",
+            "!group remove",
+            "!group modify"
+        ],
+        "body": [
+            "# Add a group",
+            "sudo groupadd -g 1002 group_name",
+            "",
+            "# Remove a group",
+            "sudo groupdel group_name",
+            "",
+            "# Modify a group",
+            "sudo groupmod -n new_group_name old_group_name"
+        ],
+        "description": "add, remove or modify a group"
+    },
+    "System monitoring commands": {
+        "prefix": [
+            "!system monitor",
+            "!system monitoring",
+            "!system info"
+        ],
+        "body": [
+            "# A command for showing system information",
+            "uname -a",
+            "# A command for showing system information",
+            "fastfetch # Requires fastfetch to be installed",
+            "",
+            "# A command for showing memory information",
+            "free -h",
+            "",
+            "# A command for showing disk usage",
+            "df -Th",
+            "# A command to list all disk blocks",
+            "lsblk",
+            "# Mount a disk",
+            "sudo mount /dev/diskIdentifier /mountPath",
+            "# Update mount points table",
+            "sudo code /etc/fstab",
+            "",
+            "# A command for showing CPU load",
+            "uptime"
+        ],
+        "description": "System monitoring commands show system specs and inforamtion show free ram, disk, cpu, swap"
+    },
+    "Text processiong search or search and replace": {
+        "prefix": [
+            "!text process search",
+            "!text process search and replace"
+        ],
+        "body": [
+            "# Search for a string in a file",
+            "grep \"search_string\" filename.txt",
+            "",
+            "# Search for a string in all files in a directory",
+            "grep -r \"search_string\" /path/to/directory/",
+            "",
+            "# Replace a string in a file",
+            "sed -i 's/old_string/new_string/g' filename.txt"
+        ],
+        "description": "search or search and replace a string in a file"
+    },
+    "soft link and hard link": {
+        "prefix": [
+            "!link",
+            "!soft link",
+            "!hard link"
+        ],
+        "body": [
+            "# Create a soft link (symbolic link)",
+            "ln -s /path/to/original /path/to/link",
+            "",
+            "# Create a hard link",
+            "ln /path/to/original /path/to/link"
+        ],
+        "description": "create a soft or hard link to a file"
+    },
+    "compress and decompress files": {
+        "prefix": [
+            "!compress",
+            "!decompress",
+            "!tar",
+            "!gzip",
+            "!gunzip",
+            "!bzip2",
+        ],
+        "body": [
+            "# To create a tar archive:",
+            "tar cvf archive_name.tar directory_to_archive/",
+            "",
+            "# To extract a tar archive:",
+            "tar xvf archive_name.tar",
+            "",
+            "# To create a gzip compressed tar archive:",
+            "tar cvzf archive_name.tar.gz directory_to_archive/",
+            "",
+            "#To create a bzip2 compressed tar archive:",
+            "tar cvjf archive_name.tar.bz2 directory_to_archive/",
+        ],
+        "description": "compress,decompress,archive,unarchive files using tar and gzip"
+    },
+    "schedule tasks, create cron jobs": {
+        "prefix": "!schedule tasks, !crontab",
+        "body": [
+            "crontab -l  # list current crontab tasks",
+            "crontab -e  # edit crontab file",
+            "code /etc/crontab",
+            "sudo systemctl restart cron # restart cron service",
+            "",
+            "# Use https://crontab.guru to generate cron job configurations",
+            "",
+            "* * * * * sh /path/to/script.sh"
+        ],
+        "description": "create a crontab task"
+    },
+    "write to a file or append to a file": {
+        "prefix": [
+            "!shellscript file write",
+            "!shellscript file append",
+            "!shellscript append to file",
+            "!shellscript write to file"
+        ],
+        "body": [
+            "echo \"This is some text.\" > output.txt  # write to text",
+            "",
+            "echo \"More text.\" >> output.txt  # append to text"
+        ],
+        "description": "wirte to a file or append data to a file"
+    },
+    "Read file": {
+        "prefix": "!shellscript file read",
+        "body": [
+            "# reads a file line by line and prints it to output",
+            "while read line",
+            "do",
+            "  echo \\$line",
+            "done < input.txt"
+        ],
+        "description": "read a file line by line"
+    },
+    "show shell info": {
+        "prefix": "!shellscript shell info, !shellscript info shell",
+        "body": [
+            "ps  # Show shell info",
+            "which bash  # Show shell directory"
+        ],
+        "description": "show information regarding shell"
+    },
+    "redirection and piping": {
+        "prefix": "!redirect and pipe output and input",
+        "body": [
+            "# The && operator is used to execute multiple commands in sequence, but only if the previous command succeeds.",
+            "mkdir test_dir && echo \"Directory created successfully\"",
+            "",
+            "# The || operator is used to execute the second command only if the first command fails.",
+            "mkdir test_dir || echo \"Failed to create directory\"",
+            "",
+            "# The ; operator allows you to run multiple commands in sequence, regardless of whether the previous command succeeded or failed. ",
+            "echo \"First command\" ; echo \"Second command\" ; echo \"Third command\"",
+            "",
+            "# The > operator redirects the output of a command to a file, overwriting any existing content.",
+            "echo \"Hello, World\" > greeting.txt",
+            "cat greeting.txt",
+            "",
+            "# The >> operator appends output to a file instead of overwriting it.",
+            "echo \"First line\" > multiline.txt",
+            "echo \"Second line\" >> multiline.txt",
+            "echo \"Third line\" >> multiline.txt",
+            "cat multiline.txt",
+            "",
+            "# The | operator, known as a pipe, takes the output of the left-hand command and uses it as input for the right-hand command. This allows you to chain commands together",
+            "echo \"apple banana cherry date elderberry\" | tr ' ' '\\n' | sort",
+            ""
+        ],
+        "description": "Redirect input or output pipe output from one command to input from another command"
+    },
+    "CLI get input from user": {
+        "prefix": [
+            "!input",
+            "!get input",
+            "!stdin"
+        ],
+        "body": [
+            "read -p \"${1:Input messege} \" ${2:var}"
+        ],
+        "description": "get the user input and assign it to a variable"
+    },
+    "CLI variable or command substitution": {
+        "prefix": [
+            "!variable substitution",
+            "!set variable",
+            "!set commands",
+            "!env variable"
+        ],
+        "body": [
+            "# Show all env variables",
+            "env",
+            "COMMAND='command'  # command substitution",
+            "",
+            "\\${var}  # Substitute the value of var.",
+            "\\${var:-word}  #If var is null or unset, word is substituted for var. The value of var does not change.",
+            "\\${var:=word}  #If var is null or unset, var is set to the value of word.",
+            "\\${var:?message}  # If var is null or unset, message is printed to standard error. This checks that variables are set correctly.",
+            "\\${var:+word}  # If var is set, word is substituted for var. The value of var does not change.",
+            ""
+        ],
+        "description": "substitue variables or commands or set variables and env(enviroment) variables"
+    },
+    "script for loop": {
+        "prefix": "!shellscript for loop",
+        "body": [
+            "for i in {1..5}",
+            "do",
+            "\techo \\$i",
+            "done"
+        ],
+        "description": "a simple for loop"
+    },
+    "script select loop": {
+        "prefix": [
+            "!shellscript select loop",
+            "!shellscript loop select",
+            "!shellscript for range loop"
+        ],
+        "body": [
+            "$LINE_COMMENT continue  # skip the current itteration of loop",
+            "$LINE_COMMENT break  # break out of the loop",
+            "$LINE_COMMENT break n  # break out of n nested loops",
+            "select var in word1 word2 ... wordN",
+            "do",
+            "   Statement(s) to be executed for every word.",
+            "done"
+        ],
+        "description": "write a loop that will go through the list and do the statement for every item in list"
+    },
+    "script while command with reverse condition": {
+        "prefix": [
+            "!shellscript while reverse",
+            "!shellscript until loop",
+            "!shellscript while loop reverse"
+        ],
+        "body": [
+            "$LINE_COMMENT continue  # skip the current itteration of loop",
+            "$LINE_COMMENT break  # break out of the loop",
+            "$LINE_COMMENT break n  # break out of n nested loops",
+            "until command",
+            "do",
+            "   Statement(s) to be executed until command is true",
+            "done"
+        ],
+        "description": "write a loop that will run until the given condition is true"
+    },
+    "script for range loop": {
+        "prefix": [
+            "!shellscript for loop",
+            "!shellscript for range loop"
+        ],
+        "body": [
+            "$LINE_COMMENT continue  # skip the current itteration of loop",
+            "$LINE_COMMENT break  # break out of the loop",
+            "$LINE_COMMENT break n  # break out of n nested loops",
+            "for var in word1 word2 ... wordN",
+            "do",
+            "   Statement(s) to be executed for every word.",
+            "done"
+        ],
+        "description": "write a for range loop | write a for loop"
+    },
+    "script while loop": {
+        "prefix": [
+            "!shellscript while loop",
+            "!shellscript loop while"
+        ],
+        "body": [
+            "$LINE_COMMENT continue  # skip the current itteration of loop",
+            "$LINE_COMMENT break  # break out of the loop",
+            "$LINE_COMMENT break n  # break out of n nested loops",
+            "while condition",
+            "do",
+            "   $LINE_COMMENT Statement(s) to be executed if condition is true",
+            "done"
+        ],
+        "description": "write a while loop"
+    },
+    "script switch case statement": {
+        "prefix": [
+            "!shellscript switch",
+            "!shellscript switch_case"
+        ],
+        "body": [
+            "case word in",
+            "   pattern1)",
+            "\t  $LINE_COMMENT Statement(s) to be executed if pattern1 matches",
+            "\t  ;;",
+            "   pattern2)",
+            "\t  $LINE_COMMENT Statement(s) to be executed if pattern2 matches",
+            "\t  ;;",
+            "   pattern3)",
+            "\t  $LINE_COMMENT Statement(s) to be executed if pattern3 matches",
+            "\t  ;;",
+            "   *)",
+            "\t $LINE_COMMENT Default condition to be executed",
+            "\t ;;",
+            "esac"
+        ],
+        "description": "write a switch case statement"
+    },
+    "script if statement": {
+        "prefix": "!shellscript if create",
+        "body": [
+            "if ${name:expression1}",
+            "then",
+            "$LINE_COMMENT Statement(s) to be executed if expression 1 is true",
+            "elif ${name:expression2}",
+            "then",
+            "$LINE_COMMENT Statement(s) to be executed if expression 2 is true",
+            "elif ${name:expression3}",
+            "then",
+            "$LINE_COMMENT Statement(s) to be executed if expression 3 is true",
+            "else",
+            "$LINE_COMMENT Statement(s) to be executed if no expression is true",
+            "fi",
+        ],
+        "description": "write an if statement | write a condition statement"
+    },
+    "script define and access arrays": {
+        "prefix": "!shellscript array create",
+        "body": [
+            "NAME[0]=\"Zara\"",
+            "NAME[1]=\"Qadir\"",
+            "NAME[2]=\"Mahnaz\"",
+            "echo \"First Index: ${NAME[0]}\"",
+            "echo \"Second Index: ${NAME[1]}\"",
+            "echo \"All items: ${NAME[*]\"",
+            "echo \"All items: ${NAME[@]\"",
+        ],
+        "description": "define an array and read from an array"
+    },
+    "Special variables": {
+        "prefix": "!shellscript Special variables list",
+        "body": [
+            "# The filename of the current script.",
+            "\\$0",
+            "# These variables correspond to the arguments with which a script was invoked. Here n is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).",
+            "\\$n",
+            "# The number of arguments supplied to a script.",
+            "\\$#",
+            "# All the arguments are double quoted. If a script receives two arguments, \\$* is equivalent to $1 $2.",
+            "\\$*",
+            "# All the arguments are individually double quoted. If a script receives two arguments, \\$@ is equivalent to $1 $2.\t",
+            "\\$@",
+            "# The exit status of the last command executed.",
+            "\\$?",
+            "# The process number of the current shell. For shell scripts, this is the process ID under which they are executing.",
+            "\\$\\$",
+            "# The process number of the last background command. 0 is succeful and other than 0 is error",
+            "\\$!"
+        ],
+        "description": "A list of all special variables used in shell scripting"
+    },
+    "CLI Create a variable": {
+        "prefix": "!variable",
+        "body": [
+            "var_name=var_value # Create var",
+            "echo \\$var_name # Access var values with \\$",
+            "unset var_name # Delete variables"
+        ],
+        "description": "create a variable access a varialbe or remove a variable"
+    },
+    "CLI Change ssh config": {
+        "prefix": "!ssh config",
+        "body": [
+            "# backup ssh config",
+            "sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.original",
+            "# Make the backup write protected",
+            "sudo chmod a-w /etc/ssh/sshd_config.original",
+            "# Check the config before restarting server",
+            "sudo sshd -t -f /etc/ssh/sshd_config"
+        ],
+        "description": "Backup and modify sshd_config"
+    },
+    "CLI add SSH key": {
+        "prefix": "!ssh key",
+        "body": [
+            "# Create ssh keys",
+            "# Private key will be save at ~/.ssh/id_rsa",
+            "# Public key will be save at ~/.ssh/id_rsa.pub",
+            "ssh-keygen -t rsa -b 4096",
+            "# Add public key to authorized keys in ~/.ssh/autorized_keys",
+            "ssh-copy-id username@remotehost",
+            "# Or manually add the key to the file",
+            "# Copy the key",
+            "cat ~/.ssh/id_rsa.pub",
+            "# paste the key in one line in this file",
+            "nano ~/.ssh/authorized_keys"
+        ],
+        "description": "Add an authorize an ssh key"
+    },
+    "Create, modify, delete or identify user": {
+        "prefix": [
+            "!user create",
+            "!user modify",
+            "!user delete",
+            "!user identify",
+        ],
+        "body": [
+            "# ID a user",
+            "id jhon",
+            "",
+            "# Create a user",
+            "useradd -u 1002 -d /home/john -s /bin/bash john",
+            "sudo adduser <username>",
+            "",
+            "# Shows which users are logged in.",
+            "w",
+            "",
+            "# Delete a user",
+            "sudo userdel jhon",
+            "sudo deluser <username>",
+            "",
+            "# Modify a user",
+            "sudo usermod -aG group jhon",
+            "sudo passwd -l <username> # Locks a user account.",
+            "sudo passwd -u <username> # Unlocks a user password.",
+            "sudo chage <username>     # Sets user password expiration date.",
+            "",
+            "# Sets or changes the password for a user.",
+            "sudo passwd <username>",
+            "",
+            "su <username> # Switches user.",
+        ],
+        "description": "create, modify and delete a user"
+    },
+    "CLI iptables open ports": {
+        "prefix": [
+            "!kali iptables open ports",
+            "open ports"
+        ],
+        "isFileTemplate": false,
+        "description": "create an iptable rule to open ports",
+        "body": [
+            // "sudo iptables -t ${1|filter,nat,mangle,raw|} ${2|--append,--delete,--insert,--replace,--list,--flush,--zero|}"
+            "sudo iptables ${1|-A,-I|} ${2|INPUT,FORWARD,OUTPUT|} ${3|-p tcp, -p udp|} -j ${4|ACCEPT,REJECT,DROP,LOG|} ${5:--dport 80} ${6|-m conntrack --ctstate NEW,-m conntrack --ctstate RELATED,-m conntrack --ctstate ESTABLISHED,-m conntrack --ctstate INVALID|} --source ${7:address[/mask]} --destination ${8:address[/mask]} -i ${9:eth0} --out-interface ${10:eth0}"
+        ]
+    },
+    "CLI iptables forward ports": {
+        "prefix": [
+            "!kali iptables forward ports",
+            "forward ports"
+        ],
+        "isFileTemplate": false,
+        "description": "create an iptables rule to nat ports(port forward) to a destination ip and port",
+        "body": [
+            "sudo iptables -t nat -A PREROUTING -p ${1:protocol} --dport ${2:destination port} -j DNAT --to-destination \"${3:ip:port}\""
+        ]
+    },
+    "CLI file permissions": {
+        "prefix": "!file permissions",
+        "isFileTemplate": false,
+        "description": "Change file permissions",
+        "body": [
+            "# list all files and their permissions",
+            "ls -l",
+            "# First digit is for owner second for groups and third for others",
+            "# to give diffrent permission add the permission value to the number",
+            "# Read:4\tWrite:2\tExecute:1",
+            "chmod -v ${3|-R, |} ${1:777} ${2:filename}",
+            "# or use the following to give read and write permission to owner and group",
+            "# Execution:x Read:r Write:w group:g Owner:u others:o all:a +:add permission -:remove permission",
+            "chomd -v ${3|-R, |} ${4:ugo}${5|+,-|}${6:rwx}"
+        ]
+    },
+    "Resolve DNS with DOH": {
+        "prefix": "!DNS over HTTPS (DOH)",
+        "isFileTemplate": false,
+        "description": "Change file permissions",
+        "body": [
+            "curl -H 'Accept: application/dns-json' '${1:https://qjy7nhq5bd.cloudflare-gateway.com/dns-query}?${2:name=google.com&type=A}'"
+        ]
+    },
+    // "Install kubeadm": {
+    //     "prefix": "!install kubeadm",
+    //     "body": [
+    //         "#!/bin/sh\n",
+    //         "if docker",
+    //         "then",
+    //         "echo \"docker is aleady installed\"",
+    //         "else",
+    //         "for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg -y; done",
+    //         "# Add Docker's official GPG key:",
+    //         "sudo apt-get update -y",
+    //         "sudo apt-get install ca-certificates curl -y",
+    //         "sudo install -m 0755 -d /etc/apt/keyrings -y",
+    //         "sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc",
+    //         "sudo chmod a+r /etc/apt/keyrings/docker.asc",
+    //         "# Add the repository to Apt sources:",
+    //         "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null",
+    //         "sudo apt-get update -y",
+    //         "sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y --fix-missing",
+    //         "fi",
+    //         "sudo swapoff -a",
+    //         "sudo sed -i '/ swap / s/^\\(.*\\)\\$/#\\1/g' /etc/fstab",
+    //         "sudo lsmod | grep br_netfilter ",
+    //         "sudo sudo modprobe br_netfilter",
+    //         "sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf",
+    //         "net.bridge.bridge-nf-call-ip6tables = 1",
+    //         "net.bridge.bridge-nf-call-iptables = 1",
+    //         "EOF",
+    //         "sudo sysctl --system",
+    //         "cat <<EOF | sudo tee /etc/docker/daemon.json",
+    //         "{",
+    //         "  \"exec-opts\": [\"native.cgroupdriver=systemd\"],",
+    //         "  \"log-driver\": \"json-file\",",
+    //         "  \"log-opts\": {",
+    //         "\t\"max-size\": \"100m\"",
+    //         "  },",
+    //         "  \"storage-driver\": \"overlay2\"",
+    //         "}",
+    //         "EOF",
+    //         "sudo systemctl daemon-reload",
+    //         "sudo systemctl enable docker",
+    //         "sudo systemctl restart docker",
+    //         "sudo systemctl status docker",
+    //         "sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gpg",
+    //         "sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg",
+    //         "echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list",
+    //         "sudo apt-get update",
+    //         "sudo apt-get install -y kubelet kubeadm kubectl",
+    //         "sudo apt-mark hold kubelet kubeadm kubectl",
+    //         "sudo systemctl daemon-reload",
+    //         "sudo systemctl enable kubelet",
+    //         "sudo systemctl restart kubelet",
+    //         "sudo systemctl status kubelet",
+    //         "sudo rm /etc/containerd/config.toml",
+    //         "sudo systemctl restart containerd",
+    //         "sudo kubeadm init",
+    //         "mkdir -p $HOME/.kube",
+    //         "sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config",
+    //         "sudo chown $(id -u):$(id -g) $HOME/.kube/config"
+    //     ],
+    //     "description": "Install and configure kubeadm"
+    // },
+}

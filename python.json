@@ -1,0 +1,790 @@
+{
+    /*
+    
+    This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
+    
+    🔹 1. Program Structure
+    
+    boilerplate/skeleton/start→ basic executable program structure
+    
+    Libary boilerplate / Libary skeleton / Libary start → basic Libary/package structure
+    
+    🔹 2. Variables & Data Types
+    
+    var → declare variable
+    
+    var-os → Read environment variable
+    
+    const → declare constant
+    
+    type → declare with type annotation (if supported)
+    
+    assign → variable assignment
+    
+    convert var type → type conversion/casting
+    
+    🔹 3. Input & Output
+    
+    print → print to console
+    
+    print format → print to console
+    
+    input → read input from user
+    
+    readfile → read from a file
+    
+    writefile → write to a file
+    
+    🔹 4. Control Flow
+    
+    if → if statement
+    
+    ifelse → if-else
+    
+    switch/match → switch/case or match expression
+    
+    for → for loop (counter-based)
+    
+    foreach → loop over collection
+    
+    while → while loop
+    
+    break → break out of loop
+    
+    continue → continue to next iteration
+    
+    🔹 5. Functions
+    
+    func → function definition
+    
+    unit-test → function test definition
+    
+    return → return from function
+    
+    lambda → anonymous function
+    
+    extention → Extend functions of a class
+    
+    🔹 6. Data-Structures
+    
+    array → array/list
+    
+    array append → append to array/list
+    
+    dict/map → dictionary, hash map
+    
+    set → set
+    
+    struct / class → basic class or struct
+    
+    Json-read → parse/serialize JSON
+    
+    Json-write → generate JSON from data
+    
+    CSV-read → parse CSV file
+    
+    class → class definition
+    
+    inherit → class inheritance
+    
+    🔹 7. Error-Handling
+    
+    trycatch → try/catch block
+    
+    throw / raise → throw an error
+    
+    🔹 8. Concurrent and parallelism
+    
+    asyncfunc → async function
+    
+    await → await promise/future
+    
+    thread → threading/multithreading snippet
+    
+    Stream -> stream data
+    
+    🔹 9. Debugging & Utilities
+    
+    hashpassword → securely hash a password
+    
+    Logging_setup → Setup Logging for the app
+    
+    🔹 10. Database
+    
+    dbconnect → connect to a database
+    
+    dbqueryrows → query multiple rows
+    
+    dbqueryrow → query a single row
+    
+    dbexec → execute insert/update/delete
+    
+    dbtx → transaction with commit/rollback
+    
+    dbclose → close database connection safely
+    
+    dbping → check database health/connection
+    
+    🔹 11. API–Server (exposing APIs)
+    
+    apiserver → start an HTTP server
+    
+    apiroute → define a route/endpoint handler
+    
+    apiparsejson → parse request body JSON
+    
+    apiresjson → send JSON response
+    
+    apimiddleware → add middleware (logging, auth, CORS)
+    
+    🔹 12. API–Client (consuming APIs)
+    
+    apiclientget → make GET request to external API
+    
+    apiclientpost → make POST request to external API
+    
+    apiclientreq → generic HTTP request with headers
+    
+    apiclientjson → parse JSON response into struct
+    */
+    "Filter list":{
+        "prefix": "!array filter",
+        "description": "Filter array and return a filter object that can be cast to a list",
+        "body": "list(filter(funciton, array))"
+    },
+    "For Loop over Iterable": {
+        "prefix": [
+            "!for",
+            "!foreach",
+            "!forin"
+        ],
+        "body": [
+            "for ${1:item} in ${2:items}:",
+            "\t$3"
+        ],
+        "description": "Python for loop (for item in items)",
+    },
+    "Map over list": {
+        "prefix": [
+            "!map",
+            "!mapl",
+            "!maplist"
+        ],
+        "body": [
+            "${1:result} = list(map(${2:lambda x: $3}, ${4:items}))"
+        ],
+        "description": "map() with list() conversion",
+    },
+    "Throw an error": {
+        "prefix": [
+            "!throw error _Error-Handling_",
+            "!raise error _Error-Handling_",
+            "!raise exception _Error-Handling_"
+        ],
+        "body": "raise ${1|Exception,ValueError,TypeError|}(\"${2:Error message}\")",
+        "description": "Throw an error or raise exception"
+    },
+    "Start": {
+        "prefix": "!start",
+        "body": [
+            "\"\"\"Module doc string\"\"\"",
+            "",
+            "",
+            "import logging",
+            "import sys  # With sys package you can exit(1) meaning so singal the OS that the program exited with an error to gracefully handle execptions",
+            "",
+            "log_level = \"DEBUG\"",
+            "log_level_list = {",
+            "\t\"NOTSET\":logging.NOTSET,",
+            "\t\"DEBUG\":logging.DEBUG,",
+            "\t\"INFO\":logging.INFO,",
+            "\t\"WARNING\":logging.WARNING,",
+            "\t\"ERROR\":logging.ERROR,",
+            "\t\"CRITICAL\":logging.CRITICAL,",
+            "\t\"FATAL\":logging.FATAL",
+            "}",
+            "# To change how much log is show change the level",
+            "# logging.debug also shows packages debug logs",
+            "if log_level not in log_level_list:",
+            "\tlogging.basicConfig(datefmt=\"%y/%m/%d %H:%M:%S\"",
+            "\t\t\t\t\t,format=\"%(asctime)s - %(levelname)s - %(message)s\",",
+            "\t\t\t\t\tlevel=log_level_list[\"DEBUG\"]",
+            "\t\t\t\t\t)",
+            "\tlogging.warning(f\"wrong value {log_level} set for log level defaulting to DEBUG\")",
+            "else:",
+            "\tlogging.basicConfig(datefmt=\"%y/%m/%d %H:%M:%S\"",
+            "\t\t\t\t\t,format=\"%(asctime)s - %(levelname)s - %(message)s\",",
+            "\t\t\t\t\tlevel=log_level_list[log_level]",
+            "\t\t\t\t\t)",
+            "\tlogging.info(f\"log level set to {log_level}\")",
+            "\t",
+            ""
+        ],
+        "description": "A starting template for python programs"
+    },
+    "list or dictionaries": {
+        "prefix": [
+            "!lists",
+            "!maps",
+            "!dictionary",
+            "!array dictionary"
+        ],
+        "body": [
+            "${1|list_name,dict_name,set,tuple_name|}=${2|[],{key:value\\},{values\\},()|}"
+        ]
+    },
+    "function": {
+        "prefix": "!function",
+        "body": [
+            "def ${1:my_function}(x${2:=default_value}):",
+            "return can be set or dont write return if there's no return",
+        ]
+    },
+    "variable": {
+        "prefix": "variable",
+        "body": "${1:var_name}=${2:var_value}"
+    },
+    // ========================= if condition =========================
+    "if condition": {
+        "prefix": [
+            "!if",
+            "!condition if"
+        ],
+        "isFileTemplate": false,
+        "description": "if condition",
+        "body": [
+            "if ${1:b > a}:",
+            "\t$TM_SELECTED_TEXT",
+            "elif:",
+            "\tpass",
+            "else:",
+            "\tpass"
+        ]
+    },
+    // ========================= Loops =========================
+    "loop": {
+        "prefix": "!loop",
+        "description": "set a loop",
+        "isFileTemplate": false,
+        "body": [
+            "${1|for x in thislist:,while i < 6,for x in range(6)|}",
+            "\t$TM_SELECTED_TEXT"
+        ]
+    },
+    // =========================Class snippets=========================
+    "class constructor": {
+        "prefix": "!class constructor",
+        "body": [
+            "def __init__(self, name, age):",
+            "\tself.name = name",
+            "\tself.age = age"
+        ],
+        "description": "class constructor"
+    },
+    "class declaration": {
+        "prefix": [
+            "!class declaration",
+            "!class create",
+            "!class"
+        ],
+        "body": [
+            "class MyClass:",
+            "def __init__(self, name, age):",
+            "\tself.name = name",
+            "\tself.age = age",
+            "\tx = 5",
+            "p1 = MyClass()"
+        ],
+        "description": "create a class"
+    },
+    // =========================List snippets=========================
+    "copy a list to another list": {
+        "prefix": "!list copy list  to another list",
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\"]",
+            "mylist = thislist.copy()",
+            "copylist = thislist[:] # copy a slice of a list"
+        ],
+        "description": "copy a list or a slice of a list to another list"
+    },
+    "sort a list": {
+        "prefix": "!list sort list",
+        "body": [
+            "thislist = [\"orange\", \"mango\", \"kiwi\", \"pineapple\", \"banana\"]",
+            "thislist.sort()",
+            "thislist.sort(reverse = True)"
+        ],
+        "description": "sort a list in accending or decending order"
+    },
+    "loop through a list": {
+        "prefix": "!list loop through a list",
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\"]",
+            "for x in thislist: # loop through elements",
+            "  print(x)",
+            "for i in range(len(thislist)): # loop through elements using indexes",
+            "  print(thislist[i])"
+        ],
+        "description": "loop through || itterrate through a list"
+    },
+    "remove an item from a list": {
+        "prefix": "!list remove an item",
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\", \"banana\", \"kiwi\"]",
+            "thislist.remove(\"banana\") # Removes the first occurance",
+            "thislist.pop(1) # Removes element at index 1",
+            "thislist.clear() # Clears the whole list"
+        ],
+        "description": "remove an item from a list or pop an item from a list or clear a list"
+    },
+    "combine two lists together": {
+        "prefix": [
+            "!list combine",
+            "!list append"
+        ],
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\"]",
+            "tropical = [\"mango\", \"pineapple\", \"papaya\"]",
+            "thislist = thislist + tropical # combine two lists",
+            "thislist.extend(tropical)",
+            "print(thislist)"
+        ],
+        "description": "combine two lists together"
+    },
+    "insert an item into a list": {
+        "prefix": "!list insert item",
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\"]",
+            "thislist[1] = \"blackcurrant\"",
+            "thislist.insert(2, \"watermelon\")",
+            "thislist.append(\"orange\")",
+            "print(thislist)"
+        ],
+        "description": "insert an item into a list || insert an element into a list"
+    },
+    "slice a range of items from a list": {
+        "prefix": "!list slice a range of items",
+        "body": [
+            "thislist = [\"apple\", \"banana\", \"cherry\", \"orange\", \"kiwi\", \"melon\", \"mango\",40,True]",
+            "print(thislist[2:5])",
+            "print(thislist[:4])",
+            "print(thislist[2:])",
+            "print(thislist[-4:-1])"
+        ],
+        "description": "slice a range of items from a list"
+    },
+    "access list items": {
+        "prefix": [
+            "!list access items",
+            "!list access elements"
+        ],
+        "body": [
+            "list1 = [\"abc\", 34, True, 40, \"male\"]",
+            "print(thislist[1])",
+            "print(thislist[-1])"
+        ],
+        "description": "access elements in a list"
+    },
+    "list declare": {
+        "prefix": [
+            "!list declare",
+            "!list create",
+            "!array list"
+        ],
+        "body": [
+            "# list methods: https://www.w3schools.com/python/python_lists_methods.asp",
+            "list1 = [\"abc\", 34, True, 40, \"male\"]",
+            "newlist = [expression for item in iterable if condition == True] # create a list using coprehension"
+        ],
+        "description": "create a list"
+    },
+    // ========================= Package =========================
+    "package import": {
+        "prefix": "!package import",
+        "body": [
+            "import os   # Import a default or installed package",
+            "from datetime import datetime, timezone\t# Imort module from a package",
+            "import assets  # Import local file and use methods and class and variables"
+        ],
+        "description": "import default and installed packages and files"
+    },
+    // ========================= Variable =========================
+    "variable declaration": {
+        "prefix": "!variable",
+        "body": [
+            "x = \"Hello World\" # str",
+            "x = 20 # int",
+            "x = 20.5 # float",
+            "x = 1j # complex",
+            "x = [\"apple\", \"banana\", \"cherry\"] # list",
+            "x = (\"apple\", \"banana\", \"cherry\") # tuple",
+            "x = range(6) # range 0,1,2,3,4,5",
+            "x = {\"name\" : \"John\", \"age\" : 36} # dict",
+            "x = {\"apple\", \"banana\", \"cherry\"} # set",
+            "x = frozenset({\"apple\", \"banana\", \"cherry\"}) # frozenset",
+            "x = True # bool",
+            "x = b\"Hello\" # bytes",
+            "x = bytearray(5) # bytearray",
+            "x = memoryview(bytes(5)) # memoryview",
+            "x = None # NoneType",
+        ],
+        "description": "declare a variable default way or by type casting"
+    },
+    // ========================= String =========================
+    "string declaration": {
+        "prefix": "!string declaration",
+        "body": [
+            "a = \"Hello\"",
+            "# multiline string",
+            "a = \"\"\"Lorem ipsum dolor sit amet,",
+            "consectetur adipiscing elit,",
+            "sed do eiusmod tempor incididunt",
+            "ut labore et dolore magna aliqua.\"\"\""
+        ],
+        "description": "declare a string variable"
+    },
+    "string format (fstring)": {
+        "prefix": "!string format (fstring)",
+        "body": [
+            "price = 59",
+            "txt = f\"The price is {price:.2f} dollars\" # display the price with 2 decimals",
+            "print(txt)"
+        ],
+        "description": "format a string to include variables values in it"
+    },
+    "string methods": {
+        "prefix": "!string methods",
+        "body": [
+            "# complete list of methods https://www.w3schools.com/python/python_strings_methods.asp",
+            "a = \"Hello, World!\"",
+            "print(a.upper()) # change string letter case to upper",
+            "print(a.lower()) # change string letter case to lower",
+            "print(a.strip()) # returns \"Hello, World!\"",
+            "print(a.replace(\"H\", \"J\")) # change H to J",
+            "print(a.split(\",\")) # returns ['Hello', ' World!']"
+        ],
+        "description": "string methods to change and modify strings"
+    },
+    "string as array": {
+        "prefix": "!string as array",
+        "body": [
+            "a = \"Hello, World!\"",
+            "print(a[1])"
+        ],
+        "description": "parse string character by character as an array"
+    },
+    "string loop through": {
+        "prefix": "!string loop through",
+        "body": [
+            "for x in \"banana\":",
+            "  print(x)"
+        ],
+        "description": "loop through a string character by character"
+    },
+    // ========================= Pandas =========================
+    "pandas remove or replace null values": {
+        "prefix": "!pandas remove or replace null values",
+        "body": [
+            "import pandas as pd",
+            "",
+            "df = pd.read_csv('data.csv')",
+            "",
+            "# Remove rows with null values",
+            "new_df = df.dropna()",
+            "# Drop null rows for only calories column",
+            "new_df = df[\"Calories\"].dropna()",
+            "",
+            "# Fill null values with 130",
+            "new_df = df.fillna(130)",
+            "# Repalce null values for only calories column",
+            "new_df = df[\"Calories\"].fillna(130)",
+            "",
+            "# Drop duplicates",
+            "new_df = df.drop_duplicates()"
+        ],
+        "description": "Remove and replace null values in pandas dataframe or series"
+    },
+    "Pandas view dataframe": {
+        "prefix": "!pandas view dataframe",
+        "body": [
+            "import pandas as pd",
+            "",
+            "df = pd.read_csv('data.csv')",
+            "df.head(10)  # Print first 10 rows",
+            "df.tail()  # Print last 5 rows",
+            "df.info()  # General info about dataframe"
+        ],
+        "description": "3 usefull functions to view data inside a dataframe"
+    },
+    "pandas read file (csv, json, excel ...)": {
+        "prefix": "!pandas read file",
+        "body": [
+            "import pandas as pd",
+            "",
+            "df = pd.read_${1|csv,json,excel|}(\"data.${1|csv,json,xlsx|}\")",
+            ""
+        ],
+        "description": "Read data from a csv, json or excel file"
+    },
+    "pandas create dataframe and access data": {
+        "prefix": "!pandas create dataframe and access data",
+        "body": [
+            "import pandas as pd",
+            "",
+            "data = {",
+            "\t\"calories\": [420, 380, 390],",
+            "\t\"duration\": [50, 40, 45]",
+            "}",
+            "",
+            "df = pd.DataFrame(data, index=[\"day1\", \"day2\", \"day3\"])",
+            "",
+            "print(df.loc[\"day1\"])",
+            "# Output",
+            "# calories\t420",
+            "# duration\t 50",
+            "# Name: day1, dtype: int64",
+            "print(df.loc[\"day1\"][\"calories\"])  # output 420",
+            "print(df)",
+            "# Output",
+            "#\t\t calories  duration",
+            "#   day1\t   420\t\t50",
+            "#   day2\t   380\t\t40",
+            "#   day3\t   390\t\t45",
+            ""
+        ],
+        "description": "Create a dataframe and a few ways to access data"
+    },
+    "pandas create series": {
+        "prefix": "!pandas create series",
+        "body": [
+            "import pandas as pd",
+            "",
+            "# Create series with list",
+            "a = [1, 7, 2]",
+            "# if no index then the index will be numbers starting from 0",
+            "myvar = pd.Series(a, index = [\"x\", \"y\", \"z\"])",
+            "print(myvar[\"x\"]) # 1",
+            "",
+            "# Create series with dictionary",
+            "calories = {\"day1\": 420, \"day2\": 380, \"day3\": 390}",
+            "# key is index and value is series itself",
+            "myvar = pd.Series(calories)",
+            "print(myvar[\"day1\"]) # 420"
+        ],
+        "description": "Create a pandas series with list or dictionary"
+    },
+    // ========================= Folder and File =========================
+    "create folder": {
+        "prefix": "!file create folder",
+        "body": [
+            "import os",
+            "os.rmdir(\"myfolder\")"
+        ],
+        "description": "create a folder"
+    },
+    "Remove a file": {
+        "prefix": "!file remove",
+        "body": [
+            "import os",
+            "if os.path.exists(\"demofile.txt\"):",
+            "  os.remove(\"demofile.txt\")",
+            "else:",
+            "  print(\"The file does not exist\")"
+        ],
+        "description": "see if a file exists and remove it"
+    },
+    "create a file": {
+        "prefix": "!file create",
+        "body": [
+            "f = open(\"myfile.txt\", \"x\")"
+        ],
+        "description": "create a file"
+    },
+    "write to a file": {
+        "prefix": "!file write",
+        "body": [
+            "f.write(\"Now the file has more content!\")"
+        ],
+        "description": "write to a file"
+    },
+    "read the whole file line by line": {
+        "prefix": [
+            "!file loop through a line",
+            "!file iterate through a file"
+        ],
+        "body": [
+            "f = open(\"demofile.txt\", \"r\")",
+            "for x in f:",
+            "  print(x)",
+            "f.close()"
+        ],
+        "description": "loop through a file line by line"
+    },
+    "read a line from line": {
+        "prefix": "!file read line",
+        "body": [
+            "f = open(\"demofile.txt\", \"r\")",
+            "print(f.readline()) # Read first line",
+            "print(f.readline()) # Read second line",
+            "f.close()"
+        ],
+        "description": "read a line from the start of the file"
+    },
+    "open a file": {
+        "prefix": "!file open",
+        "body": [
+            "# \"r\" - Read - Default value. Opens a file for reading, error if the file does not exist",
+            "# \"a\" - Append - Opens a file for appending, creates the file if it does not exist",
+            "# \"w\" - Write - Opens a file for writing, creates the file if it does not exist",
+            "# \"x\" - Create - Creates the specified file, returns an error if the file exists",
+            "",
+            "# \"t\" - Text - Default value. Text mode",
+            "# \"b\" - Binary - Binary mode (e.g. images)",
+            "f = open(\"demofile.txt\", \"rt\")",
+            "f.close()"
+        ],
+        "description": "oepn an existing file"
+    },
+    "Read Json": {
+        "prefix": "!json Read",
+        "body": [
+            "import json",
+            "with open('${1:filename}.json', 'r') as file:",
+            "\tjson_data = json.load(file)",
+            "# Read json like a dictionary",
+            "#json_data[key]==value"
+        ],
+        "description": "Read a json file"
+    },
+    // ========================= Logging =========================
+    "Initiate logging": {
+        "prefix": "!logging",
+        "body": [
+            "import logging",
+            "",
+            "log_level = \"DEBUG\"",
+            "log_level_list = {",
+            "\t\"NOTSET\":logging.NOTSET,",
+            "\t\"DEBUG\":logging.DEBUG,",
+            "\t\"INFO\":logging.INFO,",
+            "\t\"WARNING\":logging.WARNING,",
+            "\t\"ERROR\":logging.ERROR,",
+            "\t\"CRITICAL\":logging.CRITICAL,",
+            "\t\"FATAL\":logging.FATAL",
+            "}",
+            "# To change how much log is show change the level",
+            "# logging.debug also shows packages debug logs",
+            "if log_level not in log_level_list:",
+            "\tlogging.basicConfig(datefmt=\"%y/%m/%d %H:%M:%S\"\n\t\t\t\t\t,format=\"%(asctime)s - %(levelname)s - %(message)s\",\n\t\t\t\t\tlevel=log_level_list[\"DEBUG\"]\n\t\t\t\t\t)",
+            "\tlogging.warning(f\"wrong value {log_level} set for log level defaulting to DEBUG\")",
+            "else:",
+            "\tlogging.basicConfig(datefmt=\"%y/%m/%d %H:%M:%S\"\n\t\t\t\t\t,format=\"%(asctime)s - %(levelname)s - %(message)s\",\n\t\t\t\t\tlevel=log_level_list[log_level]\n\t\t\t\t\t)",
+            "\tlogging.info(f\"log level set to {log_level}\")"
+        ],
+        "description": "Configure logging for the script"
+    },
+    // ========================= main function =========================
+    "Set __main__ function": {
+        "prefix": "!main function",
+        "body": [
+            "if __name__ == \"__main__\":"
+        ],
+        "description": "Configure main function"
+    },
+    // ========================= Webscraping =========================
+    "Setup webscraping with beautiful soup": {
+        "prefix": "!web scraping",
+        "body": [
+            "# pip install beautifulsoup4",
+            "import requests",
+            "from bs4 import BeautifulSoup",
+            "headers = {",
+            "    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'",
+            "}",
+            "try:",
+            "    response = requests.get(${1:URL}, headers=headers)",
+            "    if response.status_code == 200:",
+            "        soup = BeautifulSoup(response.text, 'html.parser')",
+            "        ${2:Scrape}",
+            "    else:",
+            "        print(f\"Failed to retrieve the page. Status code: {response.status_code}\")",
+            "except Exception:",
+            "    print(\"Scraping failed\")"
+        ],
+        "description": "Setup web scraping environment"
+    },
+    // ========================= web application =========================
+    "Webserver with  flask": {
+        "prefix": "!web server flask",
+        "body": [
+            "from flask import Flask",
+            "",
+            "app = Flask(__name__)",
+            "",
+            "#* Run app in cli by ==> flask --app pythonScriptName run --host=0.0.0.0 --port=5000",
+            "",
+            "",
+            "@app.route(\"/\")",
+            "def hello_world():",
+            "\t# Return HTML response",
+            "\treturn \"<p>Hello, World!</p>\"",
+            "# Return a list or dictionary to return a json response",
+            "\treturn {\"name\": \"amin\"}",
+            "# To create functions that get data from url see example below",
+            "",
+            "",
+            "@app.route('/user/<username>')",
+            "def profile(username):",
+            "\treturn f'{username}\\'s profile'",
+            ""
+        ],
+        "description": "Setup web server environment with flask package"
+    },
+    // ========================= Telegram bot =========================
+    "Telegram Bot": {
+        "prefix": "!telegram Bot",
+        "body": [
+            "from telegram import Update",
+            "from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes",
+            "",
+            "# 1.Create a telegram bot by using application builder and using bot father",
+            "BOT_TOKEN = \"$1\"",
+            "telegram_bot_application = ApplicationBuilder().token(BOT_TOKEN).build()",
+            "",
+            "# 2.Create a handler",
+            "#  2.1 Define a function to handle the command",
+            "async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):",
+            "    await context.bot.send_message(chat_id=update.effective_chat.id, text=\"Hi talk to me\")",
+            "",
+            "#  2.2 Define the function as command handler and that is called by command /start",
+            "command = \"$2start\"",
+            "start_handler = CommandHandler(command, start)",
+            "",
+            "# 3.  Add the handler to the bot",
+            "telegram_bot_application.add_handler(start_handler)",
+            "",
+            "# 4. Run the bot",
+            "telegram_bot_application.run_polling()"
+        ],
+        "description": "A Telegram bot example using Python and python-telegram-bot library."
+    },
+    "google docstring": {
+        "prefix": "!docstring",
+        "body": [
+            "\"\"\"",
+            "${1:explain your function}",
+            "",
+            "Args:",
+            "\tparam1: This is the first param.",
+            "\tparam2: This is a second param.",
+            "",
+            "Returns:",
+            "\tThis is a description of what is returned.",
+            "",
+            "Raises:",
+            "\tKeyError: Raises an exception.",
+            "\"\"\""
+        ],
+        "description": "Create a google docstring for a function"
+    }
+}

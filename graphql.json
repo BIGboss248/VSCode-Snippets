@@ -1,0 +1,92 @@
+{
+    "create a type": {
+        "prefix": "!type create",
+        "body": [
+            "type ${1:typeName}${2:(parameter_name: parameter_value)} {",
+            "#tip For lists wrpan in brackets []",
+            "#tip ! Means requied field",
+            "  attribute_name: ${3|Int,Float,String,Boolean,ID|}!",
+            "}"
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "create an input": {
+        "prefix": "!input create",
+        "body": [
+            "input ${1:inputName}${2:(parameter_name: parameter_value)} {",
+            "  attribute_name: ${3|Int,Float,String,Boolean,ID|}!",
+            "}"
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "create a query": {
+        "prefix": [
+            "!query create",
+        ],
+        "body": [
+            "type Query{",
+            "  ${1:What_client_queries}(${2:parameter_name}: ${3|Int,Float,String,Boolean,ID|}): ${4:type that is defined in schema and must be returened as the result of this query}",
+            "}"
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "create a mutation": {
+        "prefix": [
+            "!mutation create",
+        ],
+        "body": [
+            "type Mutation{",
+            "  ${1:What_client_queries}(${2:parameter_name}: ${3|Int,Float,String,Boolean,ID|}): ${4:type that is defined in schema and must be mutated as the result of this query}",
+            "}"
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "create a subscription": {
+        "prefix": [
+            "!subscription create",
+        ],
+        "body": [
+            "type subscription{",
+            "  ${1:What_client_queries}(${2:parameter_name}: ${3|Int,Float,String,Boolean,ID|}): ${4:type that is defined in schema and must be suibscribed to as the result of this query}",
+            "}"
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "Query a type": {
+        "prefix": [
+            "!query a type",
+        ],
+        "body": [
+            "{",
+            "${1:type to query}(${2:parameter_name}: ${3|Int,Float,String,Boolean,ID|}) {",
+            "${4:Attribute name to query}",
+            "}",
+            "}",
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "Query a mutation": {
+        "prefix": [
+            "!query a mutation",
+        ],
+        "body": [
+            "mutation {",
+            "${1:mutation_name}(${2:attribute_key}: ${3:Attribute_value})",
+            "}",
+        ],
+        "description": "Create a type to define in schema"
+    },
+    "Query a subscription": {
+        "prefix": [
+            "!query a subscription",
+        ],
+        "body": [
+            "subscription {",
+            "${1:subscription_name} {",
+            "${2:Attribute key to subscribe to}",
+            "}",
+            "}",
+        ],
+        "description": "Create a type to define in schema"
+    },
+}

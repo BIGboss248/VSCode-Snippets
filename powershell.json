@@ -1,0 +1,23 @@
+{
+    "Update winget":{
+        "prefix": "!winget update",
+        "body": [
+            "$progressPreference = 'silentlyContinue'",
+            "Write-Information \"Downloading WinGet and its dependencies...\"",
+            "Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle",
+            "Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx",
+            "Invoke-WebRequest -Uri https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx -OutFile Microsoft.UI.Xaml.2.8.x64.appx",
+            "Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx",
+            "Add-AppxPackage Microsoft.UI.Xaml.2.8.x64.appx",
+            "Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+        ],
+        "description": "Update winget"
+    },
+    "compile c++ code to dll": {
+        "prefix": "!gcc compile to dll",
+        "body": [
+            "g++ -D ${1:_WIN64} -U NOMINMAX -march=${2:x86-64} -mtune=${2:x86-64} -O2 -shared -static -static-libgcc -static-libstdc++ -s -fno-rtti -fno-exceptions -std=gnu++11 ${3:InputFiles} -o ${4:Output.dll} -Wno-deprecated"
+        ],
+        "description": "compile cpp code to dll file"
+    },
+}

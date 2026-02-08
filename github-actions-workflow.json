@@ -1,0 +1,59 @@
+{
+	"start template":{
+		"prefix": "!start",
+		"isFileTemplate": true,
+		"body": [
+			"# name of the job",
+			"name:",
+			"",
+			"# When to do",
+			"on:",
+			"",
+			"# what to do",
+			"jobs:",
+			""
+		]
+	},
+	"get the code":{
+		"prefix": "!action get code",
+		"body": [
+			"# Pulls git repo to the current working directory",
+            "- uses: actions/checkout@v2"
+		]
+	},
+	"Install python":{
+		"prefix": "!action install python",
+		"body": [
+			"# Installs python and adds it to path",
+            "- uses: actions/setup-python@v2"
+		]
+	},
+	"Cron job":{
+		"prefix": "!cron job",
+		"body": [
+			"# Use cron to schedule a job",
+			"# Use https://crontab.guru/ if need help with cron",
+			"schedule:",
+				"\t   # cron jobs are based on UTC time zone",
+				"\t   # cron below is every 30 minutes",
+				"\t   #     m    h d m w",
+				"\t- cron: \"*/30 * * * *\""
+		]
+	},
+	"env variable":{
+		"prefix": "!env",
+		"body": [
+			"# here you define enviroment variables which you can pass in",
+			"# github secrets to your script",
+			"env:",
+			"#  env name in the runner: ${{ secrets.GITHUB_SECRET_NAME}}",
+			"   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}"
+		]
+	},
+	"manual trigger":{
+		"prefix": "!manual trigger",
+		"body": [
+			"workflow_dispatch:"
+		]
+	}
+}

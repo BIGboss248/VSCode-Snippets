@@ -1,0 +1,143 @@
+{
+	/*
+🔹 1. Program Structure
+
+boilerplate / skeleton → basic executable program structure
+
+Libary boilerplate / Libary skeleton → basic Libary/package structure
+
+import / include → add library or dependency
+
+comment → single line / multi-line comment
+
+🔹 2. Variables & Data Types
+
+var → declare variable
+
+const → declare constant
+
+type → declare with type annotation (if supported)
+
+assign → variable assignment
+
+🔹 3. Input & Output
+
+print / log → print to console
+
+input → read input from user
+
+readfile → read from a file
+
+writefile → write to a file
+
+🔹 4. Control Flow
+
+if → if statement
+
+ifelse → if-else
+
+switch / match → switch/case or match expression
+
+for → for loop (counter-based)
+
+foreach → loop over collection
+
+while → while loop
+
+break → break out of loop
+
+continue → continue to next iteration
+
+🔹 5. Functions
+
+func → function definition
+
+return → return from function
+
+lambda → anonymous function
+
+🔹 6. Data Structures
+
+array → array/list
+
+dict / map → dictionary, hash map
+
+set → set
+
+struct / class → basic class or struct
+
+🔹 7. Error Handling
+
+trycatch → try/catch block
+
+throw / raise → throw an error
+
+finally → cleanup section
+
+🔹 8. Common Patterns
+
+loopfile → loop through file lines
+
+looparray → iterate over an array
+
+loopdict → iterate over dictionary/map
+
+main → entry point
+
+🔹 9. Advanced
+
+asyncfunc → async function
+
+await → await promise/future
+
+thread → threading/multithreading snippet
+
+class → class definition
+
+inherit → class inheritance
+
+🔹 10. Debugging & Utilities
+
+todo → insert TODO comment
+
+debug → debug log statement
+
+time → measure execution time
+
+🔹 11. Database
+
+dbconnect → connect to a database
+
+dbqueryrows → query multiple rows
+
+dbqueryrow → query a single row
+
+dbexec → execute insert/update/delete
+
+dbtx → transaction with commit/rollback
+
+dbclose → close database connection safely
+
+dbping → check database health/connection
+
+*/
+	"linter ignore": {
+		"prefix": "!linter",
+		"body": [
+			"# DevSkim: ignore DS0000,DS00001",
+			"#kics-scan disable=610e266e-6c12-4bca-9925-1ed0cd29742b,ce76b7d0-9e77-464d-b86f-c5c48e03e22d,8c978947-0ff6-485c-b0c2-0bfca6026466",
+			"#checkov:skip=<check_id>:<suppression_comment>"
+		]
+	},
+	"comments": {
+		"prefix": "!comments all formats",
+		"body": [
+			"$LINE_COMMENT! alert",
+			"$LINE_COMMENT* important",
+			"$LINE_COMMENT? question",
+			"$LINE_COMMENT// Transparent",
+			"$LINE_COMMENT todo todos for code changes"
+		],
+		"description": "All comments foramts recognizable by better comments extention and industry standard"
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"linter ignore": {
+		"prefix": "!linter",
+		"body": [
+			"# DevSkim: ignore DS0000,DS00001",
+			"#kics-scan disable=610e266e-6c12-4bca-9925-1ed0cd29742b,ce76b7d0-9e77-464d-b86f-c5c48e03e22d,8c978947-0ff6-485c-b0c2-0bfca6026466",
+			"#checkov:skip=<check_id>:<suppression_comment>"
+		]
+	},
+	"comments":{
+		"prefix": "!comments all formats",
+		"body": [			
+			"$LINE_COMMENT! alert",
+			"$LINE_COMMENT* important",
+			"$LINE_COMMENT? question",
+			"$LINE_COMMENT// Transparent",
+			"$LINE_COMMENT todo todos for code changes"
+		],
+		"description": "All comments foramts recognizable by better comments extention and industry standard"
+	}
+}

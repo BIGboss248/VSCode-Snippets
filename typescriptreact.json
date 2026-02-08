@@ -1,0 +1,164 @@
+{
+	"TypeScript Boilerplate": {
+		"prefix": [
+			"!tsboilerplate",
+			"!start"
+		],
+		"body": [
+			"/**",
+			" * ${1:Description}",
+			" */",
+			"",
+			"interface ${2:Props} {",
+			"\t${3:property}: ${4:type};",
+			"}",
+			"",
+			"export function ${5:functionName}(props: ${2:Props}): ${6:ReturnType} {",
+			"\t${7:// Implementation}",
+			"}"
+		],
+		"description": "TypeScript function with interface boilerplate"
+	},
+	"Variable Declaration": {
+		"prefix": "!var",
+		"body": [
+			"const ${1:variableName}: ${2|string,number,boolean,any,unknown,void|} = ${3:value};"
+		],
+		"description": "Declare a constant variable with type annotation"
+	},
+	"Variable Declaration (let)": {
+		"prefix": "!varlet",
+		"body": [
+			"let ${1:variableName}: ${2|string,number,boolean,any,unknown,void|} = ${3:value};"
+		],
+		"description": "Declare a let variable with type annotation"
+	},
+	"If-Else If-Else Statement": {
+		"prefix": "!ifelseif",
+		"body": [
+			"if (${1:condition1}) {",
+			"\t${2:// Body 1}",
+			"} else if (${3:condition2}) {",
+			"\t${4:// Body 2}",
+			"} else {",
+			"\t${5:// Body 3}",
+			"}"
+		],
+		"description": "If-else if-else control flow statement"
+	},
+	"For Loop": {
+		"prefix": "!for",
+		"body": [
+			"for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
+			"\t${3:// Body}",
+			"}"
+		],
+		"description": "Traditional for loop"
+	},
+	"For...Of Loop": {
+		"prefix": "!forof",
+		"body": [
+			"for (const ${1:item} of ${2:array}) {",
+			"\t${3:// Body}",
+			"}"
+		],
+		"description": "For...of loop for iterating over iterables"
+	},
+	"For...In Loop": {
+		"prefix": "!forin",
+		"body": [
+			"for (const ${1:key} in ${2:object}) {",
+			"\t${3:// Body}",
+			"}"
+		],
+		"description": "For...in loop for iterating over object keys"
+	},
+	"While Loop": {
+		"prefix": "!while",
+		"body": [
+			"while (${1:condition}) {",
+			"\t${2:// Body}",
+			"}"
+		],
+		"description": "While loop"
+	},
+	"Function Definition": {
+		"prefix": "!func",
+		"body": [
+			"function ${1:functionName}(${2:params}): ${3:ReturnType} {",
+			"\t${4:// Body}",
+			"}"
+		],
+		"description": "Function definition"
+	},
+	"Arrow Function": {
+		"prefix": "!arrowfunc",
+		"body": [
+			"const ${1:functionName} = (${2:params}): ${3:ReturnType} => {",
+			"\t${4:// Body}",
+			"};"
+		],
+		"description": "Arrow function definition"
+	},
+	"Try-Catch-Finally Block": {
+		"prefix": "!trycatchfinally",
+		"body": [
+			"try {",
+			"\t${1:// Body}",
+			"} catch (${2:error}) {",
+			"\t${3:// Error handling}",
+			"} finally {",
+			"\t${4:// Cleanup}",
+			"}"
+		],
+		"description": "Try-catch-finally error handling block"
+	},
+	"Class Definition": {
+		"prefix": "!class",
+		"body": [
+			"class ${1:ClassName} {",
+			"\tconstructor(${2:params}) {",
+			"\t\t${3:// Constructor body}",
+			"\t}",
+			"",
+			"\t${4:methodName}(${5:params}): ${6:ReturnType} {",
+			"\t\t${7:// Method body}",
+			"\t}",
+			"}"
+		],
+		"description": "Class definition"
+	},
+	"Logging Setup": {
+		"prefix": "!logging_setup",
+		"body": [
+			"import { createLogger, format, transports } from 'winston';",
+			"",
+			"const logger = createLogger({",
+			"\tlevel: '${1:info}',",
+			"\tformat: format.combine(",
+			"\t\tformat.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),",
+			"\t\tformat.errors({ stack: true }),",
+			"\t\tformat.splat(),",
+			"\t\tformat.json()",
+			"\t),",
+			"\tdefaultMeta: { service: '${2:app-name}' },",
+			"\ttransports: [",
+			"\t\tnew transports.File({ filename: 'error.log', level: 'error' }),",
+			"\t\tnew transports.File({ filename: 'combined.log' }),",
+			"\t],",
+			"});",
+			"",
+			"if (process.env.NODE_ENV !== 'production') {",
+			"\tlogger.add(new transports.Console({",
+			"\t\tformat: format.combine(",
+			"\t\t\tformat.colorize(),",
+			"\t\t\tformat.simple()",
+			"\t\t),",
+			"\t}));",
+			"}",
+			"",
+			"export default logger;"
+		],
+		"description": "Winston logger setup configuration"
+	}
+}

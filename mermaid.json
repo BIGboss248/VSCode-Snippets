@@ -1,0 +1,58 @@
+{
+	"Flow chart":{
+		"prefix":"!flowchart",
+		"body":[
+			"%% flowchart TB, BT, RL, LR",
+			"flowchart TD"
+		],
+		"description":"Generates a top down flowchart."
+	},
+	"Create rectangle":{
+		"prefix":"!rectangle",
+		"body":[
+			"id[\"'text'\"]"
+		]
+	},
+	"connect two rectangles":{
+		"prefix":"!connect",
+        "body":[
+            "id1 --> id2"
+        ]
+	},
+	"Create circle":{
+		"prefix":"!circle",
+		"body":[
+			"id((\"'text'\"))"
+		]
+	},
+	"Create tag shape":{
+		"prefix":"!tag shape",
+		"body":[
+			"id>\"'text'\"]"
+		]
+	},
+	"Create rhombus":{
+		"prefix":"!rhombus",
+		"body":[
+			"id{\"'text'\"}"
+		]
+	},
+	"solid line link":{
+		"prefix":"!solid link",
+        "body":[
+            "-- text -->"
+        ]
+	},
+	"dotted line link":{
+		"prefix":"!dotted link",
+        "body":[
+            "-. text .->"
+        ]
+	},
+	"thick line link":{
+		"prefix":"!thick link",
+        "body":[
+            "== text ==>"
+        ]
+	}
+}

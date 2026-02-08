@@ -1,0 +1,1668 @@
+/*
+
+This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
+
+🔹 1. Program Structure
+
+boilerplate/skeleton→ basic executable program structure
+
+Libary boilerplate / Libary skeleton → basic Libary/package structure
+
+import / include → add library or dependency
+
+comment → single line / multi-line comment
+
+🔹 2. Variables & Data Types
+
+var → declare variable
+
+var-os → Read environment variable
+
+const → declare constant
+
+type → declare with type annotation (if supported)
+
+assign → variable assignment
+
+Convert → type conversion/casting
+
+🔹 3. Input & Output
+
+print → print to console
+
+print format → print to console
+
+input → read input from user
+
+readfile → read from a file
+
+writefile → write to a file
+
+🔹 4. Control Flow
+
+if → if statement
+
+ifelse → if-else
+
+switch/match → switch/case or match expression
+
+for → for loop (counter-based)
+
+foreach → loop over collection
+
+while → while loop
+
+break → break out of loop
+
+continue → continue to next iteration
+
+🔹 5. Functions
+
+func → function definition
+
+
+unit-test → function test definition
+
+return → return from function
+
+lambda → anonymous function
+
+extention → Extend functions of a class
+
+🔹 6. Data-Structures
+
+array → array/list
+
+array append → append to array/list
+
+dict/map → dictionary, hash map
+
+set → set
+
+struct / class → basic class or struct
+
+Json-read → parse/serialize JSON
+
+Json-write → generate JSON from data
+
+CSV-read → parse CSV file
+
+🔹 7. Error-Handling
+
+trycatch → try/catch block
+
+throw / raise → throw an error
+
+finally → cleanup section
+
+🔹 8. Common Patterns
+
+loopfile → loop through file lines
+
+looparray → iterate over an array
+
+loopdict → iterate over dictionary/map
+
+main → entry point
+
+🔹 9. Concurrent and parallelism
+
+asyncfunc → async function
+
+await → await promise/future
+
+thread → threading/multithreading snippet
+
+Stream -> stream data
+
+class → class definition
+
+inherit → class inheritance
+
+🔹 10. Debugging & Utilities
+
+hashpassword → securely hash a password
+
+Logging_setup → Setup Logging for the app
+
+🔹 11. Database
+
+dbconnect → connect to a database
+
+dbqueryrows → query multiple rows
+
+dbqueryrow → query a single row
+
+dbexec → execute insert/update/delete
+
+dbtx → transaction with commit/rollback
+
+dbclose → close database connection safely
+
+dbping → check database health/connection
+
+🔹 12. API–Server (exposing APIs)
+
+apiserver → start an HTTP server
+
+apiroute → define a route/endpoint handler
+
+apiparsejson → parse request body JSON
+
+apiresjson → send JSON response
+
+apimiddleware → add middleware (logging, auth, CORS)
+
+🔹 13. API–Client (consuming APIs)
+
+apiclientget → make GET request to external API
+
+apiclientpost → make POST request to external API
+
+apiclientreq → generic HTTP request with headers
+
+apiclientjson → parse JSON response into struct
+*/
+{
+    "Create Bloc": {
+        "prefix": "!bloc",
+        "body": [
+            "/* ",
+            "TIP Create an abstract class pass it in bloc class definition Then create different states by extending the abstract class",
+            "*  Super method will need an initial state",
+            "*/",
+            "abstract class BlocState {}",
+            "",
+            "class State1 extends BlocState {}",
+            "",
+            "/* ",
+            "TIP  Create an abstract class pass it in bloc class definition Then create different events by extending the abstract class and defining what they do in bloc class using the on<Event> method",
+            "*/",
+            "",
+            "abstract class BlocEvent {}",
+            "",
+            "class Event1 extends BlocEvent {}",
+            "",
+            "/* ",
+            "  To create BlocClass instances you can use constructor like this:",
+            "\tBlocClass()",
+            "  or create constructor with parameters if needed",
+            "*/",
+            "class BlocClass extends Bloc<BlocEvent, BlocState> {",
+            "  BlocClass() : super(State1()) {",
+            "\t/* To create diffrerent events extend BlocEvent and add it with on keyword */",
+            "\ton<Event1>((event, emit) {",
+            "\t  // TODO: implement event handler",
+            "\t});",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Create a bloc class with event and state class"
+    },
+    "Create a class extention": {
+        "prefix": "!extension _Functions_",
+        "body": [
+            "extension ${10:ExtensionName} on ${20:Type} {",
+            "  // Function 1",
+            "  ${30:return type 1} ${40:functionName1}(${50:parameters}) {}",
+            "  // Function 2",
+            "  ${60:return type 2} ${70:functionName2}(${80:parameters}) {}",
+            "}",
+            ""
+        ],
+        "description": "Create a Dart extension"
+    },
+    "Firebase verification email": {
+        "prefix": "!firebase verification email",
+        "description": "Send a firebase verification email to the current user",
+        "body": [
+            "// Be sure to check spam folder for the email when testing",
+            "final user = FirebaseAuth.instance.currentUser;",
+            "",
+            "if (user?.emailVerfiied ?? false){",
+            "developer.log(",
+            "\"User logged in: ${_emailController.text}\",",
+            "level: 200,",
+            ");",
+            "} else {",
+            "developer.log(\"Verify Email first: $e\", level: 700);",
+            "setState(() { //* Use setstate so the UI updates if you are using future builder",
+            "user?.sendEmailVerification();  // Returns future",
+            "});",
+            "}",
+        ]
+    },
+    "Show alert dialog": {
+        "prefix": "!AlertDialog",
+        "body": [
+            "/* ",
+            "",
+            "# Choice dialog",
+            "",
+            "*1. Assign a type to the future",
+            "!2. Future can be null if user presses out of the dialog borders dismissing the dialog",
+            "",
+            "*/",
+            "Future<T?> showChoiceDialog<T>({",
+            "  required BuildContext context,",
+            "  required String title,",
+            "  required String content,",
+            "  required List<Widget> actions,",
+            "  bool barrierDismissible = true,",
+            "}) {",
+            "  return showDialog<T>(",
+            "\tcontext: context,",
+            "\tbarrierDismissible: barrierDismissible,",
+            "\tbuilder: (context) => AlertDialog(",
+            "\t  title: Text(title, textAlign: TextAlign.center),",
+            "\t  content: Text(content, textAlign: TextAlign.center),",
+            "\t  actions: [",
+            "\t\tRow(",
+            "\t\t  mainAxisAlignment: MainAxisAlignment.spaceEvenly,",
+            "\t\t  crossAxisAlignment: CrossAxisAlignment.center,",
+            "\t\t  children: actions,",
+            "\t\t),",
+            "\t  ],",
+            "\t),",
+            "  );",
+            "}",
+            ""
+        ],
+        "description": "Show an alert dialog with a choice which executes certain funcitons on press"
+    },
+    "Firebase register user": {
+        "prefix": [
+            "!firebase register user",
+            "!firebase login user"
+        ],
+        "description": "Register a user for firebase",
+        "body": [
+            "import 'package:firebase_auth/firebase_auth.dart';",
+            "import 'firebase_options.dart';",
+            "import 'dart:developer' as developer;",
+            "//tip Before this setup firebase with !firebase setup snippet",
+            "//tip You can show login or register errors with snackbars or alert dialogs",
+            "// use this according to the context of the app",
+            "// Be sure to check if email or password are valid",
+            "try {",
+            "final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(",
+            "email: email, // You can get this data from user using text fields",
+            "password: password,// You can get this data from user using text fields",
+            ");",
+            "} on FirebaseAuthException catch (e) {",
+            "switch (e.code) {",
+            " case 'weak-password':",
+            "   developer.log('The password provided is too weak.', level: 550);",
+            " case 'email-already-in-use':",
+            "   developer.log('The account already exists for that email.', level: 551);",
+            " case 'invalid-email':",
+            "   developer.log('invalid email entered', level: 552);",
+            "}",
+            " default:",
+            "   developer.log('Unknown firebase auth occured', level: 552);",
+            "}",
+            "} catch (e) {",
+            " developer.log(e.toString(), level: 553);",
+            "}",
+        ]
+    },
+    "Firebase setup": {
+        "prefix": "!firebase setup",
+        "description": "Setup firebase as backend of your flutter app",
+        "body": [
+            "// There are some pre requisites to use firebase in flutter app visit https://github.com/BIGboss248/Obsidian/blob/main/Reforged%20vault/Computer/Flutter.md",
+            "import 'package:firebase_auth/firebase_auth.dart';",
+            "import 'firebase_options.dart';",
+            "// initialize firebase before app start",
+            "await Firebase.initializeApp(",
+            "    options: DefaultFirebaseOptions.currentPlatform,",
+            ");",
+        ]
+    },
+    "Stream": {
+        "prefix": "!stream",
+        "description": "Create a stream of data",
+        "body": [
+            "// Stream will provide data continuesly",
+            "// Create a function that outputs stream",
+            "Stream<${1:String}> ${2:getName}(){",
+            "return Stream.periodic(const Duration(seconds: 1), (${3:value}){",
+            "${4:return \"Foo\"}",
+            "});",
+            "",
+            "// This function will use stream data note the key word to use stream data is __await for__ and the function calling the stream is async",
+            "void test() async {",
+            "await for (final value in getName()){",
+            "// Here you say what to do with Stream value",
+            "print(value);",
+            "}",
+            "print(\"Stream finished working\")",
+            "}",
+        ]
+    },
+    "Future and await": {
+        "prefix": "!await",
+        "description": "Create a future instance and get its value",
+        "body": [
+            "Future<${1:ReturnType}> ${2:functionName}(${3:parameters}) async {",
+            "  ${4:// code to run}",
+            "  return ${5:return value};",
+            "}",
+            "",
+            "/*",
+            "To call this function and get its value use await keyword like below this will halt execution until the result is avilable",
+            "tip Make sure the calling function is also async",
+            "*/",
+            "var result = await ${2:functionName}(${6:arguments});",
+            ""
+        ]
+    },
+    "Theme change button": {
+        "prefix": "!themeChangeButton",
+        "body": [
+            "",
+            "/*",
+            "",
+            "The idea about theme change button is that you use ValueListenableBuilder widget",
+            "",
+            "This widget will monitor the state of a variable and will do specified action when the value changes we wrap our matterial app in ValueListenableBuilder widget which will rebuild the app when ever the specified value notifier changes",
+            "",
+            "we create a themeNotifier and place it in lib\\widgets\\value_notifiers.dart this will store our theme value",
+            "",
+            "then we wrap matterial app in ValueListenableBuilder and pass the created themeNotifier to it and for the value of theme mode we pass the value of valueNotifier to the theme mode in matterial app",
+            "",
+            "*/",
+            "",
+            "//file lib\\widgets\\value_notifiers.dart",
+            "import 'package:flutter/material.dart';",
+            "import 'package:shared_preferences/shared_preferences.dart';",
+            "import 'dart:ui';",
+            "import 'dart:developer' as developer;",
+            "",
+            "/*",
+            "",
+            "This value notifier holds the current theme mode of the app.",
+            "It is initialized based on the platform's brightness setting.",
+            "",
+            "*/",
+            "ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(",
+            "PlatformDispatcher.instance.platformBrightness == Brightness.dark",
+            "    ? ThemeMode.dark",
+            "    : ThemeMode.light,",
+            ");",
+            "",
+            "const String _themeKey = \"user_theme_mode\";",
+            "",
+            "/*",
+            "",
+            "This function will load the saved theme preference from",
+            "SharedPreferences and set the themeNotifier accordingly.",
+            "",
+            "*/",
+            "Future<void> loadSavedTheme() async {",
+            "final prefs = await SharedPreferences.getInstance();",
+            "String? stored = prefs.getString(_themeKey);",
+            "",
+            "if (stored != null) {",
+            "    switch (stored) {",
+            "    case \"light\":",
+            "        themeNotifier.value = ThemeMode.light;",
+            "        developer.log(\"Loaded saved theme: light\", level: 100);",
+            "        break;",
+            "    case \"dark\":",
+            "        themeNotifier.value = ThemeMode.dark;",
+            "        developer.log(\"Loaded saved theme: dark\", level: 100);",
+            "        break;",
+            "    case \"system\":",
+            "        themeNotifier.value = ThemeMode.system;",
+            "        developer.log(\"Loaded saved theme: system\", level: 100);",
+            "        break;",
+            "    }",
+            "}",
+            "}",
+            "",
+            "/*",
+            "",
+            "This function saves the user's theme preference",
+            "to SharedPreferences.",
+            "",
+            "*/",
+            "Future<void> saveTheme(ThemeMode mode) async {",
+            "final prefs = await SharedPreferences.getInstance();",
+            "await prefs.setString(_themeKey, mode.name); // \"light\", \"dark\", \"system\"",
+            "developer.log(\"Saved theme mode as ${mode.name}\", level: 100);",
+            "}",
+            "",
+            "// You can use this ThemeChangeIcon widget anywhere in your app to toggle theme",
+            "",
+            "class ThemeChangeIcon extends StatelessWidget {",
+            "const ThemeChangeIcon({super.key});",
+            "@override",
+            "Widget build(BuildContext context) {",
+            "    return IconButton(",
+            "    onPressed: () {",
+            "        if (themeNotifier.value == ThemeMode.dark) {",
+            "        saveTheme(ThemeMode.light);",
+            "        themeNotifier.value = ThemeMode.light;",
+            "        } else {",
+            "        saveTheme(ThemeMode.dark);",
+            "        themeNotifier.value = ThemeMode.dark;",
+            "        }",
+            "    },",
+            "    icon: ValueListenableBuilder(",
+            "        valueListenable: themeNotifier,",
+            "        builder: (context, themeMode, _) {",
+            "        // The animated switcher provides a smooth transition between icons",
+            "        return AnimatedSwitcher(",
+            "            duration: const Duration(milliseconds: 300),",
+            "            transitionBuilder: (child, animation) {",
+            "            return RotationTransition(",
+            "                turns: animation,",
+            "                child: FadeTransition(opacity: animation, child: child),",
+            "            );",
+            "            },",
+            "            child: Icon(",
+            "            themeMode == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode,",
+            "            key: ValueKey(themeMode), // IMPORTANT",
+            "            ),",
+            "        );",
+            "        },",
+            "    ),",
+            "    );",
+            "}",
+            "}",
+            "//endFile end lib\\widgets\\value_notifiers.dart",
+            "",
+            "//file lib\\main.dart",
+            "",
+            "// Example of main function to set theme on app start",
+            "void main() async {",
+            "WidgetsFlutterBinding.ensureInitialized();",
+            "await loadSavedTheme(); // Load persisted theme FIRST",
+            "runApp(const MyApp());",
+            "}",
+            "",
+            "// wrap matterial app with ValueListenableBuilder",
+            "//tip use refactor to wrap",
+            "//below is an example use it to apply in your code",
+            "",
+            "ValueListenableBuilder(",
+            "\t  valueListenable = themeNotifier,",
+            "\t  builder = (context, themeMode, child) {",
+            "\t\treturn MaterialApp.router(",
+            "\t\t  title: \"Budgee\",",
+            "\t\t  debugShowCheckedModeBanner: false,",
+            "\t\t  routerConfig: _router,",
+            "\t\t  theme: ThemeData(",
+            "\t\t\tcolorScheme: ColorScheme.fromSeed(",
+            "\t\t\t  seedColor: brightThemeSeedColor,",
+            "\t\t\t  brightness: Brightness.light,",
+            "\t\t\t),",
+            "\t\t  ),",
+            "\t\t  darkTheme: ThemeData(",
+            "\t\t\tcolorScheme: ColorScheme.fromSeed(",
+            "\t\t\t  seedColor: darkThemeSeedColor,",
+            "\t\t\t  brightness: Brightness.dark,",
+            "\t\t\t),",
+            "\t\t  ),",
+            "\t\t  themeMode: themeMode,",
+            "\t\t  locale: const Locale(\"en\", \"US\"),",
+            "\t\t);",
+            "\t  },",
+            "\t);",
+            "",
+            "//endFile lib\\main.dart",
+            "",
+        ],
+        "description": "Configure the app to change theme by perssing a button"
+    },
+    "Unit test": {
+        "prefix": "!unit-test",
+        "body": [
+            "//* for more help visit https://github.com/BIGboss248/Obsidian/blob/main/Reforged%20vault/Flutter.md#unit-test",
+            "",
+            "//* Store the file in \\test directory name must be ending in _test.dart",
+            "",
+            "import 'package:test/test.dart';",
+            "",
+            "//$ flutter test \"test\filename_test.dart\"",
+            "void main() {",
+            "  //tip Create a test group by group snippet provided by flutter",
+            "  //$ flutter test --plain-name \"${4:group name}\"",
+            "  group(\"${4:group name}\", () {",
+            "\t",
+            "\ttest(\"${8:description}\", () {",
+            "\t  // Test logic here",
+            "\t  expect(${12:\"Actual value\"}, ${16:\"Expected value\"});",
+            "\t});",
+            "\t//tip add more tests by test default snippet provided by flutter",
+            "  });",
+            "}",
+            ""
+        ],
+        "isFileTemplate": true,
+        "description": "Create a unit test file"
+    },
+    "Logging setup": {
+        "isFileTemplate": true,
+        "prefix": "!Logging_Setup",
+        "body": [
+            "import 'dart:io';",
+            "import 'package:logger/logger.dart';",
+            "import 'package:path_provider/path_provider.dart';",
+            "import 'dart:developer' as developer;",
+            "import 'package:package_info_plus/package_info_plus.dart';",
+            "",
+            "late AppLogger logger;",
+            "",
+            "/// Initialize a file logger by creating the log file in the app's documents directory.",
+            "/// If failed or empty logger will only log to devtools",
+            "///! Call this in main() before using the logger.",
+            "Future<void> initializeLogger(PrettyPrinter? printer) async {",
+            "  printer ??= PrettyPrinter(",
+            "\tcolors: false,",
+            "\tnoBoxingByDefault: true,",
+            "\tprintEmojis: false,",
+            "  );",
+            "  try {",
+            "\tPackageInfo packageInfo = await PackageInfo.fromPlatform();",
+            "\tString appName = packageInfo.appName; // e.g., \"My Awesome App\"",
+            "\tString sanitizedAppName = appName.replaceAll(RegExp(r'[<>:\"/\\\\|?*]'), '_');",
+            "\tDirectory documentsDir = await getApplicationDocumentsDirectory();",
+            "\tfinal logsDir = Directory('${documentsDir.path}/\\$sanitizedAppName/logs');",
+            "\tdeveloper.log(",
+            "\t  \"log directory is ${logsDir.path}\",",
+            "\t  name: \"logger\",",
+            "\t  level: 800,",
+            "\t);",
+            "\t// Create logs directory if it doesn't exist",
+            "\tif (!await logsDir.exists()) {",
+            "\t  developer.log(",
+            "\t\t\"Creating directory ${logsDir.path}\",",
+            "\t\tname: \"logger\",",
+            "\t\tlevel: 800,",
+            "\t  );",
+            "\t  await logsDir.create(recursive: true);",
+            "\t}",
+            "",
+            "\tfinal logFile = File('${logsDir.path}/logs.txt');",
+            "\t  developer.log(",
+            "\t\t\"Logs are stored at ${logsDir.path}/logs.txt\",",
+            "\t\tname: \"logger\",",
+            "\t\tlevel: 800,",
+            "\t  );",
+            "\tlogger = AppLogger(logFile: logFile, printer: printer);",
+            "  } catch (e) {",
+            "\tdeveloper.log(",
+            "\t  \"Error creating a file logger\",",
+            "\t  error: e,",
+            "\t  name: \"logger\",",
+            "\t  level: 1000,",
+            "\t);",
+            "\tlogger = AppLogger();",
+            "  }",
+            "}",
+            "",
+            "/// A custom app logger to log to both console and file.",
+            "/// To log to a file I use logger/logger.dart",
+            "/// For console and devtools logging I use dart:developer",
+            "class AppLogger {",
+            "  File? logFile;",
+            "  Logger? fileLogger;",
+            "  static const debugLevel = 500;",
+            "  static const infoLevel = 800;",
+            "  static const warningLevel = 900;",
+            "  static const errorLevel = 1000;",
+            "  static const fatalLevel = 1200;",
+            "  int sequenceNumber = 0;",
+            "",
+            "  AppLogger({File? logFile, PrettyPrinter? printer}) {",
+            "\tif (logFile != null) {",
+            "\t  if (printer != null) {",
+            "\t\tfileLogger = Logger(",
+            "\t\t  printer: printer,",
+            "\t\t  output: FileOutput(file: logFile),",
+            "\t\t);",
+            "\t  } else {",
+            "\t\tprinter = PrettyPrinter(",
+            "\t\t  colors: false,",
+            "\t\t  noBoxingByDefault: true,",
+            "\t\t  printEmojis: false,",
+            "\t\t);",
+            "\t\tfileLogger = Logger(",
+            "\t\t  printer: printer,",
+            "\t\t  output: FileOutput(file: logFile),",
+            "\t\t);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "",
+            "  void i(",
+            "\tString message, {",
+            "\tString? logName,",
+            "\tDateTime? logTime,",
+            "\tint logLevel = infoLevel,",
+            "  }) {",
+            "\tlogTime = DateTime.now();",
+            "\tif (logName == null) {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t} else {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tname: logName,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t  if (fileLogger != null) {",
+            "\t\tfileLogger!.i(message);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "",
+            "  void d(",
+            "\tString message, {",
+            "\tString? logName,",
+            "\tDateTime? logTime,",
+            "\tint logLevel = debugLevel,",
+            "  }) {",
+            "\tlogTime = DateTime.now();",
+            "\tif (logName == null) {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t} else {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tname: logName,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t  if (fileLogger != null) {",
+            "\t\tfileLogger!.d(message);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "",
+            "  void w(",
+            "\tString message, {",
+            "\tString? logName,",
+            "\tDateTime? logTime,",
+            "\tint logLevel = warningLevel,",
+            "  }) {",
+            "\tlogTime = DateTime.now();",
+            "\tif (logName == null) {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t} else {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tname: logName,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t  if (fileLogger != null) {",
+            "\t\tfileLogger!.w(message);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "",
+            "  void e(",
+            "\tString message, {",
+            "\tString? logName,",
+            "\tDateTime? logTime,",
+            "\tint logLevel = errorLevel,",
+            "  }) {",
+            "\tlogTime = DateTime.now();",
+            "\tif (logName == null) {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t} else {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tname: logName,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t  if (fileLogger != null) {",
+            "\t\tfileLogger!.e(message);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "",
+            "  void f(",
+            "\tString message, {",
+            "\tString? logName,",
+            "\tDateTime? logTime,",
+            "\tint logLevel = fatalLevel,",
+            "  }) {",
+            "\tlogTime = DateTime.now();",
+            "\tif (logName == null) {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t} else {",
+            "\t  developer.log(",
+            "\t\tmessage,",
+            "\t\ttime: logTime,",
+            "\t\tlevel: logLevel,",
+            "\t\tname: logName,",
+            "\t\tsequenceNumber: ++sequenceNumber,",
+            "\t  );",
+            "\t  if (fileLogger != null) {",
+            "\t\tfileLogger!.f(message);",
+            "\t  }",
+            "\t}",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Setup logging for flutter app"
+    },
+    "Make and API request and parse response as json": {
+        "prefix": "!apiclientjson",
+        "body": []
+    },
+    "Create API request": {
+        "prefix": "!apiclientreq _API–Client_",
+        "description": "Create an API request",
+        "body": [
+            "import 'package:http/http.dart' as http;",
+            "/*",
+            "",
+            "# fetchData",
+            "",
+            "This function will fetch data from a uri and retrun the response body if request is successful or retrun an error if not",
+            "",
+            "*/",
+            "Future<String> fetchData(String uri) async {",
+            "final response = await http.${1|get,post,patch,put,delete|}(",
+            "    Uri.parse(uri),",
+            ");",
+            "",
+            "if (response.statusCode == 200) {",
+            "    // If the server did return a 200 OK response,",
+            "    // then retrun response body",
+            "    return response.body;",
+            "} else {",
+            "    // If the server did not return a 200 OK response,",
+            "    // then throw an exception.",
+            "    throw Exception('Failed to load Data');",
+            "}",
+            "}",
+        ]
+    },
+    "Decode json in a map": {
+        "prefix": "!apiparsejson _API–Server_",
+        "body": [
+            "import 'dart:convert';",
+            "  /*",
+            "\tHere we create a Map and decode json in it",
+            "  */",
+            "  Map<String, dynamic> jsonMap = json.decode(jsonString);",
+            ""
+        ],
+        "description": "Parse a json string into a flutter map"
+    },
+    "Class tags": {
+        "prefix": "!class tags",
+        "description": "Create class tag for code clarity",
+        "body": "${1|@immutable,@protected,@visibleForTesting|}"
+    },
+    "Class modifiers": {
+        "prefix": "!class modifiers",
+        "description": "Set class modifiers",
+        "body": "${1|abstract,final,base,interface,sealed|}"
+    },
+    "Class named constructor": {
+        "prefix": "!class named constuctor",
+        "body": [
+            "  ${1:ClassName}.${2:constructor funciton}()",
+            "   :${3:param1 = value1,\n param2 = value2;}",
+        ],
+        "description": "Create a named constructor"
+    },
+    "Class factory constructor": {
+        "prefix": "!class factory constructor",
+        "description": "Factory constructor that returns a class instance",
+        "body": [
+            "factory ${1:className}.${2:methodName}(){",
+            "\t",
+            "}"
+        ]
+    },
+    "Create a class": {
+        "prefix": [
+            "!class",
+            "!struct"
+        ],
+        "body": [
+            "//tip You can use extends keyword to inherit from another class",
+            "//tip you can also use extentions Run on className to add more functionality to existing classes",
+            "//tip Make class a singleton by !class_singleton",
+            "//tip !class tags",
+            "/*tip !class modifiers */class ${1:ClassName} {",
+            "  ",
+            "  // Class parameters",
+            "  ${2:String param1};",
+            "",
+            "  // Default constructor",
+            "  ${1:ClassName}({required this.param1});",
+            "",
+            "  //tip !class named constructor",
+            "",
+            "  // Factory constructor to return a built instance of the class",
+            "  factory ${1:ClassName}.factoryConstructor(FactoryConstructor param){",
+            "",
+            "\treturn ${1:ClassName}(param1: param);",
+            "",
+            "  }",
+            "",
+            "}",
+            ""
+        ],
+        "description": "Create a class with parameters and constructors"
+    },
+    "Class singleton": {
+        "prefix": "!class_singleton",
+        "body": [
+            "class ${1:className} {",
+            "/* Make the class a singltong */",
+            "  static final ${1:className} _shared = ${1:className}._sharedInstance();",
+            "",
+            "  ${1:className}._sharedInstance();",
+            "",
+            "  factory ${1:className}() => _shared;",
+            "",
+            "}",
+            ""
+        ],
+        "description": "Make a class singleton"
+    },
+    "Create a dart function": {
+        "prefix": "!func",
+        "body": [
+            "$BLOCK_COMMENT_START",
+            "TIP - Function name should be descriptive and follow naming conventions",
+            "TIP - Try to make funciton pure",
+            "TIP - Don't forget to write tests ",
+            "TIP - Document the funciton if needed ",
+            "TIP - Each funciton must do only one thing ",
+            "$BLOCK_COMMENT_END",
+            "${1:ReturnType} ${2:functionName}(${3:parameters}) {",
+            "  ${4:// code to run}",
+            "  return ${5:retunr param};",
+            "}",
+            ""
+        ],
+        "description": "Create a dart function"
+    },
+    "Navigate to page": {
+        "prefix": "!navigate",
+        "description": "Navigate to a page using Navigator V2 go_router package",
+        "body": [
+            "if (${2:yourRoute} != ${1:Current route}{",
+            "context.replace('/${2:yourRoute}'); // Clears entire navigation stack and navigates to the specified route",
+            "} else {",
+            "context.push('/${2:yourRoute}'); // Pushes a new route onto the navigation stack",
+            "}",
+        ]
+    },
+    "Get data from internet": {
+        "prefix": "!internet",
+        "body": [
+            "",
+            "/*",
+            "The idea is that we fetch data from a URI then we parse the JSON into a model to use it",
+            "for more info visit https://docs.flutter.dev/cookbook/networking/fetch-data",
+            "",
+            "* We follow these steps:",
+            "*   1. Import http package",
+            "*   2. Make a network request to get the data from internet",
+            "*   3. Parse the JSON data to a model",
+            "*/",
+            "",
+            "",
+            "//* 1. Import http package",
+            "import 'package:http/http.dart' as http;",
+            "",
+            "/*",
+            "! for macos and android deployment check bellow",
+            "",
+            "for android add bellow to AndroidManifest.xml",
+            "  <!-- Required to fetch data from the internet. -->",
+            "  <uses-permission android:name=\"android.permission.INTERNET\" />",
+            "",
+            "if you are deploying to macOS, edit your macos/Runner/DebugProfile.entitlements and macos/Runner/Release.entitlements files to include the network  client entitlement.",
+            "  <key>com.apple.security.network.client</key>",
+            "  <true/>",
+            "",
+            "*/",
+            "",
+            "",
+            "//* 2. Make a network request to get the data from internet",
+            "import 'package:http/http.dart' as http;",
+            "Future<Album> fetchAlbum() async {",
+            "final response = await http.get(",
+            "    Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),",
+            ");",
+            "if (response.statusCode == 200) {",
+            "    // If the server did return a 200 OK response,",
+            "    // then parse the JSON.",
+            "    return Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);",
+            "} else {",
+            "    // If the server did not return a 200 OK response,",
+            "    // then throw an exception.",
+            "    throw Exception('Failed to load album');",
+            "}",
+            "}",
+            "class Album {",
+            "final int userId;",
+            "final int id;",
+            "final String title;",
+            "const Album({required this.userId, required this.id, required this.title});",
+            "factory Album.fromJson(Map<String, dynamic> json) {",
+            "    return switch (json) {",
+            "    {'userId': int userId, 'id': int id, 'title': String title} => Album(",
+            "        userId: userId,",
+            "        id: id,",
+            "        title: title,",
+            "    ),",
+            "    _ => throw const FormatException('Failed to load album.'),",
+            "    };",
+            "}",
+            "}",
+        ],
+        "description": "Fetch data form intenet and create a data model and use it to model the given data"
+    },
+    "Init state": {
+        "prefix": "!initState",
+        "description": "Create init state to declare variables or get data from internet when creating the page",
+        "body": [
+            "   //tip This is where to declare your variables and controllers and get data from internet. if needed use !initstate snippet to create init state",
+            "  ${1:int currentPage = 0; //This is for implementing navigation bar remove if not needed}",
+            "",
+            "  //* Overide init to initialize data (for example get data from API) when the page is created delete it otherwise",
+            "  late Future<Album> ${2:yourFutureWidget};",
+            "  @override",
+            "  void initState() {",
+            "      super.initState();",
+            "      ${2:yourFutureWidget} = fetchData(); //tip replace fetchData with your function to get data from internet",
+            "  }",
+            "",
+        ]
+    },
+    "Theme data": {
+        "prefix": "!themedata",
+        "description": "Create theme data for matterial app",
+        "body": [
+            "    //tip Themes usually get large so you can put them in constants/theme.dart",
+            "    //* Try to set style for diffrent widgets here you can override them on widget creation",
+            "    ThemeData(",
+            "    colorScheme: ColorScheme.fromSeed(",
+            "    seedColor: const Color.fromARGB(255, 33, 243, 103),",
+            "    primary: const Color.fromARGB(255, 243, 128, 33),",
+            "    secondary: const Color.fromARGB(255, 127, 46, 134),",
+            "    brightness: Brightness.light,",
+            "    ),",
+            "    useMaterial3: true,  // with this switch flutter with",
+            "),",
+        ]
+    },
+    "Go Router": {
+        "prefix": "!router",
+        "description": "Create a go router to use in matterialapp.router",
+        "body": [
+            "//$ dart add dependency => go_router",
+            "GoRouter(",
+            "routes: [",
+            "    //* Use variables instead of hardcoded strings for route paths",
+            "GoRoute(",
+            "  path: verifyEmailPageRoute,",
+            "  builder: (context, state) { //tip pass any parameter here",
+            "    final email = state.uri.queryParameters['email'];",
+            "    return VerifyEmailPage(",
+            "      pageIndex: 0,",
+            "      email: email,",
+            "    );",
+            "  },",
+            ")",
+            "],",
+            ");"
+        ]
+    },
+    "All Layout widgets": {
+        "prefix": "!layout",
+        "body": [
+            "Column(",
+            "\t\t\t  children: [",
+            "\t\t\t\tContainer(),",
+            "\t\t\t  ],",
+            "\t\t\t),"
+        ],
+        "description": "Create a column layout"
+    },
+    "AspectRatio": {
+        "prefix": "!aspect ratio",
+        "body": [
+            "AspectRatio(",
+            "\t\t\t  aspectRatio: ${1:1920 / 1080},",
+            "\t\t\t  child: Container(",
+            "\t\t\t\tcolor: Colors.red,",
+            "\t\t\t  ),",
+            "\t\t\t),"
+        ],
+        "description": "Aspect ratio widget to create a responsive UI"
+    },
+    "screen size": {
+        "prefix": "!screen size",
+        "body": [
+            "double screenWidth = MediaQuery.of(context).size.width;",
+            "double screenHeight = MediaQuery.of(context).size.height;"
+        ],
+        "description": "Get the screen size of the device to create responsive UI"
+    },
+    "launcher icon": {
+        "prefix": "!launcher icon",
+        "body": [
+            "//cli-code Dart:Add Dependency flutter_launcher_icons",
+            "//cli-terminal dart run flutter_launcher_icons:generate",
+            "//place your icons in assets folder u specify in flutter_launcher_icons.yaml then run commands below",
+            "//cli-terminal flutter pub get",
+            "//cli-terminal dart run flutter_launcher_icons",
+        ],
+        "description": "Add launcher icon to the app"
+    },
+    "statefullWidget": {
+        "prefix": "!statefullWidget",
+        "body": [
+            "class ${1:name} extends StatefulWidget {",
+            "  final ${4|int,String,double,bool,List,Map,Set|} ${7:var}; //* Declare your variables here",
+            "",
+            "  const ${1:name}({super.key, required this.${7:var}}); //* Initialize your variables here",
+            "",
+            "  @override",
+            "  State<${1:name}> createState() => _${1:name}State();",
+            "}",
+            "",
+            "@override",
+            "void initState() {",
+            "// This method is called when the widget is first created and is executed only once before the widget is built.",
+            "super.initState();",
+            "}",
+            "",
+            "void dispose() {",
+            "// This method is called when the widget is removed from the widget tree and is used to clean up resources.",
+            "// For example when you navigate out of a screen",
+            "super.dispose();",
+            "}",
+            "",
+            "class _${1:name}State extends State<${1:name}> {",
+            "  // Declare your variables and controllers here",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "\treturn Container();  //* This is what is returned to the widget tree",
+            "  }",
+            "}"
+        ],
+        "description": "Create an statefull widget with common properties"
+    },
+    "save prefrences": {
+        "prefix": "!save preferences",
+        "body": [
+            "//cli-code Dart:Add Dependency shared_preferences",
+            "SharedPreferences prefs = await SharedPreferences.getInstance();",
+            "prefs.setString(\"${1:key}\", \"${2:value}\");"
+        ],
+        "description": "Save preferences to local storage on the device"
+    },
+    "lottie animation": {
+        "prefix": "!lottie",
+        "body": [
+            "//* Add lottie package",
+            "//* add lottie folder to pubspec.yaml",
+            "//* Download lottie animation from lottiefiles.com",
+            "Lottie.asset(",
+            "\t\t\t\t\"assets/lottie/animation.json\",",
+            "\t\t\t\twidth: 100,",
+            "\t\t\t\theight: 100,",
+            "\t\t\t\trepeat: true,",
+            "\t\t\t),"
+        ],
+        "description": "Lottie animation widget"
+    },
+    "alert": {
+        "prefix": "!input alert dialoge",
+        "body": [
+            "\t\t\t  TextButton(",
+            "\t\t\t\tonPressed: () {",
+            "\t\t\t\t  showDialog(",
+            "\t\t\t\t\tcontext: context,",
+            "\t\t\t\t\tbuilder: (context) {",
+            "\t\t\t\t\t  return AlertDialog(",
+            "\t\t\t\t\t\ttitle: Text(\"Alert\"),",
+            "\t\t\t\t\t\tcontent: Text(\"This is an alert dialog\"),",
+            "\t\t\t\t\t\tactions: [",
+            "\t\t\t\t\t\t  TextButton(",
+            "\t\t\t\t\t\t\tonPressed: () {",
+            "\t\t\t\t\t\t\t  Navigator.pop(context);",
+            "\t\t\t\t\t\t\t},",
+            "\t\t\t\t\t\t\tchild: Text(\"OK\"),",
+            "\t\t\t\t\t\t  ),",
+            "\t\t\t\t\t\t],",
+            "\t\t\t\t\t  );",
+            "\t\t\t\t\t},",
+            "\t\t\t\t  );",
+            "\t\t\t\t},",
+            "\t\t\t\tchild: Text(\"Open alert\"),",
+            "\t\t\t  ),"
+        ],
+        "description": "input alert dialoge"
+    },
+    "snackbar": {
+        "prefix": "!output snackbar",
+        "body": [
+            "\t\t\t\tScaffoldMessenger.of(context).showSnackBar(",
+            "\t\t\t\t  SnackBar(",
+            "\t\t\t\t\tcontent: Text(\"Hello\"),",
+            "\t\t\t\t\tduration: Duration(seconds: 2),",
+            "\t\t\t\t\taction: SnackBarAction(",
+            "\t\t\t\t\t  label: \"Undo\",",
+            "\t\t\t\t\t  onPressed: () {},",
+            "\t\t\t\t\t),",
+            "\t\t\t\t\tbehavior: SnackBarBehavior.floating,",
+            "\t\t\t\t\tshape: RoundedRectangleBorder(",
+            "\t\t\t\t\t  borderRadius: BorderRadius.circular(12),",
+            "\t\t\t\t\t),",
+            "\t\t\t\t\tmargin: EdgeInsets.all(12),",
+            "\t\t\t\t\tshowCloseIcon: true,",
+            "\t\t\t\t\tcloseIconColor: Colors.white,",
+            "\t\t\t\t  ),",
+            "\t\t\t\t);",
+            ""
+        ],
+        "description": "Show a snackbar"
+    },
+    "Dropdown menu": {
+        "prefix": "!input dropdown menu",
+        "body": [
+            "\t\t\tDropdownButton(",
+            "\t\t\t  value: dropDownValue,",
+            "\t\t\t  items: [",
+            "\t\t\t\tDropdownMenuItem(",
+            "\t\t\t\t  value: 1,",
+            "\t\t\t\t  child: Text(\"Item 1\"),",
+            "\t\t\t\t),",
+            "\t\t\t\tDropdownMenuItem(",
+            "\t\t\t\t  value: 2,",
+            "\t\t\t\t  child: Text(\"Item 2\"),",
+            "\t\t\t\t),",
+            "\t\t\t  ],",
+            "\t\t\t  onChanged: (value) {",
+            "\t\t\t\tsetState(",
+            "\t\t\t\t  () {",
+            "\t\t\t\t\tdropDownValue = value!;",
+            "\t\t\t\t  },",
+            "\t\t\t\t);",
+            "\t\t\t  },",
+            "\t\t\t),"
+        ],
+        "description": "Create a drop downmenu to get inputs"
+    },
+    "Create button": {
+        "prefix": "!input button create",
+        "body": [
+            "${1|OutlinedButton,ElevatedButton,TextButton|}(",
+            "\t\t\t\tonPressed: () {",
+            "\t\t\t\t  Navigator.push(",
+            "\t\t\t\t\tcontext,",
+            "\t\t\t\t\tMaterialPageRoute(",
+            "\t\t\t\t\t  builder: (context) => HomePage(),",
+            "\t\t\t\t\t),",
+            "\t\t\t\t  );",
+            "\t\t\t\t},",
+            "\t\t\t\tchild: Text(\"Go to Home Page\"),",
+            "\t\t\t  ),"
+        ],
+        "description": "create a button"
+    },
+    "Create slider": {
+        "prefix": "!input slider widget",
+        "body": [
+            "\t\t\tSlider.adaptive(",
+            "\t\t\t  value: sliderValue,",
+            "\t\t\t  onChanged: (value) {",
+            "\t\t\t\tsetState(",
+            "\t\t\t\t  () {",
+            "\t\t\t\t\tsliderValue = value;",
+            "\t\t\t\t  },",
+            "\t\t\t\t);",
+            "\t\t\t  },",
+            "\t\t\t  min: 0,",
+            "\t\t\t  max: 100,",
+            "\t\t\t  divisions: 10,",
+            "\t\t\t  label: sliderValue",
+            "\t\t\t\t  .round()",
+            "\t\t\t\t  .toString(), // Label to show the value of the slider",
+            "\t\t\t),"
+        ],
+        "description": "Create an adaptive slider widget"
+    },
+    "Switch": {
+        "prefix": "!input switch list tile",
+        "body": [
+            "SwitchListTile.adaptive(",
+            "\t\t\t  title: Text(\"Switch\"),",
+            "\t\t\t  value: isSwitched,",
+            "\t\t\t  onChanged: (bool value) {",
+            "\t\t\t\tsetState(() {",
+            "\t\t\t\t  isSwitched = value;",
+            "\t\t\t\t});",
+            "\t\t\t  },",
+            "\t\t\t),",
+            "\t\t  ],"
+        ],
+        "description": "create a switch to get input from user"
+    },
+    "checkbox list tile": {
+        "prefix": "!input checkbox list tile",
+        "body": [
+            "CheckboxListTile.adaptive(",
+            "\t\t\t  tristate: true, // If true, the checkbox will be in indeterminate state",
+            "\t\t\t  value: isChecked, // The value of the checkbox //* Must be declared outside build method",
+            "\t\t\t  onChanged: (value) {  // What to do When the checkbox is clicked",
+            "\t\t\t\tsetState(",
+            "\t\t\t\t  () {",
+            "\t\t\t\t\tisChecked = value;",
+            "\t\t\t\t  },",
+            "\t\t\t\t);",
+            "\t\t\t  },",
+            "\t\t\t  title: Title( // Title of the checkbox",
+            "\t\t\t\tcolor: Colors.green,",
+            "\t\t\t\tchild: Text(\"Checkbox\"),",
+            "\t\t\t  ),",
+            "\t\t\t)"
+        ],
+        "description": "create a check box that can have a subject"
+    },
+    "Text field input": {
+        "prefix": "!input text field",
+        "body": [
+            "TextField(",
+            "\t\t\t  controller: nameController, // Controller to get the text from the text //* this must be declared outside build method",
+            "\t\t\t  enableSuggestions: true, // Enable suggestions for the text field disable for password fields",
+            "\t\t\t  autocorrect: true, // Enable autocorrect for the text field disable for password fields",
+            "\t\t\t  obscureText: false, // Obscure text for password fields set to true for password fields",
+            "\t\t\t  keyboardType: TextInputType.emailAddress, // Shows a keyboard with @ and for email input",
+            "\t\t\t  decoration: InputDecoration(",
+            "\t\t\t\tlabelText: \"${1:Name}\",  // Label text when the field is focused",
+            "\t\t\t\thintText: \"${4:Enter your name}\",  // Hint text when the field is empty",
+            "\t\t\t\tborder: OutlineInputBorder(), // Border around the text field",
+            "\t\t\t  ),",
+            "\t\t\t  onSubmitted: (_) {},//tip use !focusnode snippet to create focus nodes for text fields",
+            "\t\t\t),"
+        ],
+        "description": "textfield widget to get input from user"
+    },
+    "Focus node": {
+        "prefix": "!focusnode",
+        "description": "Change focus using focus node",
+        "body": "final firstFocus = FocusNode(); // Remember to dispose it you can use it in textfield focusnode property"
+    },
+    "App bar": {
+        "prefix": "!appbar",
+        "body": [
+            "AppBar(",
+            "\t\ttitle: Text(\"Contact\"),",
+            "\t\tcenterTitle: true,",
+            "\t\tbackgroundColor: Colors.blue,",
+            "\t\t//leading: Text(",
+            "\t\t\t//\"Left side widget\"), // The widget on the left side of the app bar",
+            "\t\t//leadingWidth: 100, // The width of the leading widget",
+            "\t\tautomaticallyImplyLeading: true, // The back button to previous page",
+            "\t  ),",
+        ]
+    },
+    "Create bottom navigation bar": {
+        "prefix": "!bottomNavigationBar",
+        "body": [
+            "/*",
+            " the class for bottom navaitaion bar use it like this: ${1:MainNavBar}(currentIndex: indexOfTheCurrentPage),",
+            "*/",
+            "class ${1:MainNavBar} extends StatelessWidget {",
+            "  final int currentIndex; // highlight current page",
+            "",
+            "  const ${1:MainNavBar}({super.key, required this.currentIndex});",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "\treturn BottomNavigationBar(",
+            "\t  currentIndex: currentIndex,",
+            "\t  onTap: (int index) {",
+            "\t\t${4:// Add additoinal pages as needed}",
+            "switch (index) {",
+            "case 0:",
+            "{",
+            "context.go(\"/\"); // For home page we clear stack",
+            "break;",
+            "}",
+            "case 1:",
+            "{",
+            "context.push(\"/transactions\"); // For other pages we push to stack",
+            "break;",
+            "}",
+            "}",
+            "\t  },",
+            "\t  ${7:// Add name and icon for each item in the bottom navigation bar}",
+            "\t  items: const [",
+            "\t\tBottomNavigationBarItem(icon: Icon(Icons.home), label: \"Home\"),",
+            "\t\tBottomNavigationBarItem(",
+            "\t\t  icon: Icon(Icons.account_balance_wallet),",
+            "\t\t  label: \"Transactions\",",
+            "\t\t),",
+            "\t  ],",
+            "\t  selectedItemColor: Colors.blue,",
+            "\t  unselectedItemColor: Colors.grey,",
+            "\t);",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Create a class for a bottom navaitaion bar"
+    },
+    "navigation bar": {
+        "prefix": "!navigation bar",
+        "body": [
+            "NavigationBar(",
+            "\t\t// List navigation destination and their icons",
+            "\t\tdestinations: const [",
+            "\t\t  NavigationDestination(icon: Icon(Icons.home), label: \"Home\"),",
+            "\t\t  NavigationDestination(icon: Icon(Icons.settings), label: \"Settings\"),",
+            "\t\t],",
+            "\t\t// Action to do when a destination is selected",
+            "\t\tonDestinationSelected: (int index) {",
+            "\t\t  setState(() {",
+            "\t\t\tcurrentPage = index;",
+            "\t\t  });",
+            "\t\t  if (index == 0) {",
+            "\t\t\tNavigator.pushNamed(context, '/home'); //tip Navigator V1",
+            "\t\t\tcontext.go(\"/home\"); //tip Navigator V2",
+            "\t\t  } else if (index == 1) {",
+            "\t\t\tNavigator.pushNamed(context, '/settings'); //tip Navigator V1",
+            "\t\t\tcontext.go(\"/settings\"); //tip Navigator V2",
+            "\t\t  }",
+            "\t\t},",
+            "\t  ),"
+        ],
+        "description": "Create a navigation bar that navigates to page when selected"
+    },
+    "flutter listview": {
+        "prefix": "!listview",
+        "body": [
+            "ListView(",
+            "\t  children: [",
+            "\t\tListTile(",
+            "\t\t  trailing: Icon(Icons.home), // widget left of the title",
+            "\t\t  leading: Icon(Icons.arrow_forward), // widget right of the title",
+            "\t\t  title: Text(\"Home\"),",
+            "\t\t  enabled: true,",
+            "\t\t  onTap: () {",
+            "\t\t\t// action when the item is tapped",
+            "\t\t\tNavigator.pop(context); // Close the drawer on tap",
+            "\t\t\tNavigator.pushNamed(context, '/home'); // Navigate to the home page",
+            "\t\t  },",
+            "\t\t),",
+            "\t  ],",
+            "\t);"
+        ],
+        "description": "Create a list view with list tiles"
+    },
+    "Create Scafold": {
+        "prefix": [
+            "!scafold",
+            "!create page"
+        ],
+        "body": [
+            "class ${1:PageName} extends StatefulWidget {",
+            "  const ${1:PageName}({required this.pageIndex, super.key});",
+            "",
+            "final int pageIndex; //tip use this to navigate between screens you can access it using widget.pageIndex",
+            "",
+            "  @override",
+            "  State<${1:PageName}> createState() => _${1:PageName}State();",
+            "}",
+            "",
+            "class _${1:PageName}State extends State<${1:PageName}> {",
+            "   //tip This is where to declare your variables and controllers and get data from internet. if needed use !initstate snippet to create init state",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "\treturn Scaffold(",
+            "\t\tappBar: AppBar(),//tip use !appbar snippet to create app bar",
+            "\t\tbottomNavigationBar: BottomNavigationBar(),  //tip use !bottomNavigationBar bar snippet to create navigation bar",
+            "\t\tendDrawer: Drawer(),",
+            "\t\tfloatingActionButton: FloatingActionButton(),",
+            "\t\tbody: Column(),",
+            "\t  );",
+            "  }",
+            "}",
+            ""
+        ],
+        "description": "Create a statefuld scafold widget"
+    },
+    "Log a message": {
+        "prefix": "!log",
+        "description": "Log a message and assign a level",
+        "body": "log(\"${1:message}\", level: ${2|50,250,450,650,1050|})"
+    },
+    "flutter start": {
+        "prefix": "!start",
+        "description": "start a flutter project",
+        "body": [
+            "$BLOCK_COMMENT_START",
+            "TIP This is a boilerplate/skeleton for a basic executable program structure.",
+            "TIP Don't forget to:",
+            "TIP 1. Setup logging !Logging_Setup",
+            "TIP 2. be consistent with variable and function naming conventions",
+            "TIP 3. Break code into seprate reusable functions",
+            "TIP 4. Make modules as independent as possible so that replacing them is easy",
+            "TIP 5. Before writing modules write tests for it and write code to pass the tests",
+            "$BLOCK_COMMENT_END",
+            "/*",
+            "",
+            "On how to write a flutter app and tips and tricks visit",
+            "",
+            "https://github.com/BIGboss248/Obsidian/blob/main/Reforged%20vault/Flutter.md",
+            "",
+            "*/",
+            "// use stl shortcut to create stateless widget",
+            "import 'package:flutter/material.dart';",
+            "import 'package:logging/logging.dart';",
+            "",
+            "",
+            "void main() {",
+            "    WidgetsFlutterBinding.ensureInitialized();",
+            "    runApp(${1:MyApp}());",
+            "}",
+            "",
+            "class ${1:MyApp} extends StatelessWidget {",
+            "  const ${1:MyApp}({super.key});",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    //tip to setup theme change button for your app use !themeChangeButton",
+            "    return MaterialApp(); //tip use !matterial app snippet",
+            "  }",
+            "}"
+        ]
+    },
+    "flutter disable debug banner": {
+        "prefix": "!flutter debug banner",
+        "description": "disable debug banner",
+        "body": "debugShowCheckedModeBanner: false,"
+    },
+    "Matterial app": {
+        "prefix": "!matterial app",
+        "body": [
+            "MaterialApp.router(",
+            "\t  home: HomePage(), //tip => widget Default page when the app starts you can use !scaffold snippet to create scaffold widget",
+            "\t  title: \"${1:App Name}\", // => String  Name shown in browser app",
+            "\t  debugShowCheckedModeBanner: false, // => bool Remove the debug banner",
+            "//tip This is where we define the routes for navigation between different pages in the app",
+            "\t  routerConfig: _router, //tip => routerConfig Define the router configuration for navigation use !router snippet to create router",
+            "\t  //tip To setup themee preference and theme change button use !themeChangeButton snippet",
+            "\t  theme: ThemeData(),  //tip use !themedata snippet to create theme data",
+            "\t  darkTheme: ThemeData(),  //tip use !themedata snippet to create theme data",
+            "\t  themeMode: ThemeMode.system, // => ThemeMode  Set the theme mode of the app to system default",
+            "\t  locale: const Locale(\"en\", \"US\"),",
+            "\t)"
+        ],
+        "description": "Matterial app widget is the relevent widget to start flutter projects"
+    },
+    "ListTile": {
+        "prefix": "!ListTile",
+        "body": [
+            "\t\t\t  ListTile(",
+            "\t\t\t\tleading: Icon(Icons.home),  // widget left of the title",
+            "\t\t\t\ttrailing: Icon(Icons.arrow_forward),  // widget right of the title",
+            "\t\t\t\ttitle: Text(\"Home\"),",
+            "\t\t\t\tenabled: true,",
+            "\t\t\t\tonTap: () { // action when the item is tapped",
+            "\t\t\t\t  Navigator.pop(context); // Close the drawer on tap",
+            "\t\t\t\t  Navigator.pushNamed(context, '/home');  // Navigate to the home page",
+            "\t\t\t\t},",
+            "\t\t\t  )"
+        ],
+        "description": "Create a list tile widget with common properties"
+    },
+    "declare variables": {
+        "prefix": "!var _Variables & Data Types_",
+        "description": "declare a variable",
+        "body": [
+            "$BLOCK_COMMENT_START",
+            "TIP -  Var name must be descriptive and meaningful",
+            "TIP -  Var names should follow the naming conventions of the language",
+            "TIP -  Don't forget to validate inputs and sanitize inputs",
+            "$BLOCK_COMMENT_END",
+            "${1|int,double,bool,String|} ${2:variable_name};"
+        ]
+    },
+    "input": {
+        "prefix": "!input _Input & Output_",
+        "description": "get string input and parse it to int if needed",
+        "body": "${1|String? name = stdin.readLineSync();,int? n = int.parse(stdin.readLineSync()!);|}"
+    },
+    "output": {
+        "prefix": [
+            "!output _Input & Output_",
+            "!dart print"
+        ],
+        "description": "print output",
+        "body": "print(${1:variable_name});"
+    },
+    "list": {
+        "prefix": "!dart list",
+        "description": "declare a list",
+        "body": "List<${1|String,int,double,bool|}> ${2:list_name} = [];"
+    },
+    "map": {
+        "prefix": [
+            "!dict _Data-Structures_",
+            "!dart map",
+            "!dart dictionary"
+        ],
+        "description": "declare a map",
+        "body": "Map<${1|String,int,double,bool|}, ${2|String,int,double,bool|}> ${3:map_name} = {};"
+    },
+    "set": {
+        "prefix": "!dart set",
+        "description": "declare a set",
+        "body": "Set<${1|String,int,double,bool|}> ${2:set_name} = {};"
+    },
+    "queue": {
+        "prefix": "!queue",
+        "description": "declare a queue",
+        "body": "Queue<${1|String,int,double,bool|}> ${2:queue_name} = Queue();"
+    },
+    "switch case": {
+        "prefix": "!dart switch",
+        "description": "switch case",
+        "body": [
+            "switch (${1:expression}) {",
+            "  case ${2:value1}: {",
+            "    ${3:/* code */}",
+            "    }",
+            "  default: {",
+            "    ${4:/* code */}",
+            "    }",
+            "}"
+        ]
+    },
+    "for loop": {
+        "prefix": "!for _Dart Control Flow_",
+        "description": "for loop",
+        "body": [
+            "for (int ${1:i} = 0; ${1:i} < ${2:n}; ${1:i}++) {",
+            "  ${3:/* code */}",
+            "}"
+        ]
+    },
+    "for in loop": {
+        "prefix": "!dart forin",
+        "description": "for in loop",
+        "body": [
+            "for (var ${1:element} in ${2:list}) {",
+            "  ${3:/* code */}",
+            "}"
+        ]
+    },
+    "for each loop": {
+        "prefix": "!foreach _Dart Control Flow_",
+        "description": "for each loop",
+        "body": [
+            "${1:list}.forEach((element) {",
+            "  ${2:/* code */}",
+            "});"
+        ]
+    },
+    "while loop": {
+        "prefix": "!while _Dart Control Flow_",
+        "description": "while loop",
+        "body": [
+            "while (${1:condition}) {",
+            "  ${2:/* code */}",
+            "}"
+        ]
+    },
+    "do while loop": {
+        "prefix": "!dart dowhile",
+        "description": "do while loop",
+        "body": [
+            "do {",
+            "  ${1:/* code */}",
+            "} while (${2:condition});"
+        ]
+    },
+}

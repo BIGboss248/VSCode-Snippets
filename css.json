@@ -1,0 +1,54 @@
+
+{
+	"Start":{
+		"prefix": "!start",
+		"description": "Start template for CSS styling",
+		
+	},
+	"Display grid": {
+		"prefix": [
+			"!display grid",
+			"!grid"
+		],
+		"body": [
+			"\tdisplay: grid;",
+			"\t/* Grid number and size of columns */",
+			"\tgrid-template-columns: 200px 100px 50px;",
+			"\tcolumn-gap: 10px;",
+			"\t/* Items inside grid alignment */",
+			"\tjustify-items: center;",
+			"\talign-items: center;",
+			"\t/* Grid itself */",
+			"\tjustify-content: center;",
+			"\talign-content: center;",
+			""
+		],
+		"description": "Create a grid with alignment"
+	},
+	"Display block": {
+		"prefix": [
+			"!display block",
+			"!block"
+		],
+		"body": [
+			"\tdisplay: block;",
+			"\ttext-align: center;",
+			"\tmargin: auto;"
+		],
+		"description": "Create a display block with alignment properties"
+	},
+	"Create flex": {
+		"prefix": [
+			"!display flex",
+			"!flex"
+		],
+		"body": [
+			"\tdisplay: flex;",
+			"\t/* Children under the flex */",
+			"\tjustify-content: center;",
+			"\talign-items: center;",
+			""
+		],
+		"description": "Create a flex"
+	},
+}

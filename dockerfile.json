@@ -1,0 +1,195 @@
+/*
+
+This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
+
+🔹 1. Program Structure
+
+boilerplate/skeleton→ basic executable program structure
+
+Libary boilerplate / Libary skeleton → basic Libary/package structure
+
+import / include → add library or dependency
+
+comment → single line / multi-line comment
+
+🔹 2. Variables & Data Types
+
+var → declare variable
+
+var-os → Read environment variable
+
+const → declare constant
+
+type → declare with type annotation (if supported)
+
+assign → variable assignment
+
+Convert → type conversion/casting
+
+🔹 3. Input & Output
+
+print → print to console
+
+print format → print to console
+
+input → read input from user
+
+readfile → read from a file
+
+writefile → write to a file
+
+🔹 4. Control Flow
+
+if → if statement
+
+ifelse → if-else
+
+switch/match → switch/case or match expression
+
+for → for loop (counter-based)
+
+foreach → loop over collection
+
+while → while loop
+
+break → break out of loop
+
+continue → continue to next iteration
+
+🔹 5. Functions
+
+func → function definition
+
+unit-test → function test definition
+
+return → return from function
+
+lambda → anonymous function
+
+🔹 6. Data-Structures
+
+array → array/list
+
+array append → append to array/list
+
+dict/map → dictionary, hash map
+
+set → set
+
+struct / class → basic class or struct
+
+Json-read → parse/serialize JSON
+
+Json-write → generate JSON from data
+
+CSV-read → parse CSV file
+
+🔹 7. Error-Handling
+
+trycatch → try/catch block
+
+throw / raise → throw an error
+
+finally → cleanup section
+
+🔹 8. Common Patterns
+
+loopfile → loop through file lines
+
+looparray → iterate over an array
+
+loopdict → iterate over dictionary/map
+
+main → entry point
+
+🔹 9. Concurrent and parallelism
+
+asyncfunc → async function
+
+await → await promise/future
+
+thread → threading/multithreading snippet
+
+class → class definition
+
+inherit → class inheritance
+
+🔹 10. Debugging & Utilities
+
+todo → insert TODO comment
+
+debug → debug log statement
+
+time → measure execution time
+
+docstring → Add a docstring to a function or class
+
+🔹 11. Database
+
+dbconnect → connect to a database
+
+dbqueryrows → query multiple rows
+
+dbqueryrow → query a single row
+
+dbexec → execute insert/update/delete
+
+dbtx → transaction with commit/rollback
+
+dbclose → close database connection safely
+
+dbping → check database health/connection
+
+🔹 12. API–Server (exposing APIs)
+
+apiserver → start an HTTP server
+
+apiroute → define a route/endpoint handler
+
+apiparsejson → parse request body JSON
+
+apiresjson → send JSON response
+
+apimiddleware → add middleware (logging, auth, CORS)
+
+🔹 13. API–Client (consuming APIs)
+
+apiclientget → make GET request to external API
+
+apiclientpost → make POST request to external API
+
+apiclientreq → generic HTTP request with headers
+
+apiclientjson → parse JSON response into struct
+*/
+
+{
+	"add non root user": {
+		"prefix": "!add user",
+		"body": [
+			"RUN useradd -ms /bin/bash nonroot",
+			"USER nonroot"
+		],
+		"description": "add a non root user"
+	},
+	"start skeleton":{
+		"prefix": "!boilerplate/!skeleton",
+		"body": [
+			"FROM ${1:image:tag} AS ${2:ailias for stage}",
+			"WORKDIR /app # sets the working directory",
+			"#* Configure .dockerignore to exclude files and folders from being copied to the image",
+			"COPY . . # copy all files to working directory",
+			"ENV ${5:KEY}=${6:value} # set environment variable",
+			"RUN ${3:command to build or setup the app}",
+			"CMD [\"${4:command to run the app}\"]"
+		],
+		"description": "boilerplate/skeleton of a dockerfile",
+	},
+	"Copy files and folders":{
+		"prefix": "!copy files and folders",
+		"body": [
+			"#* If you want to copy from host remove from flag",
+			"COPY --from=${1:stage name or stage index number} ${2:source} ${3: dest}"
+		]
+	}
+}

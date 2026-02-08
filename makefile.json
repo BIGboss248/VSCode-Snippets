@@ -1,0 +1,41 @@
+{
+	"start": {
+		"prefix": "!start",
+		"body": [
+			"${name}: ${prerequisites}",
+			"\t${commands}",
+			"\t${commands}",
+		]
+	},
+	"Create and assign variables with :=": {
+		"prefix": "!variable",
+		"body": [
+			"# Create and assign variables with :=",
+			"${1:Variable_name} := ${2:variable_value}",
+			"${3:Variable_name1} := ${4:$(shell uname -m)}"
+		],
+		"description": "Assign variables with :="
+	},
+	"First target with prerequisites and wildcard": {
+		"prefix": "!target",
+		"body": [
+			"#First target is the default target which is ran by make command",
+			"target: prerequisites_file||$$(wildcard *.example)",
+			"\tcommand",
+			"\tcommand",
+			"\tcommand"
+		],
+		"description": "First make target with wildcard"
+	},
+	"if else statement": {
+		"prefix": "!if",
+		"body": [
+			"ifeq (${1:\\$(foo)}, ${2:ok})",
+			"${3:\techo \"foo equals ok\"}",
+			"else",
+			"${4:\techo \"nope\"}",
+			"endif"
+		],
+		"description": "Generate an if else conditional statement"
+	},
+}

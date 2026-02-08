@@ -1,0 +1,693 @@
+{
+    "create function": {
+        "prefix": "!function",
+        "description": "create a function",
+        "body": [
+            "${1|variable,void,array|} myFunction(${2|variable,void,array|} x=${3:default variable}) {",
+            "return x or no return if void;",
+            "}",
+        ]
+    },
+    "maps":{
+        "prefix": "!array map",
+        "body": [
+            "map <${1|boolean,char,int,float,double,string|}, ${2|boolean,char,int,float,double,string|}> ${3:map_name}"
+        ]
+    },
+    "vector":{
+        "prefix": "!array vector",
+        "body": [
+            "vector <${1|boolean,char,int,float,double,string|}> ${2:my_vector}"
+        ]
+    },
+    "array":{
+        "prefix": "!array array",
+        "body": [
+            "${1|boolean,char,int,float,double,string|} ${2:my_array}[${3:len}]"
+        ]
+    },
+    "All lists": {
+        "prefix": [
+            "!list",
+            "!map",
+            "!dictionary"
+        ],
+        "description": "Lists, Maps, and Dictionaries",
+        "body": [
+            "${1|vector,map,/*array*/|}${2|<,<, |}${4|boolean,char,int,float,double,string|}${3|>,>, |} my_array${5| , ,[len]|}"
+        ]
+    },
+    "All variables": {
+        "prefix": "!variable",
+        "description": "create a variable",
+        "body": [
+            "${1|boolean,char,int,float,double,string|} myvar;"
+        ]
+    },
+    "switch case":{
+        "prefix": "!condition switch",
+        "body": [
+            "switch(${1:expression}) {",
+            "case ${2:value}:",
+            "    // code here",
+            "break;",
+            "default:",
+            "    // code here",
+            "}"
+        ]
+    },
+    "if condition":{
+        "prefix": "!condition if",
+        "body": [
+            "if (${1:condition})",
+            "{",
+            "$TM_SELECTED_TEXT",
+            "}",
+            "else if (condition){} else {}"
+        ]
+    },
+    "All conditions": {
+        "prefix": "!condition",
+        "description": "Create diffrent kind of conditions",
+        "body": [
+            "${1|if (condition),else if (condition),else (condition),switch(expression)|}",
+            "${2|{,{,{,{\ncase x:\nbreak;\ndefault:\n|}",
+            "$TM_SELECTED_TEXT",
+            "}"
+        ]
+    },
+    "All loops": {
+        "prefix": "!loop",
+        "description": "create a loop",
+        "body": [
+            "${1|for (variable; condition; counter),while (condition)|} {",
+            "$TM_SELECTED_TEXT",
+            "}",
+        ]
+    },
+    "convert unix time stamp as number to time_t object": {
+        "prefix": "!timestamp convert from number",
+        "body": [
+            "\t// Example: A long int UNIX timestamp",
+            "\tlong timestamp = 1700000000; // Replace with your timestamp",
+            "",
+            "\t// Convert long int to time_t",
+            "\ttime_t timeObj = static_cast<time_t>(timestamp);"
+        ],
+        "description": "convert a number to timestamp"
+    },
+    "convert time stamp to datetime": {
+        "prefix": "!timestamp to datetime",
+        "body": [
+            "#include <ctime>",
+            "// timestamp is a time_t object",
+            "struct tm *timeInfo = gmtime(&timestamp); // Use gmtime(&timestamp) for UTC"
+        ],
+        "description": "convert timestamp to datetime object"
+    },
+    "convert datetime to timestamp": {
+        "prefix": "!datetime convert",
+        "body": [
+            "#include <ctime>",
+            "//timestamp is a time_t object and datetime is a struct tm object",
+            "time_t timestamp = mktime(&datetime); // Convert datetime to timestamp"
+        ],
+        "description": "convert a given datetime to time stamp"
+    },
+    "create timestamp": {
+        "prefix": "!timestamp create",
+        "body": [
+            "#include <ctime>",
+            "// Get the timestamp for the current date and time",
+            "time_t timestamp=time(nullptr); // Right now timestamp is the memory location of object type time_t and save current time in it",
+            "",
+            "// Display the date and time represented by the timestamp",
+            "cout << ctime(&timestamp);"
+        ],
+        "description": "create a time stamp and store the current time in it"
+    },
+    "Get date and time of the current bar": {
+        "prefix": "!sierra get current time",
+        "body": [
+            "// Get the DateTime at the current index.",
+            "SCDateTime BarDateTime = sc.BaseDateTimeIn[sc.ArraySize - 1];",
+            "// Date values are integer (int) values representing the number of days since December 30, 1899.",
+            "int BarDate = sc.BaseDateTimeIn.DateAt(sc.ArraySize - 1);",
+            "",
+            "// Get the time",
+            "int BarTime = sc.BaseDateTimeIn.TimeAt(sc.ArraySize - 1);"
+        ],
+        "description": "get the current candle time of current date and time as a int"
+    },
+    "start template": {
+        "prefix": [
+            "!start template",
+            "!start"
+        ],
+        "body": [
+            "#include <iostream>  // input and output",
+            "#include <fstream>   // file input/output",
+            "#include <sstream>   // Read string inputs as user inputs",
+            "#include <string>\t// work with string",
+            "#include <ctime>\t // work with time",
+            "#include <vector>\t// work with vectors(resizeable arrays)",
+            "#include <map>\t   // work with maps(dictionaries)",
+            "using namespace std; // removing std:: from all the standard library functions and variables",
+            "",
+            "// The function that will be executed by compiler",
+            "int main(){",
+            "\t",
+            "}"
+        ],
+        "description": "create a start template to write scripts"
+    },
+    "Create a map": {
+        "prefix": "!map create",
+        "body": [
+            "// Include the map library",
+            "#include <map>",
+            "// Create a map that will store the name and age of different people",
+            "map<string, int> people = { {\"John\", 32}, {\"Adele\", 45}, {\"Bo\", 29} };",
+            "// Get the value associated with the key \"John\"",
+            "cout << \"John is: \" << people[\"John\"] << \"\\n\";",
+            "// Change John's value to 50 instead of 32",
+            "people[\"John\"] = 50;",
+            "// Add new elements",
+            "people[\"Jenny\"] = 22;",
+            "people[\"Liam\"] = 24;",
+            "people[\"Kasper\"] = 20;",
+            "people[\"Anja\"] = 30;",
+            "// Remove an element by key",
+            "people.erase(\"John\");",
+            "// Remove all elements",
+            "people.clear();",
+            "// Size of the map",
+            "cout << people.size();",
+            "// check if map is empty",
+            "cout << people.empty();",
+            "// loop through a map",
+            "// auto will set the variable type automaticlly",
+            "// .first will show key and .second the value",
+            "for (auto person : people) {",
+            "cout << person.first << \" is: \" << person.second << \"\\n\";",
+            "}"
+        ],
+        "description": "create a map and perform common operations map is a dictionary like variable"
+    },
+    "Create a class": {
+        "prefix": [
+            "!class create",
+            "!class"
+        ],
+        "body": [
+            "class MyClass {       // The class",
+            "public:             // Access specifier",
+            "MyClass() {     // Constructor",
+            "cout << \"Hello World!\";",
+            "}",
+            "int myNum;        // Attribute (int variable)",
+            "string myString;  // Attribute (string variable)",
+            "};",
+            "void myMethod() {  // Method/function defined inside the class",
+            "cout << \"Hello World!\";",
+            "}"
+        ],
+        "description": "Create a sample class with a constructor, attributes, and a method"
+    },
+    "Read input": {
+        "prefix": "!input read",
+        "body": [
+            "#include <iostream>",
+            "using namespace std;",
+            "int x;",
+            "cin >> x; // Get user input from the keyboard if the input dosen't have space",
+            "string fullName;",
+            "getline (cin, fullName); // Get user input with space"
+        ],
+        "description": "get input from console"
+    },
+    "Write output": {
+        "prefix": "!output write",
+        "body": [
+            "int studentID = 15;",
+            "cout << \"Student ID: \" << studentID << \"\n\";"
+        ],
+        "description": "Write output to console"
+    },
+    "Write file": {
+        "prefix": "!file read",
+        "body": [
+            "#include <iostream>",
+            "#include <fstream>",
+            "using namespace std;",
+            "// Create and open a text file",
+            "ofstream MyFile(\"filename.txt\");",
+            "",
+            "// Write to the file",
+            "MyFile << \"Files can be tricky, but it is fun enough!\";",
+            "",
+            "// Close the file",
+            "MyFile.close();"
+        ],
+        "description": "Create and write to a file"
+    },
+    "Create datetime": {
+        "prefix": [
+            "!datetime create",
+            "!create datetime"
+        ],
+        "body": [
+            "// Create a timestamp of any time you want",
+            "struct tm datetime; // Create datetime object",
+            "datetime.tm_year = 2023 - 1900; // Number of years since 1900",
+            "datetime.tm_mon = 12 - 1; // Number of months since January",
+            "datetime.tm_mday = 17;",
+            "datetime.tm_hour = 12;",
+            "datetime.tm_min = 30;",
+            "datetime.tm_sec = 1;",
+            "// Daylight Savings must be specified",
+            "// -1 uses the computer's timezone setting",
+            "datetime.tm_isdst = -1;",
+        ],
+        "description": "create a datetime object"
+    },
+    "Current date and time": {
+        "prefix": [
+            "!time current"
+        ],
+        "body": [
+            "import <ctime>",
+            "// Get the timestamp for the current date and time",
+            "time_t timestamp; // Right now timestamp is the memory location of object type time_t",
+            "time(&timestamp); // now with time function we save current time stamp to timestamp object",
+            "",
+            "// Display the date and time represented by the timestamp",
+            "cout << ctime(&timestamp);",
+            "",
+            "// Create a timestamp of any time you want",
+            "struct tm datetime; // Create datetime object",
+            "time_t timestamp; // Create timestamp object",
+            "",
+            "datetime.tm_year = 2023 - 1900; // Number of years since 1900",
+            "datetime.tm_mon = 12 - 1; // Number of months since January",
+            "datetime.tm_mday = 17;",
+            "datetime.tm_hour = 12;",
+            "datetime.tm_min = 30;",
+            "datetime.tm_sec = 1;",
+            "// Daylight Savings must be specified",
+            "// -1 uses the computer's timezone setting",
+            "datetime.tm_isdst = -1;",
+            "",
+            "timestamp = mktime(&datetime); // Convert datetime to timestamp",
+            "",
+            "cout << ctime(&timestamp); // Display time stamp as readable datetime"
+        ],
+        "description": "create a time stamp of current time or create a datetime object and convert it to timestamp"
+    },
+    "Read file": {
+        "prefix": "!file read",
+        "body": [
+            "#include <iostream>",
+            "#include <fstream>",
+            "#include <string>",
+            "using namespace std;",
+            "",
+            "// Create a text string, which is used to output the text file",
+            "string myText;",
+            "",
+            "// Read from the text file",
+            "ifstream MyReadFile(\"filename.txt\");",
+            "",
+            "// Use a while loop together with the getline() function to read the file line by line",
+            "while (getline (MyReadFile, myText)) {",
+            "// Output the text from the file",
+            "cout << myText;",
+            "}",
+            "",
+            "// Close the file",
+            "MyReadFile.close();"
+        ],
+        "description": "A script to read a text file line by line"
+    },
+    "Create vector": {
+        "prefix": "!vector create",
+        "body": [
+            "// Create a vector called cars that will store strings",
+            "vector<string> cars;",
+            "// add element to vector",
+            "cars = {\"Volvo\", \"BMW\", \"Ford\", \"Mazda\"};",
+            "cars.push_back(\"Tesla\");",
+            "// Remove element from vector",
+            "cars.pop_back();",
+            "// get the first element in vector",
+            "cars.back();",
+            "// get the last element in vector",
+            "cars.front();",
+            "// loop through vector",
+            "for (string car : cars) {",
+            "cout << car << \"\\n\";",
+            "}"
+        ],
+        "description": "create and work with a vector which is a resizable array"
+    },
+    // ========================= Sierra Chart ACSIL =========================
+    "create a sierra datetime object": {
+        "prefix": [
+            "!sierra create datetime object",
+            "!sierra convert sierra datetime object to int"
+        ],
+        "body": [
+            "SCDateTime MySCDateTime; // Locally defined SCDateTime variable.",
+            "",
+            "// MySCDateTime will contain, with this function call, the specified date time.",
+            "MySCDateTime.SetDateTimeYMDHMS(2007, 1, 30, 16, 10, 0);",
+            "",
+            "int Year, Month, Day, Hour, Minute, Second;",
+            "// This function will set the year, month, day, hour, minute, and second of MySCDateTime to the values",
+            "sc.BaseDateTimeIn[].GetDateTimeYMDHMS(Year, Month, Day, Hour, Minute, Second);"
+        ],
+        "description": "create a sierra date time object from a SCDateTime object"
+    },
+    "SierraChart ACSIL start template": {
+        "prefix": "!sierra start",
+        "body": [
+            "// To see general steps for sierra trading studdy visit",
+            "// https://www.sierrachart.com/index.php?page=doc/ACSILTrading.html#GeneralStepsToCreateAnACSILAutomatedTradingSystem",
+            "// Add aditional header files above sierrachart.h",
+            "// when selecting files in sierrachart to compile",
+            "// tick the option <<select aditional files>> and",
+            "// then select the script plus the additional headers",
+            "// you want to include",
+            "#include \"sierrachart.h\"",
+            "// name the collection of your studies",
+            "SCDLLName(\"${1:Name of the study collection}\")",
+            "",
+            "// ${2:movingAVG} is the name of the study and must be unique in this file",
+            "SCSFExport scsf_${2:movingAVG}(SCStudyGraphRef sc)",
+            "{",
+            "\t// Section 1 - Set the configuration variables and defaults",
+            "",
+            "\tif (sc.SetDefaults)",
+            "\t{",
+            "\t// here define inputs, subgraphs, their properties and sierra chart study settings",
+            "\t",
+            "\t\t// sc.GraphRegion is the zero-based index of the Chart Region for the study graph to be displayed in.",
+            "\t\t//A value of 0 means Chart Region 1, which is where the main price graph is drawn.",
+            "\t\t//A value of 1 means Chart Region 2, which is directly under the main price graph.",
+            "\t\t// price graph region.",
+            "\t\t// sc.GraphRegion = 0;",
+            "\t\t// Graph name should be the name of the study",
+            "\t\tsc.GraphName = \"${3:Moving Average}\";",
+            "",
+            "\t\t// ================= sierra chart study settings =================",
+            "",
+            "\t\tsc.StudyDescription = \"${4:Example function for calculating a simple moving average from scratch.}\";",
+            "",
+            "\t\t// If auto loop is enabled the function or rather study will be called",
+            "\t\t// on each tick and sc.Index and sc.ASK and sc.BID and sc.ArraySize will be updated",
+            "\t\tsc.AutoLoop = ${5|0,1|};  // true",
+            "\t\t//=====================================================IMPORTANT===============================================================",
+            "\t\t// During development set this flag to 1, so the DLL can be rebuilt without restarting Sierra Chart. When development is completed, set it to 0 to improve performance.",
+            "\t\tsc.FreeDLL = ${6|0,1|};",
+            "\t\t//=============================================================================================================================",
+            "\t\t// This will set whether script can buy or sell if a same postion is open",
+            "\t\tsc.AllowMultipleEntriesInSameDirection = ${7|false,true|};",
+            "",
+            "\t\tsc.SupportReversals = ${8|false,true|};",
+            "",
+            "\t\t// This is false by default. Orders will go to the simulation system always.",
+            "\t\tsc.SendOrdersToTradeService = ${9|false,true|};",
+            "",
+            "\t\tsc.AllowOppositeEntryWithOpposingPositionOrOrders = ${10|false,true|};",
+            "",
+            "\t\t// When this variable is set to 1 (TRUE) (by default),",
+            "\t\t// only one order for each Order Action type (Buy Entry, Buy Exit,",
+            "\t\t// Sell Entry, Sell Exit) is allowed for a single chart bar.,",
+            "\t\tsc.AllowOnlyOneTradePerBar = ${11|false,true|};",
+            "",
+            "\t\t// More global options",
+            "\t\tsc.MaximumPositionAllowed = 5;",
+            "\t\tsc.SupportAttachedOrdersForTrading = false;",
+            "\t\tsc.CancelAllOrdersOnEntriesAndReversals = true;",
+            "\t\tsc.AllowEntryWithWorkingOrders = false;",
+            "\t\tsc.CancelAllWorkingOrdersOnExit = true;",
+            "\t\tsc.MaintainTradeStatisticsAndTradesData = true;",
+            "",
+            "\t\t// ================= subgraphs =================",
+            "",
+            "\t\t",
+            "\t\t// Fill the data to draw",
+            "\t\t// sc.Subgraph[0][index]",
+            "\t\t",
+            "\t\t// Set the name of the first subgraph",
+            "\t\tsc.Subgraph[0].Name = \"Average\";",
+            "\t\t",
+            "\t\t// this array is used for storing background or",
+            "\t\t// intermediate calculations and to store data",
+            "\t\t// that needs to be held between function calls.",
+            "\t\t// index1 can be between 1 to 12 and size of each",
+            "\t\t// array is the size of sc.Subgraph[].Data[]",
+            "\t\t// sc.Subgraph[].Arrays[Index1][Index2]",
+            "\t\t",
+            "\t\t// Set the color and style of the subgraph line.",
+            "\t\tsc.Subgraph[0].PrimaryColor = RGB(255,0,0);  // Red",
+            "\t\tsc.Subgraph[0].DrawStyle = DRAWSTYLE_LINE;",
+            "\t\t",
+            "\t\t// ================= Inputs =================",
+            "",
+            "\t\tsc.Input[0].Name = \"Length\";",
+            "\t\tsc.Input[0].SetInt(30);",
+            "\t\tsc.Input[0].SetIntLimits(1, 1000);",
+            "\t\t//sc.input[0].GetInt()  to get the value",
+            "",
+            "\t\t// Must return before doing any data processing if sc.SetDefaults is set",
+            "\t\treturn;",
+            "\t}",
+            "",
+            "\t// ================= Data processing =================",
+            "",
+            "\t// Get the inputs",
+            "\tint InMALength = sc.Input[0].GetInt(); // Input 0 - \"Length\"",
+            "",
+            "\t// Set the index of the first array element to begin drawing at.",
+            "\tsc.DataStartIndex = InMALength - 1;",
+            "",
+            "\t// Calculate a simple moving average from the data in the input arrays",
+            "\tfloat Sum = 0;",
+            "\tfor (int InIndex = sc.Index - (InMALength - 1); InIndex <= sc.Index; ++InIndex)",
+            "\t{",
+            "\t\tSum = Sum + sc.BaseDataIn[SC_LAST][InIndex];",
+            "\t}",
+            "",
+            "\t// Set the output for the moving average",
+            "\tsc.Subgraph[0].Data[sc.Index] = Sum / InMALength;",
+            "}"
+        ],
+        "description": "A starting point to create a sierra chart study",
+        "isFileTemplate": true
+    },
+    "Sierra draw a subgraph on chart": {
+        "prefix": "!sierra subgraph",
+        "body": [
+            "// =========== below must be in default setting block =============",
+            "// Graph declaration and setting",
+            "",
+            "// Fill the data to draw",
+            "// sc.Subgraph[0].Data[index]",
+            "",
+            "// Set the name of the first subgraph",
+            "sc.Subgraph[0].Name = \"${1:Average}\";",
+            "",
+            "// this array is used for storing background or",
+            "// intermediate calculations and to store data",
+            "// that needs to be held between function calls.",
+            "// index1 can be between 1 to 12 and size of each",
+            "// array is the size of sc.Subgraph[].Data[]",
+            "// sc.Subgraph[].Arrays[Index1][Index2]",
+            "",
+            "// Set the color and style of the subgraph line.",
+            "sc.Subgraph[0].PrimaryColor = RGB(${2:255,0,0});  // Red",
+            "sc.Subgraph[0].DrawStyle = ${3|DRAWSTYLE_LINE,DRAWSTYLE_BAR,DRAWSTYLE_POINT,DRAWSTYLE_DASH,DRAWSTYLE_HIDDEN,DRAWSTYLE_IGNORE,DRAWSTYLE_STAIR_STEP,DRAWSTYLE_SQUARE,DRAWSTYLE_STAR,DRAWSTYLE_PLUS,DRAWSTYLE_ARROW_UP,DRAWSTYLE_ARROW_DOWN,DRAWSTYLE_ARROW_LEFT,DRAWSTYLE_ARROW_RIGHT,DRAWSTYLE_FILL_TOP,DRAWSTYLE_FILL_BOTTOM,DRAWSTYLE_FILL_RECTANGLE_TOP,DRAWSTYLE_FILL_RECTANGLE_BOTTOM,DRAWSTYLE_COLOR_BAR,DRAWSTYLE_BOX_TOP,DRAWSTYLE_BOX_BOTTOM,DRAWSTYLE_COLOR_BAR_HOLLOW,DRAWSTYLE_COLOR_BAR_CANDLE_FILL,DRAWSTYLE_CUSTOM_TEXT,DRAWSTYLE_BAR_TOP,DRAWSTYLE_BAR_BOTTOM,DRAWSTYLE_LINE_SKIP_ZEROS,DRAWSTYLE_TRANSPARENT_FILL_TOP,DRAWSTYLE_TRANSPARENT_FILL_BOTTOM,DRAWSTYLE_TEXT,DRAWSTYLE_POINT_ON_LOW,DRAWSTYLE_POINT_ON_HIGH,DRAWSTYLE_TRIANGLE_UP,DRAWSTYLE_TRIANGLE_DOWN,DRAWSTYLE_TRANSPARENT_FILL_RECTANGLE_TOP,DRAWSTYLE_TRANSPARENT_FILL_RECTANGLE_BOTTOM,DRAWSTYLE_BACKGROUND,DRAWSTYLE_DIAMOND,DRAWSTYLE_LEFT_PRICE_BAR_DASH,DRAWSTYLE_RIGHT_PRICE_BAR_DASH,DRAWSTYLE_TRIANGLE_LEFT,DRAWSTYLE_TRIANGLE_RIGHT,DRAWSTYLE_TRIANGLE_RIGHT_OFFSET,DRAWSTYLE_TRIANGLE_RIGHT_OFFSET_FOR_CANDLESTICK,DRAWSTYLE_CANDLESTICK_BODY_OPEN,DRAWSTYLE_CANDLESTICK_BODY_CLOSE,DRAWSTYLE_FILL_TO_ZERO,DRAWSTYLE_TRANSPARENT_FILL_TO_ZERO,DRAWSTYLE_SQUARE_OFFSET_LEFT,DRAWSTYLE_SQUARE_OFFSET_LEFT_FOR_CANDLESTICK,DRAWSTYLE_VALUE_ON_HIGH,DRAWSTYLE_VALUE_ON_LOW,DRAWSTYLE_VALUE_OF_SUBGRAPH,DRAWSTYLE_SUBGRAPH_NAME_AND_VALUE_LABELS_ONLY,DRAWSTYLE_LINE_AT_LAST_BAR_TO_EDGE,DRAWSTYLE_FILL_RECTANGLE_TO_ZERO,DRAWSTYLE_TRANSPARENT_FILL_RECTANGLE_TO_ZERO,DRAWSTYLE_X,DRAWSTYLE_CUSTOM_VALUE_AT_Y,DRAWSTYLE_CUSTOM_VALUE_AT_Y_LEFT_ALIGNED,DRAWSTYLE_CUSTOM_VALUE_AT_Y_RIGHT_ALIGNED,DRAWSTYLE_CUSTOM_VALUE_AT_Y_WITH_BORDER,DRAWSTYLE_TRANSPARENT_CUSTOM_VALUE_AT_Y,DRAWSTYLE_TRANSPARENT_CUSTOM_VALUE_AT_Y_LEFT_ALIGNED,DRAWSTYLE_TRANSPARENT_CUSTOM_VALUE_AT_Y_RIGHT_ALIGNED,DRAWSTYLE_TRANSPARENT_BAR_TOP,DRAWSTYLE_TRANSPARENT_BAR_BOTTOM,DRAWSTYLE_LEFT_OFFSET_BOX_TOP,DRAWSTYLE_LEFT_OFFSET_BOX_BOTTOM,DRAWSTYLE_RIGHT_OFFSET_BOX_TOP,DRAWSTYLE_RIGHT_OFFSET_BOX_BOTTOM,DRAWSTYLE_HORIZONTAL_PROFILE,DRAWSTYLE_HORIZONTAL_PROFILE_HOLLOW,DRAWSTYLE_SQUARE_OFFSET_RIGHT,DRAWSTYLE_SQUARE_OFFSET_RIGHT_FOR_CANDLESTICK,DRAWSTYLE_TRANSPARENT_CIRCLE,DRAWSTYLE_CIRCLE_HOLLOW,DRAWSTYLE_TRANSPARENT_CIRCLE_VARIABLE_SIZE,DRAWSTYLE_CIRCLE_HOLLOW_VARIABLE_SIZE,DRAWSTYLE_POINT_VARIABLE_SIZE,DRAWSTYLE_LINE_EXTEND_TO_EDGE,DRAWSTYLE_BACKGROUND_TRANSPARENT,DRAWSTYLE_LEFT_SIDE_TICK_SIZE_RECTANGLE,DRAWSTYLE_RIGHT_SIDE_TICK_SIZE_RECTANGLE,DRAWSTYLE_TRANSPARENT_TEXT,DRAWSTYLE_TRANSPARENT_TEXT_WITH_ALIGNMENT,DRAWSTYLE_TEXT_WITH_BACKGROUND|};",
+        ],
+        "description": "draw a subgraph on chart"
+    },
+    "Sierra declare input variable": {
+        "prefix": "!sierra input",
+        "body": [
+            "sc.Input[0].Name = \"Length\";",
+            "sc.Input[0].Set${1|Int,Float,Double|}(30);",
+            "sc.Input[0].Set${1|Int,Float,Double|}Limits(1, 1000);",
+            "//sc.input[0].Get${1|Int,Float,Double|}()  to get the value",
+            "",
+        ],
+        "description": "declare inputs which allow user to change how the study behaves"
+    },
+    "Sierra execute order": {
+        "prefix": "!sierra order",
+        "body": [
+            "// Create a s_SCNewOrder object to pass to buy function",
+            "s_SCNewOrder NewOrder;",
+            "NewOrder.OrderQuantity = 1;",
+            "// to see about order types visit https://www.sierrachart.com/index.php?page=doc/OrderTypes.html",
+            "NewOrder.OrderType = ${1|SCT_ORDERTYPE_MARKET,SCT_ORDERTYPE_LIMIT,SCT_ORDERTYPE_STOP,SCT_ORDERTYPE_STOP_LIMIT,SCT_ORDERTYPE_MARKET_IF_TOUCHED,SCT_ORDERTYPE_LIMIT_CHASE,SCT_ORDERTYPE_LIMIT_TOUCH_CHASE,SCT_ORDERTYPE_TRAILING_STOP,SCT_ORDERTYPE_TRAILING_STOP_LIMIT,SCT_ORDERTYPE_TRIGGERED_TRAILING_STOP_3_OFFSETS,SCT_ORDERTYPE_TRIGGERED_TRAILING_STOP_LIMIT_3_OFFSETS,SCT_ORDERTYPE_STEP_TRAILING_STOP,SCT_ORDERTYPE_STEP_TRAILING_STOP_LIMIT,SCT_ORDERTYPE_TRIGGERED_STEP_TRAILING_STOP,SCT_ORDERTYPE_TRIGGERED_STEP_TRAILING_STOP_LIMIT,SCT_ORDERTYPE_OCO_LIMIT_STOP_LIMIT,SCT_ORDERTYPE_OCO_BUY_STOP_SELL_STOP,SCT_ORDERTYPE_OCO_BUY_STOP_LIMIT_SELL_STOP_LIMIT,SCT_ORDERTYPE_OCO_BUY_LIMIT_SELL_LIMIT,SCT_ORDERTYPE_LIMIT_IF_TOUCHED,SCT_ORDERTYPE_BID_ASK_QUANTITY_TRIGGERED_STOP,SCT_ORDERTYPE_TRIGGERED_LIMIT,SCT_ORDERTYPE_TRADE_VOLUME_TRIGGERED_STOP,SCT_ORDERTYPE_STOP_WITH_BID_ASK_TRIGGERING,SCT_ORDERTYPE_STOP_WITH_LAST_TRIGGERING,SCT_ORDERTYPE_LIMIT_IF_TOUCHED_CLIENT_SIDE,SCT_ORDERTYPE_MARKET_IF_TOUCHED_CLIENT_SIDE,SCT_ORDERTYPE_TRADE_VOLUME_TRIGGERED_STOP_LIMIT,SCT_ORDERTYPE_STOP_LIMIT_CLIENT_SIDE,SCT_ORDERTYPE_TRIGGERED_STOP|};",
+            "NewOrder.TimeInForce = ${2|SCT_TIF_FILL_OR_KILL,SCT_TIF_DAY,SCT_TIF_GTC,SCT_TIF_GOOD_TILL_CANCELED,SCT_TIF_IMMEDIATE_OR_CANCEL|};",
+            "NewOrder.Price1 = 0; // If you put 0 will buy at current ask price (bid price if the position is sell)",
+            "// pass the NewOrder object to buy function to execute order",
+            "sc.BuyEntry(NewOrder);  // sc.SellEntry(NewOrder)",
+            "// To exit the order enter the order in the oposite direcion",
+            "sc.BuyExit(NewOrder);  // sc.SellExit(NewOrder)",
+        ],
+        "description": "Execute oreder"
+    },
+    "sierra get current candle properties": {
+        "prefix": [
+            "!sierra candle",
+            "!sierra last price",
+            "!sierra last open price"
+        ],
+        "body": [
+            "// auto loop must be on",
+            "",
+            "// Get the End DateTime at the current index.",
+            "SCDateTime BarEndDateTime = sc.BaseDataEndDateTime[sc.ArraySize - 1];",
+            "sc.BaseData[SC_${1|OPEN,HIGH,LOW,LAST,VOLUME,NUM_TRADES|}][sc.ArraySize - 1]; // last candle ${1|OPEN,HIGH,LOW,LAST,VOLUME,NUM_TRADES|}",
+            "",
+        ]
+    },
+    // ========================= Meta Quotes 5 =========================
+    "MQ5 EA starting template": {
+        "prefix": "!mq5 start expert advisor",
+        "body": [
+            "#property copyright \"${1:amin}\"",
+            "#property link \"${2:https://www.mql5.com}\"",
+            "#property version \"${3:1.00}\"",
+            "",
+            "#include <Trade/Trade.mqh>",
+            "//--- input parameters",
+            "input int ${4:Input1};",
+            "",
+            "//--- CTrade class for executing trades",
+            "CTrade trade;",
+            "//+------------------------------------------------------------------+",
+            "//| Expert initialization function                                   |",
+            "//| This function is called whenever                                 |",
+            "//| it is added to a chart or changed timeframe                      |",
+            "//+------------------------------------------------------------------+",
+            "int OnInit() {",
+            "    ",
+            "    return (INIT_SUCCEEDED);",
+            "}",
+            "//+------------------------------------------------------------------+",
+            "//| Expert deinitialization function                                 |",
+            "//| This function is called each time the expert is removed from the |",
+            "//| chart or when the timeframe of the chart changes                 |",
+            "//+------------------------------------------------------------------+",
+            "void OnDeinit(const int ${5:reason}) {",
+            "",
+            "}",
+            "//+------------------------------------------------------------------+",
+            "//| Expert tick function                                             |",
+            "//| This function is called each time on                             |",
+            "//| price change (on every tick movement)                            |",
+            "//+------------------------------------------------------------------+",
+            "void OnTick() {",
+            "",
+            "}",
+            "//+------------------------------------------------------------------+"
+        ],
+        "description": "A template to start coding an expert adviser"
+    },
+    "MQ5 Create Indicator and Check if Empty": {
+        "prefix": "!MQ5 Indicator",
+        "body": [
+            "//+------------------------------------------------------------------+",
+            "//|Create indicator handler and check if it is empty                 |",
+            "//+------------------------------------------------------------------+",
+            "int ${1:indicator_handler} = ${2:iMA(_Symbol, PERIOD_CURRENT, 14, 0, MODE_SMA, PRICE_CLOSE)};",
+            "// Check if handler is not empty",
+            "if (${1:indicator_handler} == INVALID_HANDLE) {",
+            "    Print(\"Error creating indicator handler\");",
+            "}"
+        ],
+        "description": "Create an indicator handler and check if it is empty"
+    },
+    "MQ5 Copy Indicator Values": {
+        "prefix": "!MQ5 IndicatorValues",
+        "body": [
+            "//+------------------------------------------------------------------+",
+            "//| Step2: Copy indicator values into an array using                 |",
+            "//| using CopyBuffer function                                        |",
+            "//+------------------------------------------------------------------+",
+            "double ${2::indicator_value}[];         // Array to store the MA values",
+            "// Copy MA values into the array",
+            "if(CopyBuffer(${1:indicator_handler}, 0, ${3:start_index}, ${4:number_of_bars_to_copy}, ${2::indicator_value}) <= 0) {",
+            "    Print(\"Failed to get MA values!\");",
+            "}"
+        ],
+        "description": "Copy indicator values using CopyBuffer function"
+    },
+    "MQ5 Open File": {
+        "prefix": "!MQ5 open_file",
+        "body": [
+            "string terminal_data_path = TerminalInfoString(TERMINAL_DATA_PATH);",
+            "string common_data_path   = TerminalInfoString(TERMINAL_COMMONDATA_PATH);",
+            "string filename           = ${1:\"result.csv\"};",
+            "Print(\"Common files should be saved at=>\", common_data_path + \"\\\\\\Files\");",
+            "Print(\"Terminal files should be saved at=> \", terminal_data_path + \"\\\\\\MQL5\\\\\\Files\\\\\\\");",
+            "Print(\"Common file exists: \",FileIsExist(filename,FILE_CSV|FILE_COMMON));",
+            "Print(\"Reading common file => \", filename);",
+            "// File saved in common directory must have FILE_COMMON flag",
+            "int file_handle = FileOpen(filename, FILE_READ | FILE_CSV | FILE_COMMON, \",\", CP_UTF8);"
+        ],
+        "description": "Snippet for setting terminal and common data paths, printing paths, and reading a common file in MQL5"
+    },
+    "MQ5 Open database": {
+        "prefix": "!MQ5 open_database",
+        "body": [
+            "string terminal_data_path = TerminalInfoString(TERMINAL_DATA_PATH);",
+            "string common_data_path   = TerminalInfoString(TERMINAL_COMMONDATA_PATH);",
+            "Print(\"Common files should be saved at=>\", common_data_path + \"\\\\\\Files\");",
+            "Print(\"Terminal files should be saved at=> \", terminal_data_path + \"\\\\\\MQL5\\\\\\Files\\\\\\\");",
+            "// Open .sqlite database file put in common file or terminal file directory",
+            "string db_file=\"${1:result.sqlite}\";",
+            "int DB_handle = DatabaseOpen(db_file, DATABASE_OPEN_READONLY | DATABASE_OPEN_COMMON);",
+            "if(DB_handle != INVALID_HANDLE) {",
+            "    Print(\"DatabaseOpen OK\");",
+            "    // If database opened successfully, execute query",
+            "    string sql_query = \"${2:select * from result where coin='BTC'}\";",
+            "    int req_prepare = DatabasePrepare(DB_handle, sql_query);",
+            "    if(req_prepare != INVALID_HANDLE) {",
+            "        Print(\"SQL Query execution: OK\");",
+            "    } else {",
+            "        Print(\"SQL Query execution: Failed ==> error: \", GetLastError());",
+            "    }",
+            "    // Create a structure similar to the columns of the table being read",
+            "    struct Deal {",
+            "        string coin;",
+            "        int    time;",
+            "        string direction;",
+            "        int    volume;",
+            "        double price;",
+            "    };",
+            "    // Create an object and an array of the class to read and save the data to an array",
+            "    Deal deal,deals[30];",
+            "    // Read the first 20 rows of the data and save to an array",
+            "    int i=0;",
+            "    while(DatabaseReadBind(req_prepare, deal))",
+            "    {",
+            "        deals[i].coin = deal.coin;",
+            "        deals[i].time = deal.time;",
+            "        deals[i].direction = deal.direction;",
+            "        deals[i].volume = deal.volume;",
+            "        deals[i].price = deal.price;",
+            "        i++;",
+            "        if(i > 20)",
+            "        break;",
+            "    }",
+            "} else {",
+            "    Print(\"DatabaseOpen failure ==> error: \", GetLastError());",
+            "}"
+        ],
+        "description": "Snippet for opening database in read-only mode"
+    }
+}

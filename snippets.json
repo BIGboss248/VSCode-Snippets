@@ -1,0 +1,361 @@
+{
+	// Every language snippet must have these snippets in the following format
+	// 1. Create diffrent kind of variables and data types ==> !variable
+	// 2. Create diffrent kind of loops ==> !loop for while forrange
+	// 3. Create diffrent kind of if or switch or other conditions ==> !condition if switch
+	// 4. Create diffrent kind of lists and maps and dictionaries ==> !arrays lists maps
+	// 5. Create an snippet to create a function ==> !function
+	// 6. Create an snippet to create a class ==> !class
+	// 7. Create an snippet to start writing a script ==> !start
+	// 8. Create an snippet to print output ==> !output
+	"boilerplate/skeleton": {
+		"prefix": "!boilerplate/skeleton _Program Structure_",
+		"description": "Create program structure",
+		"isFileTemplate": true,
+		"body": [
+			"\"\\$BLOCK_COMMENT_START\",",
+			"\"TIP This is a boilerplate/skeleton for a basic executable program structure.\",",
+			"\"TIP Don't forget to:\",",
+			"\"TIP 1. Setup logging\",",
+			"\"TIP 2. be consistent with variable and function naming conventions\",",
+			"\"TIP 3. Break code into seprate reusable functions\",",
+			"\"TIP 4. Make modules as independent as possible so that replacing them is easy\",",
+			"\"TIP 5. Before writing modules write tests for it and write code to pass the tests\",",
+			"\"\\$BLOCK_COMMENT_END\",",
+		]
+	},
+	"variable": {
+		"prefix": "!var",
+		"description": "Create variable and data types",
+		"body": [
+			"\"\\$BLOCK_COMMENT_START\",",
+			"\"TIP -  Var name must be descriptive and meaningful\",",
+			"\"TIP -  Var names should follow the naming conventions of the language\",",
+			"\"TIP -  Don't forget to validate inputs and sanitize inputs\",",
+			"\"\\$BLOCK_COMMENT_END\",",
+		]
+	},
+	"input": {
+		"prefix": "!input",
+		"description": "Get user input",
+		"body": [
+			"\"\\$BLOCK_COMMENT_START\",",
+			"\"TIP -  Prompt the user for input with a clear message\",",
+			"\"TIP -  Validate and sanitize the input to prevent security issues\",",
+			"\"TIP -  Handle any errors that may occur during input reading\",",
+			"\"\\$BLOCK_COMMENT_END\",",
+		]
+	},
+	"Function": {
+		"prefix": "!func",
+		"description": "Create a function",
+		"body": [
+			"\"\\$BLOCK_COMMENT_START\",",
+			"\"TIP - Function name should be descriptive and follow naming conventions\",",
+			"\"TIP - Try to make function pure\",",
+			"\"TIP - Don't forget to write tests \",",
+			"\"TIP - Document the funciton if needed \",",
+			"\"TIP - Each funciton must do only one thing \",",
+			"\"\\$BLOCK_COMMENT_END\",",
+		]
+	},
+	"Snippet structure and library": {
+		"prefix": "!menu",
+		"body": [
+			"$BLOCK_COMMENT_START",
+			"",
+			"This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d",
+			"",
+			"🔹 1. Program Structure",
+			"",
+			"boilerplate/skeleton/start→ basic executable program structure",
+			"",
+			"Libary boilerplate / Libary skeleton / Libary start → basic Libary/package structure",
+			"",
+			"🔹 2. Variables & Data Types",
+			"",
+			"var → declare variable",
+			"",
+			"var-os → Read environment variable",
+			"",
+			"const → declare constant",
+			"",
+			"type → declare with type annotation (if supported)",
+			"",
+			"assign → variable assignment",
+			"",
+			"convert var type → type conversion/casting",
+			"",
+			"🔹 3. Input & Output",
+			"",
+			"print → print to console",
+			"",
+			"print format → print to console",
+			"",
+			"input → read input from user",
+			"",
+			"readfile → read from a file",
+			"",
+			"writefile → write to a file",
+			"",
+			"🔹 4. Control Flow",
+			"",
+			"if → if statement",
+			"",
+			"ifelse → if-else",
+			"",
+			"switch/match → switch/case or match expression",
+			"",
+			"for → for loop (counter-based)",
+			"",
+			"foreach → loop over collection",
+			"",
+			"while → while loop",
+			"",
+			"break → break out of loop",
+			"",
+			"continue → continue to next iteration",
+			"",
+			"🔹 5. Functions",
+			"",
+			"func → function definition",
+			"",
+			"unit-test → function test definition",
+			"",
+			"return → return from function",
+			"",
+			"lambda → anonymous function",
+			"",
+			"extention → Extend functions of a class",
+			"",
+			"🔹 6. Data-Structures",
+			"",
+			"array → array/list",
+			"",
+			"array append → append to array/list",
+			"",
+			"array filter → filter an array/list",
+			"",
+			"array map → Execute a function on each list item and return a new array/list",
+			"",
+			"dict/map → dictionary, hash map",
+			"",
+			"set → set",
+			"",
+			"struct / class → basic class or struct",
+			"",
+			"Json-read → parse/serialize JSON",
+			"",
+			"Json-write → generate JSON from data",
+			"",
+			"CSV-read → parse CSV file",
+			"",
+			"class → class definition",
+			"",
+			"inherit → class inheritance",
+			"",
+			"🔹 7. Error-Handling",
+			"",
+			"trycatch → try/catch block",
+			"",
+			"throw / raise → throw an error",
+			"",
+			"🔹 8. Concurrent and parallelism",
+			"",
+			"asyncfunc → async function",
+			"",
+			"await → await promise/future",
+			"",
+			"thread → threading/multithreading snippet",
+			"",
+			"Stream -> stream data",
+			"",
+			"🔹 9. Debugging & Utilities",
+			"",
+			"hashpassword → securely hash a password",
+			"",
+			"Logging_setup → Setup Logging for the app",
+			"",
+			"🔹 10. Database",
+			"",
+			"dbconnect → connect to a database",
+			"",
+			"dbqueryrows → query multiple rows",
+			"",
+			"dbqueryrow → query a single row",
+			"",
+			"dbexec → execute insert/update/delete",
+			"",
+			"dbtx → transaction with commit/rollback",
+			"",
+			"dbclose → close database connection safely",
+			"",
+			"dbping → check database health/connection",
+			"",
+			"🔹 11. API–Server (exposing APIs)",
+			"",
+			"apiserver → start an HTTP server",
+			"",
+			"apiroute → define a route/endpoint handler",
+			"",
+			"apiparsejson → parse request body JSON",
+			"",
+			"apiresjson → send JSON response",
+			"",
+			"apimiddleware → add middleware (logging, auth, CORS)",
+			"",
+			"🔹 12. API–Client (consuming APIs)",
+			"",
+			"apiclientget → make GET request to external API",
+			"",
+			"apiclientpost → make POST request to external API",
+			"",
+			"apiclientreq → generic HTTP request with headers",
+			"",
+			"apiclientjson → parse JSON response into struct",
+			"$BLOCK_COMMENT_END",
+			""
+		],
+		"description": "A grouping of snippets"
+	},
+	"Snippets variables": {
+		"prefix": [
+			"snippet variables"
+		],
+		"body": [
+			"The following variables can be used:",
+			"",
+			"TM_SELECTED_TEXT The currently selected text or the empty string",
+			"TM_CURRENT_LINE The contents of the current line",
+			"TM_CURRENT_WORD The contents of the word under cursor or the empty string",
+			"TM_LINE_INDEX The zero-index based line number",
+			"TM_LINE_NUMBER The one-index based line number",
+			"TM_FILENAME The filename of the current document",
+			"TM_FILENAME_BASE The filename of the current document without its extensions",
+			"TM_DIRECTORY The directory of the current document",
+			"TM_FILEPATH The full file path of the current document",
+			"RELATIVE_FILEPATH The relative (to the opened workspace or folder) file path of the current document",
+			"CLIPBOARD The contents of your clipboard",
+			"WORKSPACE_NAME The name of the opened workspace or folder",
+			"WORKSPACE_FOLDER The path of the opened workspace or folder",
+			"CURSOR_INDEX The zero-index based cursor number",
+			"CURSOR_NUMBER The one-index based cursor number",
+			"For inserting the current date and time:",
+			"",
+			"CURRENT_YEAR The current year",
+			"CURRENT_YEAR_SHORT The current year's last two digits",
+			"CURRENT_MONTH The month as two digits (example '02')",
+			"CURRENT_MONTH_NAME The full name of the month (example 'July')",
+			"CURRENT_MONTH_NAME_SHORT The short name of the month (example 'Jul')",
+			"CURRENT_DATE The day of the month as two digits (example '08')",
+			"CURRENT_DAY_NAME The name of day (example 'Monday')",
+			"CURRENT_DAY_NAME_SHORT The short name of the day (example 'Mon')",
+			"CURRENT_HOUR The current hour in 24-hour clock format",
+			"CURRENT_MINUTE The current minute as two digits",
+			"CURRENT_SECOND The current second as two digits",
+			"CURRENT_SECONDS_UNIX The number of seconds since the Unix epoch",
+			"CURRENT_TIMEZONE_OFFSET The current UTC time zone offset as +HH:MM or -HH:MM (example -07: 00).",
+			"For inserting comments:",
+			"",
+			"\\$BLOCK_COMMENT_START",
+			"\\$BLOCK_COMMENT_END",
+			"\\$LINE_COMMENT",
+			"",
+			"Insert a random number,hex number or random UUID",
+			"\\$RANDOM",
+			"\\$RANDOM_HEX",
+			"\\$UUID",
+		],
+		"description": "A full list of variables"
+	},
+	"comment": {
+		"prefix": [
+			"!comment",
+			"!insert comment"
+		],
+		"body": [
+			"\\$BLOCK_COMMENT_START",
+			"\\$BLOCK_COMMENT_END",
+			"\\$LINE_COMMENT"
+		],
+		"description": "Insert a comment, honoring the current language"
+	},
+	"random": {
+		"prefix": [
+			"!random",
+		],
+		"body": [
+			"\\$RANDOM",
+			"\\$RANDOM_HEX",
+			"\\$UUID"
+		],
+		"description": "Insert a random number,hex number or random UUID"
+	},
+	"Insert full file path": {
+		"prefix": [
+			"!file path",
+		],
+		"body": [
+			"\\$TM_FILEPATH",
+		],
+		"description": "Insert full file path of current file"
+	},
+	"Insert relative file path": {
+		"prefix": [
+			"!file path relative"
+		],
+		"body": [
+			"\\$RELATIVE_FILEPATH"
+		],
+		"description": "Insert relative file path of current file"
+	},
+	"Insert place holder": {
+		"prefix": [
+			"!placeholder insert"
+		],
+		"body": [
+			"\\${1:$TM_SELECTED_TEXT}"
+		],
+		"description": "Insert a place holder for a variable"
+	},
+	"Insert a choice": {
+		"prefix": [
+			"!choice insert"
+		],
+		"body": [
+			"\\${1|one,two,three|}"
+		],
+		"description": "Insert a choice"
+	},
+	"Insert a variable": {
+		"prefix": [
+			"!variable insert"
+		],
+		"body": [
+			"\\${name:$TM_SELECTED_TEXT}"
+		],
+		"description": "Insert a variable"
+	},
+	"For inserting the current date and time": {
+		"prefix": [
+			"!time insert current"
+		],
+		"body": [
+			"",
+			"CURRENT_YEAR The current year",
+			"CURRENT_YEAR_SHORT The current year's last two digits",
+			"CURRENT_MONTH The month as two digits (example '02')",
+			"CURRENT_MONTH_NAME The full name of the month (example 'July')",
+			"CURRENT_MONTH_NAME_SHORT The short name of the month (example 'Jul')",
+			"CURRENT_DATE The day of the month as two digits (example '08')",
+			"CURRENT_DAY_NAME The name of day (example 'Monday')",
+			"CURRENT_DAY_NAME_SHORT The short name of the day (example 'Mon')",
+			"CURRENT_HOUR The current hour in 24-hour clock format",
+			"CURRENT_MINUTE The current minute as two digits",
+			"CURRENT_SECOND The current second as two digits",
+			"CURRENT_SECONDS_UNIX The number of seconds since the Unix epoch",
+			"CURRENT_TIMEZONE_OFFSET The current UTC time zone offset as +HH:MM or -HH:MM (example -07: 00).",
+		],
+		"description": "Insert current time"
+	},
+}

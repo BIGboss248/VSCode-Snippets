@@ -151,6 +151,23 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+    "File Upload Form": {
+        "prefix": "!form upload file",
+        "body": [
+            "<form action=\"${10:URLToServer}\" method=\"post\" enctype=\"multipart/form-data\">",
+            "  <label>",
+            "    ${20:Choose file (.jpg,.jpeg,.png,.gif,.pdf):}",
+            "    <input",
+            "      type=\"file\"",
+            "      name=\"file\"",
+            "      accept=\"${30|fileExtentionList,image/*,video/*,audio/*|}\"",
+            "      required>",
+            "  </label>",
+            "  <button type=\"submit\">Upload</button>",
+            "</form>"
+        ],
+        "description": "Minimal HTML file upload form"
+    },
     "boilerplate/skeleton/start": {
         "prefix": [
             "!start",

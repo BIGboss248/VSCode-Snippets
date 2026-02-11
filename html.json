@@ -182,6 +182,8 @@ apiclientjson → parse JSON response into struct
             "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
             "\t<link rel=\"icon\" href=\"/${15:favicon.ico}\" />",
             "\t<link rel=\"stylesheet\" href=\"${20:https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css}\" />",
+            "\t$BLOCK_COMMENT_START ! Only use tailwind for test on raw HTML will slowdown page $BLOCK_COMMENT_END",
+            "\t<script src=\"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"></script>",
             "\t<title>${30:Title}</title>",
             "</head>",
             "<body>",

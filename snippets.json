@@ -274,9 +274,9 @@
 			"!insert comment"
 		],
 		"body": [
-			"\\$BLOCK_COMMENT_START",
-			"\\$BLOCK_COMMENT_END",
-			"\\$LINE_COMMENT"
+			"\\$BLOCK_COMMENT_START $TM_SELECTED_TEXT \\$BLOCK_COMMENT_END",
+			// "\\$BLOCK_COMMENT_END",
+			// "\\$LINE_COMMENT"
 		],
 		"description": "Insert a comment, honoring the current language"
 	},

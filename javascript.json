@@ -39,6 +39,8 @@ writefile → write to a file
 
 if → if statement
 
+one liner if → one liner if statement
+
 ifelse → if-else
 
 switch/match → switch/case or match expression
@@ -151,6 +153,7 @@ apiclientreq → generic HTTP request with headers
 
 apiclientjson → parse JSON response into struct
 */
+
 	"Array filter": {
 		"prefix": "!array filter _Data-Structures_",
 		"body": [
@@ -212,6 +215,11 @@ apiclientjson → parse JSON response into struct
 			"}"
 		],
 		"description": "If statement snippet"
+	},
+	"one liner if statement":{
+		"prefix": "!if one liner _Control Flow_",
+		"description": "One liner if statement",
+		"body": "${1:condition} ? ${2:trueStatement} : ${3:falseStatement}"
 	},
 	"trycatch block": {
 		"prefix": [

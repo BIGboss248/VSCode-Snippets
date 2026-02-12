@@ -102,6 +102,8 @@
 			"",
 			"if → if statement",
 			"",
+			"one liner if → one liner if statement",
+			"",
 			"ifelse → if-else",
 			"",
 			"switch/match → switch/case or match expression",

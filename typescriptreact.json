@@ -1,4 +1,14 @@
 {
+	"display": {
+		"prefix": "!tailwind display",
+		"body": "${1|grid grid-cols-3 gap-x-2 gap-y-2,inline-block,flex|}",
+		"description": "Display options in tailwind",
+	},
+	"position": {
+		"prefix": "!tailwind position",
+		"body": "${1|static top-1 bottom-1 right-1 left-1,relative top-1 bottom-1 right-1 left-1,absolute top-1 bottom-1 right-1 left-1,fixed top-1 bottom-1 right-1 left-1, sticky top-1 bottom-1 right-1 left-1|}",
+		"description": "position options in tailwind"
+	},
 	"TypeScript Boilerplate": {
 		"prefix": [
 			"!tsboilerplate",

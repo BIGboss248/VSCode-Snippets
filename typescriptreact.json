@@ -6,7 +6,7 @@
 	},
 	"position": {
 		"prefix": "!tailwind position",
-		"body": "${1|static top- bottom- right- left-,relative top- bottom- right- left-,absolute top- bottom- right- left-,fixed top- bottom- right- left-, sticky top- bottom- right- left-|}",
+		"body": "${1|static ,relative ,absolute ,fixed , sticky |}",
 		"description": "position options in tailwind"
 	},
 	"TypeScript Boilerplate": {

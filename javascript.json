@@ -1,5 +1,5 @@
 {
-/*
+	/*
 
 This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
 
@@ -153,7 +153,27 @@ apiclientreq → generic HTTP request with headers
 
 apiclientjson → parse JSON response into struct
 */
-
+	"document object model functions and properties": {
+		"prefix": "!DOM help",
+		"body": [
+			"$BLOCK_COMMENT_START innerHTML => HTML returned as string $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START value => value entered in input elements $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START classList.add() => Add class name to the element $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START classList.add() => Add class name to the element $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START classList.remove() => remove class name from the element $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START addEventListener('event', function) => Add event listener to the element $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START To add custom data to HTML elements we can set custom attributes in the form of data-{data-name}={value} \n Data will be accessible via dataName in kebab case$BLOCK_COMMENT_END",
+		],
+		"description": "Show DOM elemetn important functions and properties"
+	},
+	"document object model select": {
+		"prefix": "!DOM select",
+		"body": [
+			"$BLOCK_COMMENT_START tip !DOM help $BLOCK_COMMENT_END",
+			"element = document.${1|querySelector,querySelectorAll|}('${2:query}')"
+		],
+		"description": "Select an HTML element on the page"
+	},
 	"Array filter": {
 		"prefix": "!array filter _Data-Structures_",
 		"body": [
@@ -162,13 +182,13 @@ apiclientjson → parse JSON response into struct
 		"description": "Filter an array based on a condition"
 	},
 	"For Each with Index": {
-    "prefix": "!foreach _Control Flow_",
-    "body": [
-      "${10:array}.forEach((${20:item}, ${30:index}) => {",
-      "\t$40",
-      "})"
-    ],
-    "description": "forEach with item and index",
+		"prefix": "!foreach _Control Flow_",
+		"body": [
+			"${10:array}.forEach((${20:item}, ${30:index}) => {",
+			"\t$40",
+			"})"
+		],
+		"description": "forEach with item and index",
 	},
 	"blockscoped variable declaration": {
 		"prefix": [
@@ -216,7 +236,7 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "If statement snippet"
 	},
-	"one liner if statement":{
+	"one liner if statement": {
 		"prefix": "!if one liner _Control Flow_",
 		"description": "One liner if statement",
 		"body": "${1:condition} ? ${2:trueStatement} : ${3:falseStatement}"

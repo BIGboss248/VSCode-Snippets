@@ -642,7 +642,7 @@ apiclientjson → parse JSON response into struct
         ],
         "description": "Create a gin router and configure trusted proxies"
     },
-"gin parse json body": {
+    "gin parse json body": {
         "prefix": "!apiparsejson gin _API–Server_",
         "description": "Parse user sent json",
         "body": [
@@ -1744,7 +1744,10 @@ apiclientjson → parse JSON response into struct
         "description": "declare a variable with name and type"
     },
     "start package file template": {
-        "prefix": "!Libary boilerplate _Program Structure_",
+        "prefix": [
+            "!start",
+            "!Libary boilerplate _Program Structure_"
+        ],
         "body": [
             "/*",
             "This is a template to build a go package. For more context and help watch this youtube video https://www.youtube.com/watch?v=sf7f4QGkwfE",

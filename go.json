@@ -1975,9 +1975,9 @@ apiclientjson → parse JSON response into struct
         ]
     },
     "loop for range": {
-        "prefix": "!foreach _Control Flow_",
+        "prefix": ["!foreach _Control Flow_","!string parse"],
         "body": [
-            "for ${1:index}, ${2:variable} := range ${3:fruits_slice} {",
+            "for ${1:index}, ${2:variable(character)} := range ${3:array(string)} {",
             "   // code to be executed for each iteration",
             "   // index will be the index of the current",
             "   // iteration and starts from 0 and value",

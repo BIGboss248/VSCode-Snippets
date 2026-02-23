@@ -36,6 +36,11 @@
 		],
 		"description": "Create a header with logo to the left side and navbar to the right"
 	},
+	"visibility": {
+		"prefix": "!tailwind visibility",
+		"body": "${1|visible,hidden,invisible|}",
+		"description": "Visibility options in tailwind"
+	},
 	"display": {
 		"prefix": "!tailwind display",
 		"body": "${1|grid grid-cols-3 gap-x-2 gap-y-2,inline-block,flex|}",

@@ -66,8 +66,6 @@ func oneliner → Declare a one line/ arrow funciton
 
 unit-test → function test definition
 
-return → return from function
-
 lambda → anonymous function
 
 extention → Extend functions of a class
@@ -161,6 +159,16 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"Oneliner function": {
+		"prefix": "!func oneliner",
+		"description": "Create a one liner function",
+		"body": "const ${10:name} = (${20:param: type}): ${30:returnType} => {}"
+	},
+	"Create function": {
+		"prefix": "!func",
+		"description": "Create a function",
+		"body": "function ${10:name}(${20:param1: type1}): ${30:returnType}{}"
+	},
 	"Create struct/interface": {
 		"prefix": [
 			"!struct",
@@ -168,6 +176,7 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "Create a struct/tyscript interface _Data-Structures_",
 		"body": [
+			"$BLOCK_COMMENT_START tip interface can extend another interface $BLOCK_COMMENT_END",
 			"interface ${10:InterfaceName} {",
 			"\t${20:propertyName}: ${30|string,number,boolean,any|};",
 			"}"

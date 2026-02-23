@@ -153,6 +153,117 @@ apiclientreq → generic HTTP request with headers
 
 apiclientjson → parse JSON response into struct
 */
+	"API GET request": {
+		"prefix": [
+			"!apiclientget",
+			"!api GET"
+		],
+		"body": [
+			"$BLOCK_COMMENT_START https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest_API/Using_XMLHttpRequest $BLOCK_COMMENT_END",
+			"",
+			"$BLOCK_COMMENT_START Create a GET request to given URL\tand return a promise $BLOCK_COMMENT_END",
+			"function apiGET(url, headers, responseType = \"json\") {",
+			"\treturn new Promise((resolve, reject) => {",
+			"\t\tconst xhr = new XMLHttpRequest();",
+			"",
+			"\t\tthis.url = url;",
+			"",
+			"\t\txhr.open(\"GET\", url, true);",
+			"",
+			"\t\theaders.forEach((element) => {",
+			"\t\t\txhr.setRequestHeader(element.key, element.value);",
+			"\t\t});",
+			"",
+			"\t\txhr.responseType = responseType;",
+			"",
+			"\t\txhr.onreadystatechange = function () {",
+			"\t\t\tif (xhr.readyState === 4) {",
+			"\t\t\t\tif (xhr.status === 200) {",
+			"\t\t\t\t\tconsole.log(\"Success:\", xhr.response);",
+			"\t\t\t\t} else if (xhr.readyState === 1) {",
+			"\t\t\t\t\tconsole.log(\"Request opened, readyState:\", xhr.readyState);",
+			"\t\t\t\t} else if (xhr.readyState === 2) {",
+			"\t\t\t\t\tconsole.log(\"Headers received, readyState:\", xhr.readyState);",
+			"\t\t\t\t} else if (xhr.readyState === 3) {",
+			"\t\t\t\t\tconsole.log(\"Loading, readyState:\", xhr.readyState);",
+			"\t\t\t\t} else if (xhr.readyState === 0) {",
+			"\t\t\t\t\tconsole.log(\"Request not initialized, readyState:\", xhr.readyState);",
+			"\t\t\t\t}",
+			"\t\t\t}",
+			"\t\t};",
+			"",
+			"\t\txhr.onerror = () => reject(new Error(\"Network error\"));",
+			"\t\txhr.ontimeout = () => reject(new Error(\"Timeout\"));",
+			"",
+			"\t\txhr.timeout = 8000; // 8 seconds",
+			"",
+			"\t\txhr.send();",
+			"\t});",
+			"}",
+			""
+		],
+		"description": "Create an API client get request _API–Client_"
+	},
+	"Async function": {
+		"prefix": "!asyncfunc",
+		"description": "Create an asynchronous function _Concurrent and parallelism_",
+		"body": [
+			"// Async functions return a promise and can use await to wait for other promises to resolve",
+			"async function ${10:funcName}(${20:param1}) {",
+			"\t${30:// function body}",
+			"}"
+		]
+	},
+	"Await a promise": {
+		"prefix": "!await",
+		"description": "Await a promise to be resolved _Concurrent and parallelism_",
+		"body": "await mypromise; // wait until promise resolves"
+	},
+	"Create promise": {
+		"prefix": "!promise/future",
+		"description": "Create new promise/future object _Concurrent and parallelism_",
+		"body": [
+			"//tip .PromiseState pending, fulfilled, rejected",
+			"//tip .PromiseResult value or error",
+			"//tip .then(result => {}) to handle fulfilled promise and return a new promise",
+			"//tip .catch(error => {}) to handle rejected promise and return a new promise",
+			"new Promise((resolve, reject) => {\n //TODO})"
+		]
+	},
+	"Create a oneliner function": {
+		"prefix": "!func oneliner",
+		"description": "Create a oneliner/arrow function _Functions_",
+		"body": [
+			"const ${10:funcName} = (${20:param1}) => ${30:expression};"
+		]
+	},
+	"Create function": {
+		"prefix": "!func",
+		"description": "Create a function with default input parameters _Functions_",
+		"body": [
+			"$BLOCK_COMMENT_START tip Arguments passed to this function are accessible via arguments object $BLOCK_COMMENT_END",
+			"function ${10:funcName}(${20:param1 = 2}){}"
+		]
+	},
+	"set": {
+		"prefix": "!set",
+		"description": "Create a set of unique premetive types _Data-Structures_",
+		"body": [
+			"${10:$BLOCK_COMMENT_START Create a set of unique premetive types $BLOCK_COMMENT_END}",
+			"const ${20:setName} = new Set();",
+			"${20:setName}.add(value);"
+		]
+	},
+	"Create a map/dictionary": {
+		"prefix": "!map/dict",
+		"description": "Create a map /dictionary _Data-Structures_",
+		"body": [
+			"${10:$BLOCK_COMMENT_START tip Key and value can be anything even functions $BLOCK_COMMENT_END}",
+			"${20:$BLOCK_COMMENT_START tip map function list: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map#setting_object_properties $BLOCK_COMMENT_END}",
+			"const ${30:mapName} = new Map();",
+			"${30:mapName}.set(key,value);",
+		]
+	},
 	"document object model functions and properties": {
 		"prefix": "!DOM help",
 		"body": [
@@ -182,13 +293,13 @@ apiclientjson → parse JSON response into struct
 		"description": "Filter an array based on a condition"
 	},
 	"For Each with Index": {
-		"prefix": "!foreach _Control Flow_",
+		"prefix": "!foreach",
 		"body": [
 			"${10:array}.forEach((${20:item}, ${30:index}) => {",
 			"\t$40",
 			"})"
 		],
-		"description": "forEach with item and index",
+		"description": "forEach with item and index _Control Flow_",
 	},
 	"blockscoped variable declaration": {
 		"prefix": [
@@ -198,14 +309,14 @@ apiclientjson → parse JSON response into struct
 		"body": [
 			"let ${1:variableName} = ${2:value};"
 		],
-		"description": "Declare a blockscoped variable"
+		"description": "Declare a blockscoped variable _Variables & Data Types_"
 	},
 	"constant declaration": {
-		"prefix": "!const _Variables & Data Types_",
+		"prefix": "!const",
 		"body": [
 			"const ${1:CONSTANT_NAME} = ${2:value};"
 		],
-		"description": "Declare a constant"
+		"description": "Declare a constant _Variables & Data Types_"
 	},
 	// "gloabal variable declaration": {
 	// 	"prefix": "!var global _Variables & Data Types_",
@@ -216,34 +327,34 @@ apiclientjson → parse JSON response into struct
 	// },
 	"while loop": {
 		"prefix": [
-			"!while _Control Flow_",
+			"!while",
 		],
 		"body": [
 			"while (${1:condition}) {",
 			"\t${2:// loop body}",
 			"}"
 		],
-		"description": "While loop snippet"
+		"description": "While loop snippet _Control Flow_"
 	},
 	"if statement": {
 		"prefix": [
-			"!if _Control Flow_",
+			"!if",
 		],
 		"body": [
 			"if (${1:condition}) {",
 			"\t${2:// code to execute if condition is true}",
 			"}"
 		],
-		"description": "If statement snippet"
+		"description": "If statement snippet _Control Flow_"
 	},
 	"one liner if statement": {
-		"prefix": "!if one liner _Control Flow_",
-		"description": "One liner if statement",
+		"prefix": "!if one liner",
+		"description": "One liner if statement _Control Flow_",
 		"body": "${1:condition} ? ${2:trueStatement} : ${3:falseStatement}"
 	},
 	"trycatch block": {
 		"prefix": [
-			"!trycatch _Error-Handling_",
+			"!trycatch",
 		],
 		"body": [
 			"try {",
@@ -252,17 +363,17 @@ apiclientjson → parse JSON response into struct
 			"\t${3:// error handling code}",
 			"}"
 		],
-		"description": "Try-catch block snippet"
+		"description": "Try-catch block snippet _Error-Handling_"
 	},
 	"for loop": {
 		"prefix": [
-			"!for _Control Flow_",
+			"!for",
 		],
 		"body": [
 			"for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
 			"\t${3:// loop body}",
 			"}"
 		],
-		"description": "For loop snippet"
+		"description": "For loop snippet _Control Flow_"
 	}
 }

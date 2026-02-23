@@ -1,4 +1,186 @@
+/*
+
+This is a collection of common code snippets for various programming tasks and patterns. https://chatgpt.com/s/t_68df9213365881919b46bdeeb98c848d
+
+I go 10 by 10 for placeholders just in case i want to add something in between later also set place holders for comments for EZ delete
+
+🔹 1. Program Structure
+
+boilerplate/skeleton/start→ basic executable program structure
+
+Libary boilerplate / Libary skeleton / Libary start → basic Libary/package structure
+
+🔹 2. Variables & Data Types
+
+var → declare variable
+
+string parse → parse over string characters
+
+var-os → Read environment variable
+
+const → declare constant
+
+type → declare with type annotation (if supported)
+
+assign → variable assignment
+
+convert var type → type conversion/casting
+
+🔹 3. Input & Output
+
+print → print to console
+
+print format → print to console
+
+input → read input from user
+
+readfile → read from a file
+
+writefile → write to a file
+
+🔹 4. Control Flow
+
+if → if statement
+
+one liner if → one liner if statement
+
+ifelse → if-else
+
+switch/match → switch/case or match expression
+
+for → for loop (counter-based)
+
+foreach → loop over collection
+
+while → while loop
+
+break → break out of loop
+
+continue → continue to next iteration
+
+🔹 5. Functions
+
+func → function definition
+
+func oneliner → Declare a one line/ arrow funciton
+
+unit-test → function test definition
+
+return → return from function
+
+lambda → anonymous function
+
+extention → Extend functions of a class
+
+🔹 6. Data-Structures
+
+array → array/list
+
+array append → append to array/list
+
+array filter → filter an array/list
+
+array map → Execute a function on each list item and return a new array/list
+
+dict/map → dictionary, hash map
+
+set → set
+
+struct / class → basic class or struct
+
+Json-read → parse/serialize JSON
+
+Json-write → generate JSON from data
+
+CSV-read → parse CSV file
+
+class → class definition
+
+inherit → class inheritance
+
+🔹 7. Error-Handling
+
+trycatch → try/catch block
+
+throw / raise → throw an error
+
+🔹 8. Concurrent and parallelism
+
+asyncfunc → async function
+
+await → await promise/future
+
+promise/future → create new promise/future
+
+thread → threading/multithreading snippet
+
+Stream -> stream data
+
+🔹 9. Debugging & Utilities
+
+hashpassword → securely hash a password
+
+Logging_setup → Setup Logging for the app
+
+🔹 10. Database
+
+dbconnect → connect to a database
+
+dbqueryrows → query multiple rows
+
+dbqueryrow → query a single row
+
+dbexec → execute insert/update/delete
+
+dbtx → transaction with commit/rollback
+
+dbclose → close database connection safely
+
+dbping → check database health/connection
+
+🔹 11. API–Server (exposing APIs)
+
+apiserver → start an HTTP server
+
+apiroute → define a route/endpoint handler
+
+apiparsejson → parse request body JSON
+
+apiresjson → send JSON response
+
+apimiddleware → add middleware (logging, auth, CORS)
+
+🔹 12. API–Client (consuming APIs)
+
+apiclientget → make GET request to external API
+
+apiclientpost → make POST request to external API
+
+apiclientreq → generic HTTP request with headers
+
+apiclientjson → parse JSON response into struct
+*/
 {
+	"Create struct/interface": {
+		"prefix": [
+			"!struct",
+			"!interface"
+		],
+		"description": "Create a struct/tyscript interface _Data-Structures_",
+		"body": [
+			"interface ${10:InterfaceName} {",
+			"\t${20:propertyName}: ${30|string,number,boolean,any|};",
+			"}"
+		]
+	},
+	"Let variable with type dropdown": {
+		"prefix": "!var",
+		"body": [
+			"$BLOCK_COMMENT_START TS has Type Inference $BLOCK_COMMENT_END",
+			"let ${10:variableName}: ${20|string,number,boolean,any|}"
+		],
+		"description": "Create a variable _Variables & Data Types_"
+	},
 	"API get": {
 		"prefix": [
 			"!apiget",

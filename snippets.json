@@ -126,7 +126,7 @@
 			"",
 			"func → function definition",
 			"",
-			"func oneliner → Declare a one line/ arrow funciton",
+			"func oneliner / lambda → Declare a one line/ arrow funciton / anonymous",
 			"",
 			"unit-test → function test definition",
 			"",

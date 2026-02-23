@@ -58,8 +58,6 @@ func → function definition
 
 unit-test → function test definition
 
-return → return from function
-
 lambda → anonymous function
 
 extention → Extend functions of a class

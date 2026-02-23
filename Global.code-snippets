@@ -52,8 +52,6 @@ continue → continue to next iteration
 
 func → function definition
 
-return → return from function
-
 lambda → anonymous function
 
 🔹 6. Data Structures

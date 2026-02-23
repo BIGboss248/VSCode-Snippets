@@ -62,8 +62,6 @@ func → function definition
 
 unit-test → function test definition
 
-return → return from function
-
 lambda → anonymous function
 
 🔹 6. Data-Structures
@@ -162,7 +160,6 @@ apiclientreq → generic HTTP request with headers
 
 apiclientjson → parse JSON response into struct
 */
-
 {
 	"add non root user": {
 		"prefix": "!add user",
@@ -172,7 +169,7 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "add a non root user"
 	},
-	"start skeleton":{
+	"start skeleton": {
 		"prefix": "!boilerplate/!skeleton",
 		"body": [
 			"FROM ${1:image:tag} AS ${2:ailias for stage}",
@@ -185,7 +182,7 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "boilerplate/skeleton of a dockerfile",
 	},
-	"Copy files and folders":{
+	"Copy files and folders": {
 		"prefix": "!copy files and folders",
 		"body": [
 			"#* If you want to copy from host remove from flag",

@@ -63,8 +63,6 @@ func → function definition
 
 unit-test → function test definition
 
-return → return from function
-
 lambda → anonymous function
 
 extention → Extend functions of a class
@@ -163,9 +161,8 @@ apiclientreq → generic HTTP request with headers
 
 apiclientjson → parse JSON response into struct
 */
-
 {
-	"boilerplate/skeleton":{
+	"boilerplate/skeleton": {
 		"prefix": "!start",
 		"body": [
 			"$BLOCK_COMMENT_START",
@@ -188,17 +185,16 @@ apiclientjson → parse JSON response into struct
 			"let mut ${1:variable_name}:${2|i8,i16,i64,i128|} = ${3:value};"
 		]
 	},
-	"var unsigned int":{
+	"var unsigned int": {
 		"prefix": "!var unsinged int",
 		"body": [
 			"let mut ${1:variable_name}:${2|u8,u16,u64,u128|} = ${3:value};"
 		]
 	},
-	"var float":{
+	"var float": {
 		"prefix": "!var float",
 		"body": [
 			"let mut ${1:variable_name}:${2|f32,f64|} = ${3:value};"
 		]
 	},
-	
 }

@@ -63,8 +63,6 @@ func → function definition
 
 unit-test → function test definition
 
-return → return from function
-
 lambda → anonymous function
 
 🔹 6. Data-Structures
@@ -1975,7 +1973,10 @@ apiclientjson → parse JSON response into struct
         ]
     },
     "loop for range": {
-        "prefix": ["!foreach _Control Flow_","!string parse"],
+        "prefix": [
+            "!foreach _Control Flow_",
+            "!string parse"
+        ],
         "body": [
             "for ${1:index}, ${2:variable(character)} := range ${3:array(string)} {",
             "   // code to be executed for each iteration",

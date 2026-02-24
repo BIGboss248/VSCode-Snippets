@@ -108,6 +108,8 @@ hashpassword → securely hash a password
 
 Logging_setup → Setup Logging for the app
 
+decorator -> function/class decorator
+
 🔹 10. Database
 
 dbconnect → connect to a database

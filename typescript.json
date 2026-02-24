@@ -159,6 +159,11 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"one liner if": {
+		"prefix": "!if oneliner",
+		"description": "Create a one liner if statement",
+		"body": "${10|condition|} ? ${20|true expression|} : ${30|false expression|}"
+	},
 	"Create a class": {
 		"prefix": "!class",
 		"body": [

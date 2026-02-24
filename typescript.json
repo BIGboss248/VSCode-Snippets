@@ -157,6 +157,20 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"Create a class": {
+		"prefix": "!class",
+		"body": [
+			"$BLOCK_COMMENT_START TS class can be abstract $BLOCK_COMMENT_END",
+			"class ${10:ClassName}{",
+			"\t$BLOCK_COMMENT_START TS supports constructor overloading $BLOCK_COMMENT_END",
+			"\tconstructor(){}",
+			"\tconstructor(x: number){}",
+			"\t${20|public,private,protected|} propertyName: string = \"value\";",
+			"\tpublic methodName(){}",
+			"}"
+		],
+		"description": "Create a class with constructor and method and property"
+	},
 	"Create a promise/future": {
 		"prefix": [
 			"!promise",

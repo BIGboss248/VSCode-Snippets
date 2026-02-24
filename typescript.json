@@ -157,6 +157,19 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"Create a promise/future": {
+		"prefix": [
+			"!promise",
+			"!future"
+		],
+		"description": "Create a new promise/future",
+		"body": [
+			"const ${10:promiseName} = new Promise<${20|unknown,string,number,boolean,any|}>((resolve, reject) => {",
+			"\t// Asynchronous operation goes here",
+			"\t// Call resolve(value) if successful or reject(error) if there is an error",
+			"}).then(()=>{}).catch(()=>{});"
+		]
+	},
 	"Oneliner function": {
 		"prefix": "!func oneliner",
 		"description": "Create a one liner function",
@@ -188,11 +201,38 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "Create a variable _Variables & Data Types_"
 	},
-	"API get": {
+	"API get fetch": {
 		"prefix": [
 			"!apiget",
 			"!api get"
 		],
+		"description": "make an API get request using fetch which works in modern browsers and nodeJS _API–Client (consuming APIs)_",
+		"body": [
+			"fetch(${10:\"https://dns.google/resolve?name=\" + encodeURIComponent(\"youtube.com\")}, {",
+			"\theaders: {",
+			"\t\t\"Accept\": \"application/dns\"",
+			"\t}",
+			"})",
+			"\t.then((response) => {",
+			"\t\tif (!response.ok) {",
+			"\t\t\tthrow new Error(\"Network response was not ok\");",
+			"\t\t}",
+			"\t\treturn response.json();",
+			"\t})",
+			"\t.then((data) => {",
+			"\t\tconsole.log(data);",
+			"\t})",
+			"\t.catch((error) => {",
+			"\t\tconsole.error(\"There was a problem with the fetch operation:\", error);",
+			"\t});"
+		]
+	},
+	"API get XMLHttpRequest": {
+		"prefix": [
+			"!apiget",
+			"!api get"
+		],
+		"description": "make an API get request compatible with older browsers using XMLHttpRequest _API–Client (consuming APIs)_",
 		"body": [
 			"interface Header {",
 			"\tkey: string;",
@@ -253,7 +293,6 @@ apiclientjson → parse JSON response into struct
 			"\t});",
 			"}"
 		],
-		"description": "make an API get request"
 	},
 	"Bun HTTP Server": {
 		"prefix": "!http bun server",

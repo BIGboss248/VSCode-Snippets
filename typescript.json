@@ -258,10 +258,11 @@ apiclientjson → parse JSON response into struct
 			"!api get"
 		],
 		"body": [
-			"axios.defaults.baseURL = 'https://cloudflare-dns.com';",
+			"axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';",
 			"$BLOCK_COMMENT_START Even with a default set you can override defaults by specifing https://domain $BLOCK_COMMENT_END",
 			"$BLOCK_COMMENT_START https://axios-http.com/docs/res_schema $BLOCK_COMMENT_END",
-			"const page = await axios.get('/dns-query', {",
+			"$BLOCK_COMMENT_START .create(): Create an axios instance $BLOCK_COMMENT_END",
+			"const page = await axios.get('/posts/1', {",
 			"\theaders: {",
 			"\t\t'Accept': 'application/dns-json'",
 			"\t},",

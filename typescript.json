@@ -212,7 +212,11 @@ apiclientjson → parse JSON response into struct
 			"const ${10:promiseName} = new Promise<${20|unknown,string,number,boolean,any|}>((resolve, reject) => {",
 			"\t// Asynchronous operation goes here",
 			"\t// Call resolve(value) if successful or reject(error) if there is an error",
-			"}).then(()=>{}).catch(()=>{});"
+			"}).then(()=>{",
+			"$BLOCK_COMMENT_START What to execute when promise is done without error $BLOCK_COMMENT_END",
+			"}).catch(()=>{",
+			"$BLOCK_COMMENT_START What to execute when promise is done with error $BLOCK_COMMENT_END",
+			"});",
 		]
 	},
 	"Oneliner function": {
@@ -246,10 +250,28 @@ apiclientjson → parse JSON response into struct
 		],
 		"description": "Create a variable _Variables & Data Types_"
 	},
-	"API get fetch": {
+	"API GET request with Axois": {
 		"prefix": [
+			"!apiget axios",
+			"!api get axios",
 			"!apiget",
 			"!api get"
+		],
+		"body": [
+			"axios.defaults.baseURL = 'https://cloudflare-dns.com';",
+			"$BLOCK_COMMENT_START Even with a default set you can override defaults by specifing https://domain $BLOCK_COMMENT_END",
+			"const page = await axios.get('/dns-query?name=google.com', {",
+			"\theaders: {",
+			"\t\t'Accept': 'application/dns-json'",
+			"\t}",
+			"});"
+		],
+		"description": "Create an API get with axios"
+	},
+	"API get fetch": {
+		"prefix": [
+			"!apiget fetch",
+			"!api get fetch"
 		],
 		"description": "make an API get request using fetch which works in modern browsers and nodeJS _API–Client (consuming APIs)_",
 		"body": [
@@ -274,8 +296,8 @@ apiclientjson → parse JSON response into struct
 	},
 	"API get XMLHttpRequest": {
 		"prefix": [
-			"!apiget",
-			"!api get"
+			"!apiget XMLHttpRequest",
+			"!api get XMLHttpRequest"
 		],
 		"description": "make an API get request compatible with older browsers using XMLHttpRequest _API–Client (consuming APIs)_",
 		"body": [

@@ -159,6 +159,19 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"Read file": {
+		"prefix": "!readfile",
+		"description": "Read contents of a file _Input & Output_",
+		"body": [
+			"$BLOCK_COMMENT_START __filename => executed code file path $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START __dirname => executed code dir $BLOCK_COMMENT_END",
+			"import path from \"path\";",
+			"import fs from \"fs\";",
+			"const filePath = path.join(__dirname, \"${10:filename.txt}\");",
+			"const fileContent = fs.readFileSync(filePath, \"utf-8\");",
+			"console.log(fileContent);"
+		]
+	},
 	"one liner if": {
 		"prefix": "!if oneliner",
 		"description": "Create a one liner if statement",

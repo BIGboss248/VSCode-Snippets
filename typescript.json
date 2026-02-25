@@ -159,6 +159,17 @@ apiclientreq → generic HTTP request with headers
 apiclientjson → parse JSON response into struct
 */
 {
+	"Write file": {
+		"prefix": "!writefile",
+		"description": "Wrtie to a file _Input & Output_",
+		"body": [
+			"import path from \"path\";",
+			"import fs from \"fs\";",
+			"const filePath = path.join(__dirname, \"${10:filename.txt}\");",
+			"const content = \"${20:content to write}\";",
+			"fs.writeFileSync(filePath, content, \"utf-8\");"
+		]
+	},
 	"Read file": {
 		"prefix": "!readfile",
 		"description": "Read contents of a file _Input & Output_",

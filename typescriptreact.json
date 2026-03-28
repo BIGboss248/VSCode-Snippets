@@ -51,6 +51,20 @@
 		]
 	},
 	"NextJS structured data": {
+		"prefix": "!NextJS struc page data",
+		"description": "Create and insert JSON structred data of the page",
+		"body": [
+			"$BLOCK_COMMENT_START tip Visit https://schema.org  $BLOCK_COMMENT_END",
+			"const structuredData = {",
+			"\t \"@context\": \"https://schema.org\",",
+			"\t name: product.name,",
+			"\t // ...",
+			"}",
+			"$BLOCK_COMMENT_START * include this in the page  $BLOCK_COMMENT_END",
+			"const structuredDataElement = <script type=\"application/ld+json\" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />",
+			""
+		]
+	},
 	"NextJS SEO page": {
 		"prefix": "!NextJS SEO page",
 		"body": [

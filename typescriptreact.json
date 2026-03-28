@@ -51,6 +51,30 @@
 		]
 	},
 	"NextJS structured data": {
+	"NextJS SEO page": {
+		"prefix": "!NextJS SEO page",
+		"body": [
+			"import {Metadata} from \"next\";",
+			"",
+			"// Import routes from file",
+			"// const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;",
+			"",
+			"$BLOCK_COMMENT_START This page metadata, use AI to fill  $BLOCK_COMMENT_END",
+			"export const metadata: Metadata = {",
+			"\ttitle: \"website - page title\", ",
+			"\tdescription: \"Page description\",",
+			"\tkeywords:[],",
+			"\topenGraph:{},",
+			"\ttwitter:{},",
+			"\trobots:{},",
+			"\talternates:{",
+			"\t\tcanonical:\"\",",
+			"\t}",
+			"}",
+			""
+		],
+		"description": "common SEO page properties for NextJS"
+	},
 	"NextJS search params": {
 		"prefix": "!NextJS search params",
 		"description": "Get search parameters",

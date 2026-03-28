@@ -51,6 +51,34 @@
 		]
 	},
 	"NextJS structured data": {
+	"NextJS search params": {
+		"prefix": "!NextJS search params",
+		"description": "Get search parameters",
+		"body": [
+			"'use client'",
+			"import {useSearchParams} from 'next\\navigation'",
+			"const searchParam = useSearchParams();",
+		]
+	},
+	"NextJS page": {
+		"prefix": "!NextJS page",
+		"body": [
+			"$BLOCK_COMMENT_START tip for SEO properties use !NextJS SEO page $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START tip for structured data use !NextJS struc page data $BLOCK_COMMENT_END",
+			"$BLOCK_COMMENT_START tip for Search params use !NextJS search params $BLOCK_COMMENT_END",
+			"",
+			"export default function ${10:PageName}() {",
+			"\treturn (",
+			"\t\t<>",
+			"\t\t${200:}",
+			"\t\t</>",
+			"\t);",
+			"}",
+			""
+		],
+		"description": "Create a NextJS page",
+		"isFileTemplate": true
+	},
 	"main content": {
 		"prefix": "!main",
 		"body": [

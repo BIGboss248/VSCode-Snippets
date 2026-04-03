@@ -61,10 +61,6 @@ func → function definition
 
 unit-test → function test definition
 
-return → return from function
-
-lambda → anonymous function
-
 extention → Extend functions of a class
 
 🔹 6. Data-Structures
@@ -114,6 +110,8 @@ Stream -> stream data
 hashpassword → securely hash a password
 
 Logging_setup → Setup Logging for the app
+
+decorator -> function/class decorator
 
 🔹 10. Database
 

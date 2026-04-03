@@ -83,11 +83,7 @@
 			"\t);",
 			"}"
 		],
-		"description": "Create a react button with gradiant border using tailwind",
-		"include": [
-			"**/*.ts",
-			"**/*.tsx"
-		]
+		"description": "Create a react button with gradiant border using tailwind"
 	},
 	"React hook form with zod": {
 		"prefix": "!react hook form",
@@ -158,10 +154,6 @@
 			"}",
 			""
 		],
-		"include": [
-			"**/*.tsx",
-			"**/*.ts"
-		]
 	},
 	"React context": {
 		"prefix": "!react context",

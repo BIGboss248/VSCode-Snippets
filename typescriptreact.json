@@ -1,4 +1,23 @@
 {
+	"Native React text input": {
+		"prefix": "!native input text",
+		"description": "Create and save text input from user",
+		"body": [
+			"import { TextInput } from \"react-native\";",
+			"import { useState } from \"react\";",
+			"const [name, setName] = useState();",
+			"<TextInput",
+			"    className=\"border border-border-main\" /* Uniwind */",
+			"    placeholder=\"Name\"",
+			"    value={name}  /* This with onPress function will save the value to name state */",
+			"    onPress={() => setName}",
+			"    keyboardType=\"default\"",
+			"    autoCapitalize=\"none\"",
+			"    autoCorrect={false}",
+			"    placeholderTextColor=\"#9C8A6F\"",
+			"/>",
+		]
+	},
 	"React gradiant border": {
 		"prefix": "!react gradiant border",
 		"body": [

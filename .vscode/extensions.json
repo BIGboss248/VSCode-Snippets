@@ -20,6 +20,7 @@
     "oderwat.indent-rainbow",
     "remcohaszing.schemastore",
     "sonarsource.sonarlint-vscode",
-    "wenfangdu.snippet-generator"
+    "wenfangdu.snippet-generator",
+    "pkief.material-icon-theme",
   ]
 }

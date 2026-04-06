@@ -1,0 +1,25 @@
+{
+  "recommendations": [
+    "ms-azuretools.vscode-containers",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "mutantdino.resourcemonitor",
+    "wenfangdu.snippet-generator",
+    "dotjoshjohnson.xml",
+    "bierner.markdown-mermaid",
+    "aaron-bond.better-comments",
+    "christian-kohler.path-intellisense",
+    "docker.docker",
+    "donjayamanne.githistory",
+    "github.github-vscode-theme",
+    "google.geminicodeassist",
+    "ms-azuretools.vscode-containers",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode.remote-explorer",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "oderwat.indent-rainbow",
+    "remcohaszing.schemastore",
+    "sonarsource.sonarlint-vscode",
+    "wenfangdu.snippet-generator"
+  ]
+}

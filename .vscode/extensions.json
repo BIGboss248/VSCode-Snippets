@@ -22,5 +22,6 @@
     "sonarsource.sonarlint-vscode",
     "wenfangdu.snippet-generator",
     "pkief.material-icon-theme",
+    "esbenp.prettier-vscode"
   ]
 }
